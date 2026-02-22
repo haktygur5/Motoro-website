@@ -4,7 +4,18 @@
 
 ---
 
-## ✅ PASSO 1: Adicionar o CSS
+## ⚠️ PRIMEIRO: REMOVA O CÓDIGO ANTIGO
+
+Se você já colou o código antigo e o site quebrou:
+
+1. Vá para **Customizer > Theme Scripts > Header Script**
+2. **APAGUE TODO** o código que você colou antes
+3. Clique em **Publish**
+4. O site deve voltar ao normal
+
+---
+
+## ✅ PASSO 1: Adicionar o CSS (VERSÃO SEGURA)
 
 ### Onde: `Customizer > Theme Scripts > Header Script`
 
@@ -12,10 +23,14 @@
 2. Vá para **Appearance > Customize** (ou Personalizar)
 3. Encontre **Theme Scripts** ou **Custom Script**
 4. Clique em **Header Script** ou **Header**
-5. Cole TODO o conteúdo do arquivo: **`CSS-PARA-HEADER-SCRIPT.html`**
-6. Clique em **Publish** (Publicar)
+5. **APAGUE qualquer código antigo da Motoro** se houver
+6. Cole TODO o conteúdo do arquivo: **`CSS-PARA-HEADER-SCRIPT.html`**
+7. Clique em **Publish** (Publicar)
 
-⚠️ **IMPORTANTE**: Cole o código COMPLETO, incluindo as tags `<style>` no início e `</style>` no final!
+⚠️ **IMPORTANTE**: 
+- Cole o código COMPLETO, incluindo as tags `<style>` e `</style>`
+- Esta versão é SEGURA e não interfere com o resto do site
+- Todos os estilos começam com `.motoro-` para não conflitar
 
 ---
 
