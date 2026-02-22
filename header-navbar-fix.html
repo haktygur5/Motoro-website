@@ -1,0 +1,281 @@
+<!-- ============================================
+     MOTORO - HEADER NAVBAR + FILTER BAR FIXES
+     ============================================
+     INSTRUCTIONS:
+     Paste this code into:
+     WordPress Customizer > Custom Script
+     (or Customizer > Theme Scripts > Header Script)
+
+     This fixes TWO problems:
+     1. Navbar collapsing into hamburger on desktop
+     2. Inventory filter bar misalignment
+
+     Theme: dws-v3-c8 (DealerCenter)
+     ============================================ -->
+
+<style>
+  /* =============================================
+     FIX 1: HEADER NAVBAR — PREVENT DESKTOP COLLAPSE
+     =============================================
+     Problem: The menu shows a hamburger icon on desktop
+     instead of the full two-line navigation.
+     Fix: Force the nav menu to be visible on desktop
+     (>= 992px) and hide the hamburger toggle.
+     ============================================= */
+
+  /* --- Force full menu visibility on desktop --- */
+  @media (min-width: 992px) {
+
+    /* Show the collapsed menu content */
+    .navbar-collapse,
+    .collapse.navbar-collapse,
+    #navbarSupportedContent,
+    #navbarNav,
+    #primary-menu,
+    .nav-menu,
+    .dws-nav-collapse,
+    .dws-navbar-collapse {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      flex-basis: auto !important;
+    }
+
+    /* Show the nav items as horizontal row */
+    .navbar-nav,
+    .nav-menu > ul,
+    #primary-menu > ul,
+    .dws-nav-menu {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      gap: 0 !important;
+    }
+
+    /* Each nav item inline */
+    .navbar-nav > li,
+    .navbar-nav .nav-item,
+    .nav-menu > ul > li,
+    #primary-menu > ul > li {
+      display: inline-block !important;
+      float: none !important;
+    }
+
+    /* Nav links styling */
+    .navbar-nav .nav-link,
+    .nav-menu a,
+    #primary-menu a {
+      display: inline-block !important;
+      padding: 10px 14px !important;
+      white-space: nowrap !important;
+    }
+
+    /* Hide hamburger / toggle button on desktop */
+    .navbar-toggler,
+    .navbar-toggle,
+    .hamburger-menu,
+    .mobile-menu-toggle,
+    .menu-toggle,
+    button.navbar-toggler,
+    .dws-menu-toggle,
+    .dws-hamburger {
+      display: none !important;
+    }
+
+    /* Ensure the header itself uses flexbox layout */
+    .navbar,
+    .site-header .navbar,
+    header .navbar,
+    #masthead .navbar {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+  }
+
+  /* --- Additional fix for 1024px+ (wider desktops) --- */
+  @media (min-width: 1024px) {
+
+    .navbar-collapse,
+    .collapse.navbar-collapse,
+    #navbarSupportedContent,
+    #navbarNav,
+    .dws-nav-collapse,
+    .dws-navbar-collapse {
+      display: flex !important;
+      flex-grow: 1 !important;
+      justify-content: flex-end !important;
+    }
+
+    .navbar-nav .nav-link,
+    .nav-menu a,
+    #primary-menu a {
+      font-size: 14px !important;
+      padding: 10px 16px !important;
+    }
+  }
+
+  /* --- Active menu item → RED highlight --- */
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-item.active > .nav-link,
+  .navbar-nav .current-menu-item > a,
+  .navbar-nav .current_page_item > a,
+  .nav-menu .current-menu-item > a,
+  #primary-menu .current-menu-item > a,
+  .dws-nav-menu .active a {
+    color: #c8102e !important;
+    font-weight: 700 !important;
+  }
+
+  /* --- Ensure logo + menu fit on same row --- */
+  @media (min-width: 992px) {
+    .navbar-brand,
+    .site-logo,
+    .custom-logo-link,
+    .dws-logo {
+      flex-shrink: 0 !important;
+      margin-right: 20px !important;
+    }
+  }
+
+
+  /* =============================================
+     FIX 2: INVENTORY FILTER BAR — ALIGNMENT
+     =============================================
+     Problem: The "≡ Filter" button and "7 Available"
+     counter are breaking into separate block lines.
+     Fix: Force horizontal flex layout so all elements
+     stay on the same line.
+     ============================================= */
+
+  /* --- Main filter/results header bar --- */
+  .inventory-header,
+  .filter-bar,
+  .results-header,
+  .dws-inventory-header,
+  .dws-filter-bar,
+  .dws-results-header,
+  .dws-inv-toolbar,
+  .inventory-toolbar,
+  .inv-toolbar {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* --- Filter toggle button --- */
+  .filter-toggle,
+  .btn-filter,
+  .dws-filter-toggle,
+  .dws-btn-filter,
+  .inventory-filter-toggle,
+  .inv-filter-btn,
+  [class*="filter-toggle"],
+  [class*="filter-btn"] {
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+  }
+
+  /* --- Results count ("7 Available") --- */
+  .inventory-count,
+  .results-count,
+  .dws-inventory-count,
+  .dws-results-count,
+  .dws-listing-count,
+  .listing-count,
+  .available-count,
+  [class*="inventory-count"],
+  [class*="results-count"] {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+
+  /* --- Title text ("Vehicles for Sale near you") --- */
+  .inventory-title-text,
+  .results-title,
+  .dws-inventory-title,
+  .dws-results-title,
+  .vehicles-title,
+  .inventory-heading {
+    flex: 1 !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* --- Sort dropdown (if present) --- */
+  .inventory-sort,
+  .sort-dropdown,
+  .dws-sort,
+  .dws-sort-dropdown,
+  .inv-sort {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* --- Mobile: allow filter bar to wrap on small screens --- */
+  @media (max-width: 576px) {
+    .inventory-header,
+    .filter-bar,
+    .results-header,
+    .dws-inventory-header,
+    .dws-filter-bar,
+    .dws-results-header,
+    .dws-inv-toolbar,
+    .inventory-toolbar,
+    .inv-toolbar {
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+    }
+  }
+
+
+  /* =============================================
+     BONUS: HEADER TOP BAR COLORS
+     =============================================
+     Ensure the top bar (phone, address, social icons)
+     uses white text on dark background.
+     ============================================= */
+
+  .top-bar,
+  .header-top,
+  .dws-top-bar,
+  .dws-header-top,
+  .site-header-top,
+  #top-bar {
+    background-color: #000000 !important;
+  }
+
+  .top-bar *,
+  .header-top *,
+  .dws-top-bar *,
+  .dws-header-top *,
+  .site-header-top *,
+  #top-bar * {
+    color: #ffffff !important;
+  }
+
+  .top-bar a:hover,
+  .header-top a:hover,
+  .dws-top-bar a:hover,
+  .dws-header-top a:hover,
+  #top-bar a:hover {
+    color: #c8102e !important;
+  }
+</style>
