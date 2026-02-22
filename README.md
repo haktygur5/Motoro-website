@@ -8,41 +8,31 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 
 | File | Description |
 |------|-------------|
+| ⭐ `all-in-one-header.html` | **ALL-IN-ONE** — Single compact `<style>` block with ALL CSS overrides. **Use this instead of separate files.** Paste into Header Script |
 | `footer-complete.html` | **Complete footer** — map section + footer bar with quick links, social icons, logo, and copyright. Paste into Footer Script |
-| `footer-map-section.html` | Map section only (without footer bar) |
-| `hide-default-footer.html` | **CSS to hide** the built-in DealerCenter theme footer. Paste into Header Script |
-| `global-color-overrides.html` | **Global font/color overrides** — removes grays, enforces white/black/red palette. Paste into Header Script |
-| `inventory-page-fixes.html` | **Inventory page fixes** — aggressive gray text elimination for all vehicle cards, filters, toolbar, specs. Paste into Header Script |
-| `header-navbar-fix.html` | **Header navbar + filter bar fixes** — prevents nav collapse on desktop, aligns inventory filter bar. Paste into Header Script or Custom Script |
 | `chat-widget.html` | **LeadConnector chat widget** — floating chat bubble on all pages. Paste into Footer Script (after footer-complete) |
+| `footer-map-section.html` | Map section only (without footer bar) — standalone alternative |
+| `global-color-overrides.html` | _(Included in all-in-one)_ Global font/color overrides |
+| `inventory-page-fixes.html` | _(Included in all-in-one)_ Inventory page gray text fixes |
+| `header-navbar-fix.html` | _(Included in all-in-one)_ Header navbar + filter bar fixes |
+| `hide-default-footer.html` | _(Included in all-in-one)_ CSS to hide default footer |
 
-### How to Install
+### How to Install (Only 3 Steps!)
 
-**Step 1 — Global color overrides (Header Script):**
+**Step 1 — Header Script (ALL CSS overrides):**
 1. Open the WordPress **Customizer** (`Appearance > Customize`)
 2. Navigate to **Theme Scripts > Header Script**
-3. Copy the contents of [`global-color-overrides.html`](global-color-overrides.html)
-4. Paste it into the **Header Script** text area
+3. **Clear any existing CSS code** from previous attempts
+4. Copy the entire contents of [`all-in-one-header.html`](all-in-one-header.html)
+5. Paste it into the **Header Script** text area
+6. ⚠️ **Do NOT paste the separate files** — this single file replaces them all
 
-**Step 2 — Inventory page fixes (same Header Script):**
-1. Copy the contents of [`inventory-page-fixes.html`](inventory-page-fixes.html)
-2. Paste it **after** the global color overrides in the **Header Script** text area
-
-**Step 3 — Header navbar + filter bar fixes (Header Script or Custom Script):**
-1. Copy the contents of [`header-navbar-fix.html`](header-navbar-fix.html)
-2. Paste it **after** the inventory fixes in the **Header Script** text area
-   - Or paste into **Customizer > Custom Script** if available
-
-**Step 4 — Hide the default theme footer (same Header Script):**
-1. Copy the contents of [`hide-default-footer.html`](hide-default-footer.html)
-2. Paste it **after** the navbar fix in the same **Header Script** text area
-
-**Step 5 — Add the custom Motoro footer (Footer Script):**
+**Step 2 — Footer Script (custom footer):**
 1. Navigate to **Theme Scripts > Footer Script**
 2. Copy the entire contents of [`footer-complete.html`](footer-complete.html)
 3. Paste it into the **Footer Script** text area
 
-**Step 6 — Add the chat widget (same Footer Script):**
+**Step 3 — Chat widget (same Footer Script):**
 1. Copy the contents of [`chat-widget.html`](chat-widget.html)
 2. Paste it **after** the footer-complete code in the same **Footer Script** text area
 3. Click **Publish**
