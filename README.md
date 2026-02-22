@@ -13,6 +13,7 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 | `hide-default-footer.html` | **CSS to hide** the built-in DealerCenter theme footer. Paste into Header Script |
 | `global-color-overrides.html` | **Global font/color overrides** — removes grays, enforces white/black/red palette. Paste into Header Script |
 | `header-navbar-fix.html` | **Header navbar + filter bar fixes** — prevents nav collapse on desktop, aligns inventory filter bar. Paste into Header Script or Custom Script |
+| `chat-widget.html` | **LeadConnector chat widget** — floating chat bubble on all pages. Paste into Footer Script (after footer-complete) |
 
 ### How to Install
 
@@ -35,7 +36,11 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 1. Navigate to **Theme Scripts > Footer Script**
 2. Copy the entire contents of [`footer-complete.html`](footer-complete.html)
 3. Paste it into the **Footer Script** text area
-4. Click **Publish**
+
+**Step 5 — Add the chat widget (same Footer Script):**
+1. Copy the contents of [`chat-widget.html`](chat-widget.html)
+2. Paste it **after** the footer-complete code in the same **Footer Script** text area
+3. Click **Publish**
 
 ### What It Includes
 
