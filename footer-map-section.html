@@ -5,15 +5,38 @@
      Paste this entire code block into:
      WordPress Customizer > Theme Scripts > Footer Script
 
-     This adds a dark/elegant map section before the footer
-     with dealership location, contact info, and a
-     "Get Directions" button.
+     This adds a premium dark-mode map section before
+     the footer with dealership location, contact info,
+     and a "Get Directions" button.
+
+     CONSTRAINTS (DealerCenter compatibility):
+     - No :root CSS variables
+     - No CSS filter on iframe
+     - No backdrop-filter
+     - All selectors scoped to #motoro-map-section-wrapper
      ============================================ -->
 
-<!-- MAP SECTION RESPONSIVE STYLES -->
+<!-- MAP SECTION STYLES -->
 <style>
+  @keyframes motoro-glow-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(255,109,0,0.35); }
+    50%      { box-shadow: 0 4px 30px rgba(255,109,0,0.55); }
+  }
+  @keyframes motoro-line-grow {
+    from { width: 0; }
+    to   { width: 60px; }
+  }
   #motoro-map-section-wrapper [data-motoro-role="directions-btn"]:hover {
     background: #e65c00 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(255,109,0,0.5) !important;
+  }
+  #motoro-map-section-wrapper [data-motoro-role="phone-link"]:hover {
+    color: #ff6d00 !important;
+  }
+  #motoro-map-section-wrapper [data-motoro-role="info-item"]:hover {
+    background: rgba(255,255,255,0.03) !important;
+    border-color: rgba(255,109,0,0.15) !important;
   }
   @media screen and (max-width: 768px) {
     #motoro-map-section-wrapper [data-motoro-layout="row"] {
@@ -21,12 +44,15 @@
     }
     #motoro-map-section-wrapper [data-motoro-layout="map"] {
       min-height: 300px !important;
-      border-radius: 12px 12px 0 0 !important;
+      border-radius: 16px 16px 0 0 !important;
     }
     #motoro-map-section-wrapper [data-motoro-layout="info"] {
-      border-radius: 0 0 12px 12px !important;
+      border-radius: 0 0 16px 16px !important;
       border-left: none !important;
-      border-top: 1px solid rgba(255,255,255,0.08) !important;
+      border-top: 1px solid rgba(255,109,0,0.12) !important;
+    }
+    #motoro-map-section-wrapper [data-motoro-role="section-title"] {
+      font-size: 26px !important;
     }
   }
 </style>
@@ -34,58 +60,85 @@
 <!-- MAP SECTION HTML -->
 <div id="motoro-map-section-wrapper" style="
   width: 100%;
-  background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 50%, #0d1117 100%);
-  padding: 60px 0 50px 0;
+  background: #060910;
+  position: relative;
+  padding: 70px 0 60px 0;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
 ">
+  <!-- Subtle radial glow behind the card area -->
+  <div style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(255,109,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <!-- Top edge glow line -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,109,0,0.3) 50%, transparent 100%);
+  "></div>
 
   <!-- Section Title -->
-  <div style="text-align: center; margin-bottom: 40px; padding: 0 20px;">
+  <div style="text-align: center; margin-bottom: 48px; padding: 0 20px; position: relative;">
     <p style="
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 3px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #ff6d00;
-      margin: 0 0 10px 0;
-    ">FIND US</p>
-    <h2 style="
-      font-size: 32px;
-      font-weight: 700;
-      color: #ffffff;
       margin: 0 0 12px 0;
+    ">&#x1F4CD; FIND US</p>
+    <h2 data-motoro-role="section-title" style="
+      font-size: 34px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 16px 0;
       line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     ">Visit Our Dealership</h2>
     <div style="
       width: 60px;
       height: 3px;
-      background: #ff6d00;
+      background: linear-gradient(90deg, #ff6d00, #ff9100);
       margin: 0 auto;
       border-radius: 2px;
+      animation: motoro-line-grow 0.8s ease-out;
     "></div>
   </div>
 
   <!-- Map + Info Card Container -->
   <div style="
-    max-width: 1100px;
+    max-width: 1120px;
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
+    position: relative;
   ">
     <div data-motoro-layout="row" style="
       display: flex;
       flex-direction: row;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
     ">
 
       <!-- Google Map -->
       <div data-motoro-layout="map" style="
         flex: 1.6;
-        min-height: 420px;
+        min-height: 440px;
         position: relative;
+        background: #0a0e1a;
       ">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.0!2d-81.3854!3d28.4876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e77c3e1f3b7c45%3A0x5c02e11c0e498a20!2s5501+S+Orange+Blossom+Trail%2C+Orlando%2C+FL+32839!5e0!3m2!1sen!2sus!4v1700000000000"
@@ -102,74 +155,115 @@
       <!-- Info Card -->
       <div data-motoro-layout="info" style="
         flex: 1;
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-        padding: 36px 30px;
+        background: linear-gradient(170deg, #0e1225 0%, #0a0f1e 40%, #0d1020 100%);
+        padding: 40px 32px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-left: 1px solid rgba(255,255,255,0.08);
+        border-left: 1px solid rgba(255,109,0,0.1);
         box-sizing: border-box;
       ">
         <!-- Dealership Name -->
-        <h3 style="
-          font-size: 20px;
-          font-weight: 700;
-          color: #ffffff;
-          margin: 0 0 24px 0;
-          padding-bottom: 16px;
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-        ">MOTORO AUTOMOTIVE GROUP</h3>
+        <div style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <h3 style="
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+            letter-spacing: 1.5px;
+          ">MOTORO</h3>
+          <p style="
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            color: #ff6d00;
+            margin: 0;
+            text-transform: uppercase;
+          ">AUTOMOTIVE GROUP</p>
+        </div>
 
         <!-- Address -->
-        <div style="margin-bottom: 20px;">
-          <p style="font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
-            &#x1F4CD; ADDRESS
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 6px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+            ADDRESS
           </p>
-          <p style="font-size: 15px; color: #e0e0e0; margin: 0; line-height: 1.5;">
+          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.55;">
             5501 S Orange Blossom Trail<br>Orlando, FL 32839
           </p>
         </div>
 
         <!-- Phone -->
-        <div style="margin-bottom: 20px;">
-          <p style="font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
-            &#x1F4DE; PHONE
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 6px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+            PHONE
           </p>
-          <a href="tel:+16893209498" style="font-size: 15px; color: #e0e0e0; text-decoration: none; line-height: 1.5;">
-            +1 (689) 320-9498
-          </a>
+          <a href="tel:+16893209498" data-motoro-role="phone-link" style="
+            font-size: 14px;
+            color: #c8c8d0;
+            text-decoration: none;
+            line-height: 1.55;
+            transition: color 0.25s ease;
+          ">+1 (689) 320-9498</a>
         </div>
 
         <!-- Hours -->
-        <div style="margin-bottom: 28px;">
-          <p style="font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
-            &#x1F552; HOURS
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 24px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+            HOURS
           </p>
-          <p style="font-size: 15px; color: #e0e0e0; margin: 0; line-height: 1.6;">
-            Mon - Sat: 9AM - 7PM<br>
-            <span style="color: #a0a0a0;">Sun: Closed</span>
+          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.6;">
+            Mon – Sat: 9AM – 7PM<br>
+            <span style="color: #6b6b78;">Sun: Closed</span>
           </p>
         </div>
 
         <!-- Get Directions Button -->
         <a href="https://maps.app.goo.gl/T4eyLmafuVhcGFW37" target="_blank" rel="noopener noreferrer" data-motoro-role="directions-btn" style="
-          display: inline-block;
+          display: block;
           background: #ff6d00;
           color: #ffffff;
           font-size: 15px;
           font-weight: 700;
           text-decoration: none;
           text-align: center;
-          padding: 14px 28px;
-          border-radius: 8px;
+          padding: 15px 28px;
+          border-radius: 10px;
           letter-spacing: 0.5px;
-          transition: background 0.3s ease;
-          box-shadow: 0 4px 15px rgba(255,109,0,0.3);
+          transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+          animation: motoro-glow-pulse 3s ease-in-out infinite;
         ">
-          &#x1F4CD; Get Directions
+          Get Directions &rarr;
         </a>
       </div>
 
     </div>
   </div>
+
+  <!-- Bottom edge glow line -->
+  <div style="
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,109,0,0.2) 50%, transparent 100%);
+  "></div>
 </div>

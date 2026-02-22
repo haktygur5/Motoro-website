@@ -2,13 +2,13 @@
 
 ## Motoro Automotive Group – Custom Map Section
 
-This repository contains the custom **map section** code for the Motoro Automotive Group website.
+Premium dark-mode map section for the Motoro Automotive Group WordPress site (DealerCenter theme).
 
 ### Files
 
 | File | Description |
 |------|-------------|
-| `footer-map-section.html` | Dark/elegant map section with info card, to be added via the WordPress Customizer Footer Script |
+| `footer-map-section.html` | Premium dark-mode map section with info card, to be pasted into the WordPress Customizer Footer Script |
 
 ### How to Install
 
@@ -20,10 +20,13 @@ This repository contains the custom **map section** code for the Motoro Automoti
 
 ### What It Includes
 
-- **Dark/elegant design** with gradient background (`#0d1117` / `#1a1a2e`)
+- **Premium dark-mode design** — near-black background (`#060910`) with subtle orange radial glow
 - **Embedded Google Map** showing the dealership at 5501 S Orange Blossom Trail, Orlando, FL 32839
-- **Info card** with address, phone number, and business hours
-- **"Get Directions" button** (orange `#ff6d00`) linking to Google Maps
+- **Info card** with branded header (MOTORO / AUTOMOTIVE GROUP), address, phone, and hours
+- **Hover effects** on info items (subtle border glow) and phone link (orange highlight)
+- **Animated "Get Directions →" button** with pulsing orange glow (`motoro-glow-pulse`)
+- **Animated accent line** under the section title (`motoro-line-grow`)
+- **Top/bottom edge glow lines** — subtle orange gradient separators
 - **Responsive layout** — stacks vertically on mobile (≤768px)
 
 ### Design Constraints
@@ -31,11 +34,12 @@ This repository contains the custom **map section** code for the Motoro Automoti
 The code follows these rules to avoid breaking the DealerCenter theme:
 
 - Uses `data-motoro-*` attributes instead of generic CSS classes to avoid conflicts
-- Uses only inline styles (no additional CSS classes on the main elements)
+- Uses only inline styles on elements (no custom CSS class names)
 - Does **not** use `:root` CSS variables
 - Does **not** use CSS `filter` on the iframe
 - Does **not** use `backdrop-filter`
-- Responsive media queries target only elements inside `#motoro-map-section-wrapper`
+- All CSS selectors scoped to `#motoro-map-section-wrapper`
+- Keyframe animations use `motoro-` prefix to avoid collisions
 
 ### Business Info
 
