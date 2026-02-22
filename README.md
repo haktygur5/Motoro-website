@@ -8,19 +8,24 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 
 | File | Description |
 |------|-------------|
-| `footer-complete.html` | **Complete footer** — map section + footer bar with quick links, social icons, logo, and copyright. Ready to paste into Footer Script |
+| `footer-complete.html` | **Complete footer** — map section + footer bar with quick links, social icons, logo, and copyright. Paste into Footer Script |
 | `footer-map-section.html` | Map section only (without footer bar) |
-| `hide-default-footer.html` | **CSS snippet to hide** the built-in DealerCenter theme footer. Paste into Header Script |
+| `hide-default-footer.html` | **CSS to hide** the built-in DealerCenter theme footer. Paste into Header Script |
+| `global-color-overrides.html` | **Global font/color overrides** — removes grays, enforces white/black/red palette. Paste into Header Script |
 
 ### How to Install
 
-**Step 1 — Hide the default theme footer:**
+**Step 1 — Global color overrides (Header Script):**
 1. Open the WordPress **Customizer** (`Appearance > Customize`)
 2. Navigate to **Theme Scripts > Header Script**
-3. Copy the contents of [`hide-default-footer.html`](hide-default-footer.html)
+3. Copy the contents of [`global-color-overrides.html`](global-color-overrides.html)
 4. Paste it into the **Header Script** text area
 
-**Step 2 — Add the custom Motoro footer:**
+**Step 2 — Hide the default theme footer (same Header Script):**
+1. Copy the contents of [`hide-default-footer.html`](hide-default-footer.html)
+2. Paste it **after** the global color overrides in the same **Header Script** text area
+
+**Step 3 — Add the custom Motoro footer (Footer Script):**
 1. Navigate to **Theme Scripts > Footer Script**
 2. Copy the entire contents of [`footer-complete.html`](footer-complete.html)
 3. Paste it into the **Footer Script** text area
