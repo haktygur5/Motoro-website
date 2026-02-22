@@ -112,6 +112,34 @@
 
   /* --- INVENTORY PAGE --- */
 
+  /* DealerCenter inventory wrapper - text elements */
+  .dws-inventory-item p,
+  .dws-inventory-item span,
+  .dws-inventory-item li,
+  .dws-inventory-item td,
+  .dws-inventory-item th,
+  .dws-inventory-item label,
+  .dws-inventory-item h1,
+  .dws-inventory-item h2,
+  .dws-inventory-item h3,
+  .dws-inventory-item h4,
+  .dws-inventory-item h5,
+  .dws-inventory-item h6,
+  .inv-vehicle-card p,
+  .inv-vehicle-card span,
+  .inv-vehicle-card li,
+  .inv-vehicle-card td,
+  .inv-vehicle-list p,
+  .inv-vehicle-list span,
+  .dws-vehicle-list p,
+  .dws-vehicle-list span,
+  .inventory-listing p,
+  .inventory-listing span,
+  .inventory-container p,
+  .inventory-container span {
+    color: #000000 !important;
+  }
+
   /* Vehicle card titles */
   .dws-vehicle-title,
   .dws-vehicle-title a,
@@ -135,14 +163,37 @@
     color: #c8102e !important;
   }
 
-  /* Vehicle price */
+  /* Vehicle price — always RED */
   .dws-vehicle-price,
   .vehicle-price,
   .dws-inv-price,
   .inv-price,
   .price,
-  .dws-price {
+  .dws-price,
+  .dws-vehicle-price span,
+  .vehicle-price span,
+  .dws-inv-price span,
+  .inv-price span {
     color: #c8102e !important;
+  }
+
+  /* DealerCenter gray/muted text classes → black */
+  .dws-text-grey,
+  .dws-text-gray,
+  .dws-text-muted,
+  .dws-secondary-info,
+  .inv-text-muted,
+  .inv-text-grey,
+  .inv-text-gray,
+  .text-muted,
+  .text-secondary,
+  .text-gray,
+  .text-grey,
+  .text-body-secondary,
+  .small.text-muted,
+  small.text-muted,
+  .muted {
+    color: #000000 !important;
   }
 
   /* Vehicle details / specs / labels */
@@ -151,10 +202,13 @@
   .dws-vehicle-details p,
   .vehicle-details,
   .vehicle-details span,
+  .vehicle-details p,
   .dws-inv-details,
   .dws-inv-details span,
+  .dws-inv-details p,
   .dws-inv-specs,
   .dws-inv-specs span,
+  .dws-inv-specs p,
   .vehicle-specs,
   .vehicle-specs span,
   .vehicle-info,
@@ -171,7 +225,18 @@
   .vehicle-stock,
   .vehicle-vin,
   .inv-mileage,
-  .inv-stock {
+  .inv-stock,
+  .inv-vin,
+  .inv-ext-color,
+  .inv-int-color,
+  .inv-transmission,
+  .inv-engine,
+  .inv-drivetrain,
+  .inv-fuel-type,
+  .inv-body-style,
+  .dws-inv-mileage span,
+  .dws-inv-stock span,
+  .dws-inv-vin span {
     color: #000000 !important;
   }
 
@@ -180,6 +245,8 @@
   .dws-filter label,
   .dws-filter span,
   .dws-filter p,
+  .dws-filter h4,
+  .dws-filter h5,
   .dws-sidebar,
   .dws-sidebar label,
   .dws-sidebar span,
@@ -193,7 +260,10 @@
   .sidebar-filter,
   .sidebar-filter label,
   .filter-label,
-  .filter-title {
+  .filter-title,
+  .filter-group,
+  .filter-group label,
+  .filter-group span {
     color: #000000 !important;
   }
 
@@ -203,8 +273,28 @@
   .dws-sort label,
   .dws-results-count,
   .results-count,
-  .showing-results {
+  .showing-results,
+  .sort-label,
+  .sort-by,
+  .dws-listing-count,
+  .listing-count {
     color: #000000 !important;
+  }
+
+  /* "Compare" / "Save" / action links on vehicle cards */
+  .dws-compare,
+  .dws-save,
+  .dws-share,
+  .compare-link,
+  .save-link {
+    color: #000000 !important;
+  }
+  .dws-compare:hover,
+  .dws-save:hover,
+  .dws-share:hover,
+  .compare-link:hover,
+  .save-link:hover {
+    color: #c8102e !important;
   }
 
   /* --- BUTTONS --- */
@@ -412,6 +502,12 @@
 
   /* --- REMOVE GRAY COMPLETELY ---
        Override any inline gray styles from the theme */
+  [style*="color: #333"],
+  [style*="color:#333"],
+  [style*="color: #444"],
+  [style*="color:#444"],
+  [style*="color: #555"],
+  [style*="color:#555"],
   [style*="color: #666"],
   [style*="color:#666"],
   [style*="color: #777"],
@@ -426,6 +522,8 @@
   [style*="color:#bbb"],
   [style*="color: #ccc"],
   [style*="color:#ccc"],
+  [style*="color: #ddd"],
+  [style*="color:#ddd"],
   [style*="color: gray"],
   [style*="color:gray"],
   [style*="color: grey"],
