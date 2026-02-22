@@ -236,6 +236,63 @@ body {
 
 /* ===== MORA WIDGET STYLES ===== */
 
+/* Teaser tooltip */
+.mora-teaser {
+  position: fixed;
+  bottom: 40px;
+  right: 96px;
+  z-index: 9999;
+  background: var(--bg-card);
+  color: var(--text);
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(233,69,96,0.2);
+  max-width: 240px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  white-space: normal;
+}
+
+.mora-teaser.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.mora-teaser::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  bottom: 16px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-card);
+  border-right: 1px solid rgba(233,69,96,0.2);
+  border-bottom: 1px solid rgba(233,69,96,0.2);
+  transform: rotate(-45deg);
+}
+
+.mora-teaser-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.mora-teaser-close:hover {
+  color: var(--accent);
+}
+
 /* Floating toggle button */
 .mora-toggle {
   position: fixed;

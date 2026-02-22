@@ -116,10 +116,27 @@
   var sendBtn = document.getElementById("mora-send");
   var quickBtns = document.querySelectorAll(".mora-quick-btn");
   var badge = document.getElementById("mora-badge");
+  var teaser = document.getElementById("mora-teaser");
+  var teaserClose = document.getElementById("mora-teaser-close");
 
   /* ===== State ===== */
   var isOpen = false;
   var isFirstOpen = true;
+  var teaserTimer = null;
+
+  /* ===== Teaser Tooltip ===== */
+  if (teaser) {
+    teaserTimer = setTimeout(function () {
+      if (!isOpen) teaser.classList.add("show");
+    }, 3000);
+  }
+
+  if (teaserClose) {
+    teaserClose.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (teaser) teaser.classList.remove("show");
+    });
+  }
 
   /* ===== Toggle Chat ===== */
   toggleBtn.addEventListener("click", function () {
@@ -131,6 +148,8 @@
       toggleBtn.innerHTML = "&#10005;"; /* × close icon */
       inputEl.focus();
       if (badge) badge.style.display = "none";
+      if (teaser) teaser.classList.remove("show");
+      if (teaserTimer) clearTimeout(teaserTimer);
 
       if (isFirstOpen) {
         isFirstOpen = false;
