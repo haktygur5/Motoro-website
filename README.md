@@ -12,6 +12,7 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 | `footer-map-section.html` | Map section only (without footer bar) |
 | `hide-default-footer.html` | **CSS to hide** the built-in DealerCenter theme footer. Paste into Header Script |
 | `global-color-overrides.html` | **Global font/color overrides** — removes grays, enforces white/black/red palette. Paste into Header Script |
+| `inventory-page-fixes.html` | **Inventory page fixes** — aggressive gray text elimination for all vehicle cards, filters, toolbar, specs. Paste into Header Script |
 | `header-navbar-fix.html` | **Header navbar + filter bar fixes** — prevents nav collapse on desktop, aligns inventory filter bar. Paste into Header Script or Custom Script |
 | `chat-widget.html` | **LeadConnector chat widget** — floating chat bubble on all pages. Paste into Footer Script (after footer-complete) |
 
@@ -23,21 +24,25 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 3. Copy the contents of [`global-color-overrides.html`](global-color-overrides.html)
 4. Paste it into the **Header Script** text area
 
-**Step 2 — Header navbar + filter bar fixes (Header Script or Custom Script):**
-1. Copy the contents of [`header-navbar-fix.html`](header-navbar-fix.html)
+**Step 2 — Inventory page fixes (same Header Script):**
+1. Copy the contents of [`inventory-page-fixes.html`](inventory-page-fixes.html)
 2. Paste it **after** the global color overrides in the **Header Script** text area
+
+**Step 3 — Header navbar + filter bar fixes (Header Script or Custom Script):**
+1. Copy the contents of [`header-navbar-fix.html`](header-navbar-fix.html)
+2. Paste it **after** the inventory fixes in the **Header Script** text area
    - Or paste into **Customizer > Custom Script** if available
 
-**Step 3 — Hide the default theme footer (same Header Script):**
+**Step 4 — Hide the default theme footer (same Header Script):**
 1. Copy the contents of [`hide-default-footer.html`](hide-default-footer.html)
 2. Paste it **after** the navbar fix in the same **Header Script** text area
 
-**Step 4 — Add the custom Motoro footer (Footer Script):**
+**Step 5 — Add the custom Motoro footer (Footer Script):**
 1. Navigate to **Theme Scripts > Footer Script**
 2. Copy the entire contents of [`footer-complete.html`](footer-complete.html)
 3. Paste it into the **Footer Script** text area
 
-**Step 5 — Add the chat widget (same Footer Script):**
+**Step 6 — Add the chat widget (same Footer Script):**
 1. Copy the contents of [`chat-widget.html`](chat-widget.html)
 2. Paste it **after** the footer-complete code in the same **Footer Script** text area
 3. Click **Publish**
