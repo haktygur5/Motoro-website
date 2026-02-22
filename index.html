@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montoro - Seu Carro dos Sonhos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="logo">Mon<span>toro</span></div>
+    <nav>
+      <a href="#vehicles">Veículos</a>
+      <a href="#about">Sobre</a>
+      <a href="#contact">Contato</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Encontre o carro <span class="highlight">perfeito</span> para você</h1>
+      <p>Na Montoro, temos a melhor seleção de veículos novos e seminovos. Conheça a <strong>MORA</strong>, nossa assistente virtual, e descubra o carro dos seus sonhos!</p>
+      <a href="#vehicles" class="hero-btn">Ver Veículos</a>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED CARS ===== -->
+  <section class="section" id="vehicles">
+    <h2 class="section-title">Veículos em Destaque</h2>
+    <p class="section-subtitle">Os modelos mais procurados da nossa concessionária</p>
+
+    <div class="car-grid">
+      <div class="car-card">
+        <div class="car-img">🚗</div>
+        <div class="car-info">
+          <h3>Montoro Sedan Executive</h3>
+          <p class="car-specs">Motor 1.5 Flex · Câmbio CVT · Couro premium</p>
+          <span class="car-price">R$ 129.900</span>
+        </div>
+      </div>
+      <div class="car-card">
+        <div class="car-img">🚙</div>
+        <div class="car-info">
+          <h3>Montoro SUV Premium</h3>
+          <p class="car-specs">Motor 2.0 Turbo · Automático · 7 lugares</p>
+          <span class="car-price">R$ 189.900</span>
+        </div>
+      </div>
+      <div class="car-card">
+        <div class="car-img">🏎️</div>
+        <div class="car-info">
+          <h3>Montoro Hatch Sport</h3>
+          <p class="car-specs">Motor 1.0 Turbo · 6 marchas · Multimídia 10"</p>
+          <span class="car-price">R$ 89.900</span>
+        </div>
+      </div>
+      <div class="car-card">
+        <div class="car-img">🛻</div>
+        <div class="car-info">
+          <h3>Montoro Pickup Force</h3>
+          <p class="car-specs">Motor 2.8 Diesel · Tração 4x4 · Caçamba reforçada</p>
+          <span class="car-price">R$ 249.900</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <p>&copy; 2026 Montoro Veículos. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== MORA AI WIDGET ===== -->
+
+  <!-- Toggle Button -->
+  <button id="mora-toggle" class="mora-toggle" aria-label="Abrir assistente MORA">
+    &#x1F916;
+    <span id="mora-badge" class="mora-badge">1</span>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="mora-window" class="mora-window" role="dialog" aria-label="MORA Assistente Virtual">
+
+    <!-- Header -->
+    <div class="mora-header">
+      <div class="mora-avatar">M</div>
+      <div class="mora-header-info">
+        <h4>MORA</h4>
+        <span><span class="mora-status-dot"></span> Assistente Montoro · Online</span>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mora-quick-actions">
+      <button class="mora-quick-btn" data-query="Quais carros vocês têm?">🚗 Veículos</button>
+      <button class="mora-quick-btn" data-query="Como funciona o financiamento?">💰 Financiamento</button>
+      <button class="mora-quick-btn" data-query="Quero agendar um test drive">🏁 Test Drive</button>
+      <button class="mora-quick-btn" data-query="Onde fica a loja?">📍 Localização</button>
+      <button class="mora-quick-btn" data-query="Vocês aceitam troca?">🔄 Troca</button>
+      <button class="mora-quick-btn" data-query="Qual a garantia?">🛡️ Garantia</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="mora-messages" class="mora-messages"></div>
+
+    <!-- Input -->
+    <div class="mora-input-area">
+      <input
+        id="mora-input"
+        class="mora-input"
+        type="text"
+        placeholder="Digite sua mensagem..."
+        autocomplete="off"
+      />
+      <button id="mora-send" class="mora-send-btn" aria-label="Enviar mensagem">&#10148;</button>
+    </div>
+  </div>
+
+  <script src="mora.js"></script>
+</body>
+</html>
