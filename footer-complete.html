@@ -22,31 +22,31 @@
 <!-- FOOTER STYLES -->
 <style>
   @keyframes motoro-glow-pulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(255,109,0,0.35); }
-    50%      { box-shadow: 0 4px 30px rgba(255,109,0,0.55); }
+    0%, 100% { box-shadow: 0 4px 20px rgba(200,16,46,0.35); }
+    50%      { box-shadow: 0 4px 30px rgba(200,16,46,0.55); }
   }
   @keyframes motoro-line-grow {
     from { width: 0; }
     to   { width: 60px; }
   }
   #motoro-map-section-wrapper [data-motoro-role="directions-btn"]:hover {
-    background: #e65c00 !important;
+    background: #a00d24 !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(255,109,0,0.5) !important;
+    box-shadow: 0 6px 28px rgba(200,16,46,0.5) !important;
   }
   #motoro-map-section-wrapper [data-motoro-role="phone-link"]:hover {
-    color: #ff6d00 !important;
+    color: #c8102e !important;
   }
   #motoro-map-section-wrapper [data-motoro-role="info-item"]:hover {
     background: rgba(255,255,255,0.03) !important;
-    border-color: rgba(255,109,0,0.15) !important;
+    border-color: rgba(200,16,46,0.15) !important;
   }
   #motoro-footer-wrapper [data-motoro-role="footer-link"]:hover {
-    color: #ff6d00 !important;
+    color: #c8102e !important;
   }
   #motoro-footer-wrapper [data-motoro-role="social-icon"]:hover {
-    background: #ff6d00 !important;
-    border-color: #ff6d00 !important;
+    background: #c8102e !important;
+    border-color: #c8102e !important;
     transform: translateY(-2px);
   }
   @media screen and (max-width: 768px) {
@@ -60,7 +60,7 @@
     #motoro-map-section-wrapper [data-motoro-layout="info"] {
       border-radius: 0 0 16px 16px !important;
       border-left: none !important;
-      border-top: 1px solid rgba(255,109,0,0.12) !important;
+      border-top: 1px solid rgba(200,16,46,0.12) !important;
     }
     #motoro-map-section-wrapper [data-motoro-role="section-title"] {
       font-size: 26px !important;
@@ -89,7 +89,7 @@
      ========================================== -->
 <div id="motoro-map-section-wrapper" style="
   width: 100%;
-  background: #060910;
+  background: #000000;
   position: relative;
   padding: 70px 0 60px 0;
   box-sizing: border-box;
@@ -104,7 +104,7 @@
     transform: translate(-50%, -50%);
     width: 700px;
     height: 500px;
-    background: radial-gradient(ellipse at center, rgba(255,109,0,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(200,16,46,0.06) 0%, transparent 70%);
     pointer-events: none;
   "></div>
 
@@ -115,7 +115,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,109,0,0.3) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.3) 50%, transparent 100%);
   "></div>
 
   <!-- Section Title -->
@@ -125,7 +125,7 @@
       font-weight: 700;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: #ff6d00;
+      color: #c8102e;
       margin: 0 0 12px 0;
     ">&#x1F4CD; FIND US</p>
     <h2 data-motoro-role="section-title" style="
@@ -139,7 +139,7 @@
     <div style="
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, #ff6d00, #ff9100);
+      background: linear-gradient(90deg, #c8102e, #e63946);
       margin: 0 auto;
       border-radius: 2px;
       animation: motoro-line-grow 0.8s ease-out;
@@ -162,18 +162,18 @@
       box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
     ">
 
-      <!-- Google Map -->
+      <!-- Google Map (Dark Mode) -->
       <div data-motoro-layout="map" style="
         flex: 1.6;
         min-height: 440px;
         position: relative;
-        background: #0a0e1a;
+        background: #000000;
       ">
         <iframe
           src="https://maps.google.com/maps?q=810+Lee+Rd,+Orlando,+FL+32810&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
-          style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -184,31 +184,21 @@
       <!-- Info Card -->
       <div data-motoro-layout="info" style="
         flex: 1;
-        background: linear-gradient(170deg, #0e1225 0%, #0a0f1e 40%, #0d1020 100%);
+        background: linear-gradient(170deg, #0d0d0d 0%, #0a0a0a 40%, #080808 100%);
         padding: 40px 32px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-left: 1px solid rgba(255,109,0,0.1);
+        border-left: 1px solid rgba(200,16,46,0.1);
         box-sizing: border-box;
       ">
-        <!-- Dealership Name -->
+        <!-- Dealership Logo + Name -->
         <div style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-          <h3 style="
-            font-size: 18px;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0 0 4px 0;
-            letter-spacing: 1.5px;
-          ">MOTORO</h3>
-          <p style="
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            color: #ff6d00;
-            margin: 0;
-            text-transform: uppercase;
-          ">AUTOMOTIVE GROUP</p>
+          <img
+            src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
+            alt="Motoro Automotive Group"
+            style="max-width: 160px; height: auto; margin-bottom: 12px; display: block;"
+          />
         </div>
 
         <!-- Address -->
@@ -219,7 +209,7 @@
           border: 1px solid transparent;
           transition: background 0.25s ease, border-color 0.25s ease;
         ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
             ADDRESS
           </p>
           <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.55;">
@@ -235,7 +225,7 @@
           border: 1px solid transparent;
           transition: background 0.25s ease, border-color 0.25s ease;
         ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
             PHONE
           </p>
           <a href="tel:+14079222215" data-motoro-role="phone-link" style="
@@ -255,7 +245,7 @@
           border: 1px solid transparent;
           transition: background 0.25s ease, border-color 0.25s ease;
         ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ff6d00; margin: 0 0 6px 0;">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
             HOURS
           </p>
           <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.6;">
@@ -267,7 +257,7 @@
         <!-- Get Directions Button -->
         <a href="https://maps.app.goo.gl/XxbsgPgVzZmqHBex9" target="_blank" rel="noopener noreferrer" data-motoro-role="directions-btn" style="
           display: block;
-          background: #ff6d00;
+          background: #c8102e;
           color: #ffffff;
           font-size: 15px;
           font-weight: 700;
@@ -293,7 +283,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,109,0,0.2) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.2) 50%, transparent 100%);
   "></div>
 </div>
 
@@ -302,7 +292,7 @@
      ========================================== -->
 <div id="motoro-footer-wrapper" style="
   width: 100%;
-  background: #040710;
+  background: #000000;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   padding: 0;
@@ -390,7 +380,7 @@
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: #ff6d00;
+          color: #c8102e;
           margin: 0 0 16px 0;
         ">QUICK LINKS</p>
         <a href="/inventory/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Browse Inventory</a>
@@ -407,7 +397,7 @@
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: #ff6d00;
+          color: #c8102e;
           margin: 0 0 16px 0;
         ">CONTACT</p>
         <p style="font-size: 14px; color: #8a8a96; margin: 0 0 10px 0; line-height: 1.55;">
