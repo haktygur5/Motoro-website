@@ -10,25 +10,33 @@ Premium dark-mode map section for the Motoro Automotive Group WordPress site (De
 |------|-------------|
 | `footer-complete.html` | **Complete footer** — map section + footer bar with quick links, social icons, logo, and copyright. Ready to paste into Footer Script |
 | `footer-map-section.html` | Map section only (without footer bar) |
+| `hide-default-footer.html` | **CSS snippet to hide** the built-in DealerCenter theme footer. Paste into Header Script |
 
 ### How to Install
 
+**Step 1 — Hide the default theme footer:**
 1. Open the WordPress **Customizer** (`Appearance > Customize`)
-2. Navigate to **Theme Scripts > Footer Script**
-3. Copy the entire contents of [`footer-complete.html`](footer-complete.html) (recommended) or [`footer-map-section.html`](footer-map-section.html)
-4. Paste it into the **Footer Script** text area
-5. Click **Publish**
+2. Navigate to **Theme Scripts > Header Script**
+3. Copy the contents of [`hide-default-footer.html`](hide-default-footer.html)
+4. Paste it into the **Header Script** text area
+
+**Step 2 — Add the custom Motoro footer:**
+1. Navigate to **Theme Scripts > Footer Script**
+2. Copy the entire contents of [`footer-complete.html`](footer-complete.html)
+3. Paste it into the **Footer Script** text area
+4. Click **Publish**
 
 ### What It Includes
 
-- **Premium dark-mode design** — near-black background (`#060910`) with subtle orange radial glow
+- **Premium dark-mode design** — pure black background (`#000000`) with subtle red radial glow
+- **Dark Google Maps** — CSS filter for dark map appearance
 - **Embedded Google Map** showing the dealership at 810 Lee Rd, Orlando, FL 32810
-- **Info card** with branded header (MOTORO / AUTOMOTIVE GROUP), address, phone, and hours
+- **Info card** with logo, address, phone, and hours
 - **Footer bar** with logo, quick links (Inventory, Financing, Test Drive, About, Contact), social icons (Facebook, Instagram, TikTok), and copyright
-- **Hover effects** on info items (subtle border glow) and phone link (orange highlight)
-- **Animated "Get Directions →" button** with pulsing orange glow (`motoro-glow-pulse`)
+- **Hover effects** on info items (subtle border glow) and phone link (red highlight)
+- **Animated "Get Directions →" button** with pulsing red glow (`motoro-glow-pulse`)
 - **Animated accent line** under the section title (`motoro-line-grow`)
-- **Top/bottom edge glow lines** — subtle orange gradient separators
+- **Top/bottom edge glow lines** — subtle red gradient separators
 - **Responsive layout** — stacks vertically on mobile (≤768px)
 
 ### Design Constraints

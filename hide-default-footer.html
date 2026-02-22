@@ -1,0 +1,63 @@
+<!-- ============================================
+     HIDE DEFAULT DEALERCENTER FOOTER
+     ============================================
+     INSTRUCTIONS:
+     Paste this code into ONE of these locations:
+
+     OPTION 1 (RECOMMENDED):
+     WordPress Customizer > Theme Scripts > Header Script
+     (This loads the CSS early, preventing any flash
+      of the default footer before it hides)
+
+     OPTION 2:
+     WordPress Customizer > Theme Scripts > Footer Script
+     (Paste BEFORE the footer-complete.html code)
+
+     This hides the built-in DealerCenter theme footer
+     while keeping your custom Motoro footer visible.
+     ============================================ -->
+
+<style>
+  /* === HIDE DEFAULT DEALERCENTER FOOTER === */
+
+  /* Target the DealerCenter theme footer wrapper */
+  .dws-footer,
+  .dws-footer-wrapper,
+  .dws-footer-container,
+  #dws-footer,
+  .footer-wrapper,
+  #footer-wrapper,
+  .site-footer,
+  #site-footer {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Target the generic <footer> tag (DealerCenter default) */
+  footer {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Target DealerCenter footer columns (col-sm-3 pattern) */
+  .dws-footer .col-sm-3,
+  .dws-footer-wrapper .col-sm-3,
+  .footer-wrapper .col-sm-3 {
+    display: none !important;
+  }
+
+  /* === PROTECT OUR CUSTOM FOOTER (never hide these) === */
+  #motoro-map-section-wrapper,
+  #motoro-footer-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+</style>
