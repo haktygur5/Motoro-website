@@ -1,156 +1,92 @@
 <style>
-/* MOTORO AUTOMOTIVE GROUP - ALL CSS OVERRIDES
-   Paste this SINGLE block into: Customizer > Theme Scripts > Header Script
-   This replaces ALL separate files (global-color-overrides, inventory-page-fixes,
-   header-navbar-fix, hide-default-footer). Do NOT paste any other CSS files. */
+/* MOTORO - ALL CSS OVERRIDES (Header Script)
+   Replaces all separate files. Paste ONLY this into Header Script. */
 
-/* === BODY TEXT: black on light backgrounds === */
-body,body p,body span,body div,body li,body td,body th,body label,body small,body strong,body b,body em,
-.text-muted,.text-secondary,.text-gray,.text-grey,.text-body-secondary,.muted,
-small.text-muted,.small.text-muted{color:#000!important}
-
-/* === HEADINGS === */
+/* BODY TEXT */
+body,body p,body span,body div,body li,body td,body th,body label,body small,body strong,body b,body em{color:#000!important}
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{color:#000!important}
+.text-muted,.text-secondary,.text-gray,.text-grey,.text-body-secondary,.muted{color:#000!important}
 
-/* === LINKS: red accent === */
+/* LINKS */
 a{color:#c8102e!important}
 a:hover,a:focus{color:#a00d24!important}
 
-/* === NAVBAR: white text on dark bg === */
+/* NAVBAR: white on dark */
 .navbar,.navbar a,.navbar .nav-link,.navbar .navbar-brand,
-header,header a,header .nav-link,
+header a,header .nav-link,
 .dws-header,.dws-header a,.dws-nav,.dws-nav a,
 .top-bar,.top-bar a,.top-bar span,.top-bar p,
 .header-top,.header-top a,.header-top span{color:#fff!important}
-
-.navbar a:hover,.navbar .nav-link:hover,header a:hover,
-.dws-header a:hover,.dws-nav a:hover,.top-bar a:hover{color:#c8102e!important}
-
+.navbar a:hover,.dws-header a:hover,.dws-nav a:hover,.top-bar a:hover{color:#c8102e!important}
 .navbar .nav-link.active,.navbar .active>.nav-link,
-.dws-nav .active a,header .active a,
 .current-menu-item>a,.current-menu-item>.nav-link{color:#c8102e!important}
 
-/* === HERO/BANNER: white text === */
+/* HERO */
 .dws-home-banner-bg,.dws-home-banner-bg *,
 .wp-block-cover,.wp-block-cover *{color:#fff!important}
 
-/* === INVENTORY CARDS: black text === */
-.dws-content-wrapper,.dws-content-wrapper p,.dws-content-wrapper span,
-.dws-content-wrapper div,.dws-content-wrapper li,.dws-content-wrapper td,
+/* CONTENT AREA */
+.dws-content-wrapper p,.dws-content-wrapper span,
 .dws-content-wrapper label,.dws-content-wrapper small,.dws-content-wrapper strong,
-.site-content,.site-content p,.site-content span,.site-content div,
-.content-area,.content-area p,.content-area span,
-main,main p,main span,main label,main small,main strong,
-#main,#main p,#main span,#primary,#primary p,#primary span{color:#000!important}
+.site-content p,.site-content span,.content-area p,.content-area span,
+main p,main span,main label,main small,main strong,
+#main p,#main span,#primary p,#primary span{color:#000!important}
 
-[class*="inv-card"],[class*="inv-card"] p,[class*="inv-card"] span,
-[class*="inv-card"] small,[class*="inv-card"] div,[class*="inv-card"] strong,
-[class*="vehicle-card"],[class*="vehicle-card"] p,[class*="vehicle-card"] span,
-[class*="vehicle-card"] small,[class*="vehicle-card"] div,
-[class*="listing-card"],[class*="listing-card"] p,[class*="listing-card"] span{color:#000!important}
-
+/* CARDS */
 .card .card-body,.card .card-body p,.card .card-body span,
-.card .card-body small,.card .card-body div,.card .card-body strong,
+.card .card-body small,.card .card-body strong,
 .card .card-footer,.card .card-footer p,.card .card-footer span,
-.card-text,.panel,.panel-body,.panel-body p{color:#000!important}
-
-/* === VEHICLE INFO FIELDS === */
-[class*="vehicle-info"],[class*="vehicle-info"] span,[class*="vehicle-info"] p,
-[class*="inv-info"],[class*="inv-info"] span,[class*="inv-info"] p,
-[class*="inv-detail"],[class*="inv-detail"] span,[class*="inv-detail"] p,
-[class*="inv-spec"],[class*="inv-spec"] span,
-[class*="vehicle-detail"],[class*="vehicle-detail"] span,
-[class*="vehicle-spec"],[class*="vehicle-spec"] span{color:#000!important}
-
-/* === VEHICLE TITLE === */
-[class*="vehicle-title"],[class*="vehicle-title"] a,
-[class*="inv-title"],[class*="inv-title"] a,
-.card-title,.card-title a,
-.dws-vehicle-title,.dws-vehicle-title a{color:#000!important;font-weight:700!important}
-[class*="vehicle-title"] a:hover,[class*="inv-title"] a:hover,
+.card-text,.panel-body,.panel-body p{color:#000!important}
+.card-title,.card-title a,.dws-vehicle-title,.dws-vehicle-title a{color:#000!important;font-weight:700!important}
 .card-title a:hover,.dws-vehicle-title a:hover{color:#c8102e!important}
 
-/* === PRICE: always RED === */
-[class*="price"],[class*="price"] span,[class*="price"] strong,[class*="price"] b,
-[class*="msrp"],[class*="msrp"] span,
+/* PRICE: RED */
 .dws-vehicle-price,.vehicle-price,.inv-price,.dws-inv-price,
 .sale-price,.internet-price,.our-price,
 .dws-vehicle-price span,.vehicle-price span{color:#c8102e!important;font-weight:700!important}
-[class*="price-label"],[class*="price"] label,.price-label{color:#000!important;font-weight:400!important}
 
-/* === MILEAGE, STOCK, VIN === */
-[class*="mileage"],[class*="mileage"] span,
-[class*="odometer"],[class*="odometer"] span,
-[class*="miles"],[class*="miles"] span,
-[class*="stock"],[class*="stock"] span,
-[class*="vin"],[class*="vin"] span,
+/* VEHICLE SPECS */
 .inv-ext-color,.inv-transmission,.inv-engine,
 .inv-drivetrain,.inv-fuel-type,.inv-body-style{color:#000!important}
 
-/* === FILTER SIDEBAR === */
-[class*="filter"],[class*="filter"] label,[class*="filter"] span,
-[class*="filter"] p,[class*="filter"] h4,[class*="filter"] h5,
-[class*="filter"] small,[class*="filter"] .form-check-label,
-[class*="sidebar"],[class*="sidebar"] label,[class*="sidebar"] span,
-[class*="sidebar"] p,[class*="sidebar"] h4,[class*="sidebar"] h5,
+/* FORM LABELS (not filter layout) */
 .form-check-label,.custom-control-label{color:#000!important}
 
-[class*="filter"] .badge,[class*="sidebar"] .badge,
-[class*="filter-count"]{color:#fff!important;background-color:#c8102e!important}
+/* BREADCRUMBS */
+.breadcrumb,.breadcrumb li,.breadcrumb a,.breadcrumb span{color:#000!important}
+.breadcrumb a:hover{color:#c8102e!important}
 
-/* === TOOLBAR / SORT BAR === */
-[class*="toolbar"],[class*="toolbar"] span,[class*="toolbar"] label,
-[class*="sort"],[class*="sort"] span,[class*="sort"] label,
-[class*="results"],[class*="results"] span,
-[class*="available"],[class*="available"] span,
-[class*="listing-count"],[class*="listing-count"] span,
-[class*="showing"],[class*="showing"] span{color:#000!important}
+/* PAGINATION */
+.pagination .page-link{color:#000!important}
+.pagination .active .page-link{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
+.pagination .page-link:hover{color:#c8102e!important}
 
-/* === BREADCRUMBS === */
-.breadcrumb,.breadcrumb li,.breadcrumb a,.breadcrumb span,
-.breadcrumb .breadcrumb-item,.breadcrumb .breadcrumb-item a,
-.breadcrumb .breadcrumb-item.active{color:#000!important}
-.breadcrumb a:hover,.breadcrumb .breadcrumb-item a:hover{color:#c8102e!important}
-
-/* === PAGINATION === */
-.pagination .page-link,.pagination a,.pagination span{color:#000!important}
-.pagination .active .page-link,.pagination .page-item.active .page-link{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-.pagination .page-link:hover,.pagination a:hover{color:#c8102e!important}
-
-/* === BUTTONS === */
+/* BUTTONS */
 .btn-primary,.dws-btn-primary,.btn-danger,.wp-block-button__link,.cta-primary,
 input[type="submit"],button[type="submit"]{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-.btn-primary:hover,.dws-btn-primary:hover,.btn-danger:hover,.wp-block-button__link:hover,
+.btn-primary:hover,.dws-btn-primary:hover,.btn-danger:hover,
 input[type="submit"]:hover,button[type="submit"]:hover{background-color:#a00d24!important;border-color:#a00d24!important;color:#fff!important}
+.btn-secondary,.btn-outline-primary,.cta-secondary{color:#000!important;border-color:#000!important}
+.btn-secondary:hover,.btn-outline-primary:hover,.cta-secondary:hover{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
 
-[class*="view-detail"],[class*="btn-detail"],.btn-view,.view-vehicle{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-[class*="view-detail"]:hover,[class*="btn-detail"]:hover,.btn-view:hover{background-color:#a00d24!important;color:#fff!important}
-
-.btn-secondary,.btn-outline-primary,.btn-outline-secondary,.cta-secondary{color:#000!important;border-color:#000!important}
-.btn-secondary:hover,.btn-outline-primary:hover,.btn-outline-secondary:hover,.cta-secondary:hover{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-
-/* === FORM ELEMENTS === */
+/* FORMS */
 input,select,textarea,.form-control,.form-select{color:#000!important}
-input::placeholder,textarea::placeholder,.form-control::placeholder{color:#666!important}
+input::placeholder,textarea::placeholder{color:#666!important}
 
-/* === DARK BG SECTIONS: white text === */
-.bg-dark,.bg-dark *,.bg-primary,.bg-primary *,.text-white,
+/* DARK BG: white text */
+.bg-dark,.bg-dark *,.text-white,
 .dws-dark-section,.dws-dark-section *,
 .dws-search-bar,.dws-search-bar *,.dws-make-search,.dws-make-search *,
 .dws-home-search,.dws-home-search *{color:#fff!important}
 
-/* === LIGHT BG SECTIONS: black text === */
-.bg-light,.bg-light *,.bg-white,.bg-white *{color:#000!important}
+/* TABLE */
+.table td,.table th,.table span{color:#000!important}
+.table-dark th,.table-dark td{color:#fff!important}
 
-/* === TABLE === */
-.table,.table td,.table th,.table span,.table p,
-table td,table th,table span{color:#000!important}
-.table thead th,.table-dark th,.table-dark td{color:#fff!important}
+/* BADGES */
+.badge{background-color:#c8102e!important;color:#fff!important}
 
-/* === BADGES === */
-.badge,.badge-primary,.bg-primary.badge{background-color:#c8102e!important;color:#fff!important}
-
-/* === INLINE GRAY OVERRIDES (hex) === */
+/* INLINE GRAY OVERRIDES */
 [style*="color: #666"],[style*="color:#666"],
 [style*="color: #777"],[style*="color:#777"],
 [style*="color: #888"],[style*="color:#888"],
@@ -160,97 +96,55 @@ table td,table th,table span{color:#000!important}
 [style*="color: #ccc"],[style*="color:#ccc"],
 [style*="color: gray"],[style*="color:gray"],
 [style*="color: grey"],[style*="color:grey"]{color:#000!important}
+.navbar [style*="color: #"]{color:#fff!important}
 
-/* === INLINE GRAY OVERRIDES (RGB) === */
-[style*="color: rgb(102, 102, 102)"],[style*="color:rgb(102,102,102)"],
-[style*="color: rgb(119, 119, 119)"],[style*="color:rgb(119,119,119)"],
-[style*="color: rgb(136, 136, 136)"],[style*="color:rgb(136,136,136)"],
-[style*="color: rgb(153, 153, 153)"],[style*="color:rgb(153,153,153)"],
-[style*="color: rgb(170, 170, 170)"],[style*="color:rgb(170,170,170)"],
-[style*="color: rgb(187, 187, 187)"],[style*="color:rgb(187,187,187)"],
-[style*="color: rgb(204, 204, 204)"],[style*="color:rgb(204,204,204)"]{color:#000!important}
-
-/* Gray in dark containers → white */
-.bg-dark [style*="color: #666"],.bg-dark [style*="color: #999"],
-.navbar [style*="color: #666"],header [style*="color: #999"]{color:#fff!important}
-
-/* === DWS THEME SPECIFIC === */
+/* DWS THEME SPECIFIC */
 .dws-secondary-text,.dws-meta-info,.dws-body-text,.dws-card-text,
 .dws-card-info,.dws-label,.dws-value,.dws-desc,
-.dws-text-grey,.dws-text-gray,.dws-text-muted,.dws-secondary-info,
-.inv-text-muted,.inv-text-grey{color:#000!important}
+.dws-text-grey,.dws-text-gray,.dws-text-muted,.dws-secondary-info{color:#000!important}
 
-/* === NAVBAR DESKTOP FIX: force menu visible >= 992px === */
+/* NAVBAR DESKTOP >= 992px */
 @media(min-width:992px){
-.navbar-collapse,.nav-menu,#primary-menu,.main-navigation,
-.dws-nav-collapse,.dws-main-nav,[class*="navbar-collapse"],
-[class*="nav-collapse"],[class*="menu-collapse"]{
-display:flex!important;visibility:visible!important;
-height:auto!important;overflow:visible!important;
-flex-basis:auto!important;opacity:1!important;
-position:relative!important;transform:none!important}
-
-.navbar-toggler,.hamburger-menu,.menu-toggle,
-.dws-menu-toggle,[class*="navbar-toggler"],
-[class*="menu-toggle"],[class*="hamburger"],
-button[data-bs-toggle="collapse"],
-button[data-toggle="collapse"]{display:none!important}
-
-.navbar-nav,.nav-menu,#primary-menu>ul,.main-menu,
-.dws-nav-menu,[class*="navbar-nav"]{
-display:flex!important;flex-direction:row!important;
-flex-wrap:wrap!important;align-items:center!important;
-list-style:none!important;margin:0!important;padding:0!important}
-
-.navbar-nav>li,.nav-menu>li,#primary-menu>ul>li{
-display:inline-block!important;float:none!important}
-
-.navbar-nav>li>a,.nav-menu>li>a{
-display:inline-block!important;padding:8px 12px!important;
-white-space:nowrap!important;font-size:14px!important}
+.navbar-collapse,.dws-nav-collapse{display:flex!important;visibility:visible!important;height:auto!important;overflow:visible!important;flex-basis:auto!important;opacity:1!important}
+.navbar-toggler,.menu-toggle,.dws-menu-toggle{display:none!important}
+.navbar-nav,.dws-nav-menu{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important}
+.navbar-nav>li{display:inline-block!important}
+.navbar-nav>li>a{display:inline-block!important;padding:8px 12px!important;white-space:nowrap!important;font-size:14px!important}
 }
 
-/* === INVENTORY FILTER BAR ALIGNMENT === */
-[class*="inventory-header"],[class*="filter-bar"],
-[class*="results-header"],[class*="toolbar"],
-[class*="inv-toolbar"],[class*="listing-header"],
-[class*="search-results-header"]{
-display:flex!important;flex-direction:row!important;
-align-items:center!important;justify-content:space-between!important;
-flex-wrap:nowrap!important;gap:16px!important}
-
-[class*="filter-toggle"],[class*="btn-filter"],
-[class*="filter-btn"]{flex-shrink:0!important}
-
-[class*="inventory-count"],[class*="results-count"],
-[class*="listing-count"]{flex-shrink:0!important;white-space:nowrap!important}
-
-@media(max-width:576px){
-[class*="inventory-header"],[class*="filter-bar"],
-[class*="results-header"],[class*="toolbar"]{
-flex-wrap:wrap!important;gap:8px!important}
-}
-
-/* === HIDE DEFAULT DEALERCENTER FOOTER === */
+/* HIDE DEFAULT FOOTER */
 footer:not(#motoro-footer-wrapper),
 .site-footer:not(#motoro-footer-wrapper),
 #footer:not(#motoro-footer-wrapper),
 .dws-footer:not(#motoro-footer-wrapper),
-[class*="footer-widget"]:not([id*="motoro"]),
-.footer-sidebar:not([id*="motoro"]),
-.footer-columns:not([id*="motoro"]),
 .dws-footer-wrapper:not(#motoro-footer-wrapper),
-.dws-footer-content:not(#motoro-footer-wrapper){
-display:none!important;visibility:hidden!important;
-height:0!important;overflow:hidden!important;
-max-height:0!important;padding:0!important;margin:0!important}
+.dws-footer-content:not(#motoro-footer-wrapper){display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;overflow:hidden!important;padding:0!important;margin:0!important}
 
-/* === PROTECT MOTORO CUSTOM FOOTER === */
+/* PROTECT MOTORO FOOTER */
 #motoro-map-section-wrapper,#motoro-map-section-wrapper *,
 #motoro-footer-wrapper,#motoro-footer-wrapper *{color:inherit!important}
 #motoro-map-section-wrapper a,#motoro-footer-wrapper a{color:inherit!important}
-#motoro-map-section-wrapper,#motoro-footer-wrapper{
-display:block!important;visibility:visible!important;
-height:auto!important;max-height:none!important;
-overflow:visible!important;padding:0!important}
+#motoro-map-section-wrapper,#motoro-footer-wrapper{display:block!important;visibility:visible!important;height:auto!important;max-height:none!important;overflow:visible!important}
 </style>
+
+<script>
+/* Fix gray text injected by JS at runtime */
+document.addEventListener('DOMContentLoaded',function(){
+setTimeout(function(){
+document.querySelectorAll('[style*="color"]').forEach(function(el){
+if(el.closest('#motoro-map-section-wrapper')||el.closest('#motoro-footer-wrapper'))return;
+var s=el.style.color.toLowerCase();
+var isGray=false;
+if(/^#(66|77|88|99|aa|bb|cc)/.test(s)||s==='gray'||s==='grey')isGray=true;
+if(!isGray&&s.indexOf('rgb')>-1){
+var m=s.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+if(m&&m[1]===m[2]&&m[2]===m[3]&&parseInt(m[1])>80&&parseInt(m[1])<210)isGray=true;
+}
+if(isGray){
+var inDark=el.closest('.navbar')||el.closest('header')||el.closest('.bg-dark')||el.closest('.dws-header');
+el.style.setProperty('color',inDark?'#ffffff':'#000000','important');
+}
+});
+},800);
+});
+</script>
