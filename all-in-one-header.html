@@ -131,16 +131,18 @@ a.bg-primary:hover,a.bg-primary:focus{background-color:#a00d24!important}
 .navbar-nav>li>a{display:inline-block!important;padding:8px 12px!important;white-space:nowrap!important;font-size:14px!important}
 }
 
-/* SHOP BY MAKE - Red pulse hover on existing DealerCenter brand buttons */
-.dws-shop-by-wrapper ul{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:20px 0;list-style:none!important;margin:0}
-.dws-shop-by-wrapper li{list-style:none!important;margin:0;padding:0}
-.dws-shop-by-wrapper li a{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;background:#111;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #333;border-radius:10px;transition:all .3s ease;position:relative;overflow:hidden}
-.dws-shop-by-wrapper li a::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle,rgba(200,16,46,.15) 0%,transparent 70%);opacity:0;transition:opacity .3s ease}
-.dws-shop-by-wrapper li a:hover{border-color:#c8102e;color:#fff!important;transform:translateY(-3px);animation:motoro-pulse 1.5s ease-in-out infinite}
-.dws-shop-by-wrapper li a:hover::before{opacity:1}
-.dws-shop-by-wrapper li a:active{transform:translateY(-1px)}
-@keyframes motoro-pulse{0%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}50%{box-shadow:0 0 20px rgba(200,16,46,.5),0 0 40px rgba(200,16,46,.2),0 4px 15px rgba(0,0,0,.3)}100%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}}
-@media(max-width:768px){.dws-shop-by-wrapper li a{padding:12px 20px;font-size:13px;letter-spacing:1px}.dws-shop-by-wrapper ul{gap:8px;padding:15px 0}}
+/* SHOP BY MAKE - Horizontal layout + Red pulse hover + Click effect */
+.shop-by-make-container,.dws-shop-by-wrapper{max-height:none!important;overflow:visible!important}
+.shop-by-make-container.view-less-results{max-height:none!important;overflow:visible!important}
+.shop-by-make-container ul,.dws-shop-by-wrapper ul{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:center!important;align-items:center!important;gap:14px!important;padding:24px 10px!important;list-style:none!important;margin:0!important}
+.shop-by-make-container li,.dws-shop-by-wrapper li{list-style:none!important;margin:0!important;padding:0!important;display:inline-block!important;float:none!important}
+.shop-by-make-container li a,.dws-shop-by-wrapper li a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:120px;padding:14px 30px!important;background:#111!important;color:#fff!important;text-decoration:none!important;font-weight:700!important;font-size:15px!important;letter-spacing:2px!important;text-transform:uppercase!important;border:2px solid #333!important;border-radius:10px!important;transition:all .3s cubic-bezier(.4,0,.2,1)!important;position:relative;overflow:hidden;cursor:pointer}
+.shop-by-make-container li a::before,.dws-shop-by-wrapper li a::before{content:''!important;position:absolute!important;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at center,rgba(200,16,46,.2) 0%,transparent 70%)!important;opacity:0;transition:opacity .3s ease!important;pointer-events:none}
+.shop-by-make-container li a:hover,.dws-shop-by-wrapper li a:hover{border-color:#c8102e!important;color:#fff!important;transform:translateY(-4px) scale(1.05)!important;box-shadow:0 0 15px rgba(200,16,46,.4),0 0 30px rgba(200,16,46,.15),0 8px 25px rgba(0,0,0,.4)!important;background:#1a1a1a!important;animation:motoro-pulse 1.5s ease-in-out infinite!important}
+.shop-by-make-container li a:hover::before,.dws-shop-by-wrapper li a:hover::before{opacity:1!important}
+.shop-by-make-container li a:active,.dws-shop-by-wrapper li a:active{transform:translateY(-1px) scale(.97)!important;background:#c8102e!important;border-color:#c8102e!important;box-shadow:0 0 25px rgba(200,16,46,.6),0 0 50px rgba(200,16,46,.3)!important;transition:all .1s ease!important}
+@keyframes motoro-pulse{0%{box-shadow:0 0 8px rgba(200,16,46,.3),0 6px 20px rgba(0,0,0,.3)}50%{box-shadow:0 0 25px rgba(200,16,46,.6),0 0 50px rgba(200,16,46,.2),0 6px 20px rgba(0,0,0,.3)}100%{box-shadow:0 0 8px rgba(200,16,46,.3),0 6px 20px rgba(0,0,0,.3)}}
+@media(max-width:768px){.shop-by-make-container ul,.dws-shop-by-wrapper ul{gap:10px!important;padding:16px 8px!important}.shop-by-make-container li a,.dws-shop-by-wrapper li a{padding:11px 22px!important;font-size:13px!important;letter-spacing:1.5px!important;min-width:100px}}
 
 /* HIDE DEFAULT FOOTER INNER CONTENT (NOT the <footer> container itself) */
 footer>.container,footer>.row,footer>.col,
