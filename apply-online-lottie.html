@@ -1,18 +1,84 @@
-<!-- Paste this into: WordPress → Pages → Apply Online → Edit → Add Block → Custom HTML -->
-
-<!-- wp:html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Online - Motoro Automotive Group</title>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
-<div id="motoro-lottie-section" style="background:#0a0a0a;padding:60px 20px;text-align:center;overflow:hidden;position:relative;">
-<div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c8102e,transparent);"></div>
-<h2 style="color:#fff;font-size:32px;font-weight:700;margin:0 0 8px 0;letter-spacing:1px;">GET PRE-APPROVED TODAY</h2>
-<p style="color:#aaa;font-size:16px;margin:0 0 30px 0;">Fast, easy financing — drive your dream car home</p>
-<div style="max-width:500px;margin:0 auto;">
-<lottie-player src="https://raw.githubusercontent.com/haktygur5/Motoro-website/main/car.json" background="transparent" speed="1" style="width:100%;height:auto;max-height:350px;" loop autoplay></lottie-player>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a0a;font-family:'Segoe UI',Arial,sans-serif;color:#fff;}
+.motoro-hero{position:relative;padding:80px 20px 60px;text-align:center;overflow:hidden;}
+.motoro-hero::before,.motoro-hero::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c8102e,transparent);}
+.motoro-hero::before{top:0;}
+.motoro-hero::after{bottom:0;}
+.motoro-hero h1{font-size:42px;font-weight:800;letter-spacing:2px;margin-bottom:8px;text-transform:uppercase;}
+.motoro-hero h1 span{color:#c8102e;}
+.motoro-hero p{color:#aaa;font-size:18px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;}
+.lottie-wrap{max-width:550px;margin:0 auto 40px;}
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-apply{display:inline-block;padding:16px 42px;background:#c8102e;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:17px;letter-spacing:0.5px;transition:all 0.3s ease;box-shadow:0 4px 20px rgba(200,16,46,0.4);}
+.btn-apply:hover{background:#e01535;box-shadow:0 6px 30px rgba(200,16,46,0.6);transform:translateY(-2px);}
+.btn-inventory{display:inline-block;padding:16px 42px;background:transparent;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:17px;letter-spacing:0.5px;border:2px solid #333;transition:all 0.3s ease;}
+.btn-inventory:hover{border-color:#c8102e;color:#c8102e;transform:translateY(-2px);}
+.steps-section{padding:60px 20px;max-width:900px;margin:0 auto;}
+.steps-section h2{text-align:center;font-size:28px;margin-bottom:40px;font-weight:700;}
+.steps-section h2 span{color:#c8102e;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.step-card{background:#111;border:1px solid #222;border-radius:12px;padding:30px 20px;text-align:center;transition:all 0.3s ease;}
+.step-card:hover{border-color:#c8102e;transform:translateY(-4px);box-shadow:0 8px 25px rgba(200,16,46,0.2);}
+.step-num{display:inline-block;width:40px;height:40px;line-height:40px;background:#c8102e;color:#fff;border-radius:50%;font-weight:800;font-size:18px;margin-bottom:16px;}
+.step-card h3{font-size:18px;margin-bottom:8px;}
+.step-card p{color:#aaa;font-size:14px;line-height:1.5;}
+.trust-bar{text-align:center;padding:40px 20px;border-top:1px solid #1a1a1a;}
+.trust-bar p{color:#666;font-size:14px;}
+.trust-bar span{color:#c8102e;font-weight:700;}
+@media(max-width:768px){
+.motoro-hero h1{font-size:28px;}
+.motoro-hero p{font-size:15px;}
+.steps-grid{grid-template-columns:1fr;}
+.btn-apply,.btn-inventory{padding:14px 30px;font-size:15px;width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<section class="motoro-hero">
+<h1>Get <span>Pre-Approved</span> Today</h1>
+<p>Fast, easy financing with no impact on your credit score. Drive your dream car home today.</p>
+<div class="lottie-wrap">
+<lottie-player src="https://raw.githubusercontent.com/haktygur5/Motoro-website/main/car.json" background="transparent" speed="1" style="width:100%;height:auto;max-height:400px;" loop autoplay></lottie-player>
 </div>
-<div style="margin-top:30px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-<a href="/apply-online/" style="display:inline-block;padding:14px 36px;background:#c8102e;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;letter-spacing:0.5px;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(200,16,46,0.4);">✅ Apply Now</a>
-<a href="/inventory/" style="display:inline-block;padding:14px 36px;background:transparent;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;letter-spacing:0.5px;border:2px solid #333;transition:all 0.3s ease;">🔍 Browse Inventory</a>
+<div class="cta-row">
+<a href="/apply-online/" class="btn-apply">✅ Apply Now</a>
+<a href="/inventory/" class="btn-inventory">🔍 Browse Inventory</a>
 </div>
-<div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c8102e,transparent);"></div>
+</section>
+
+<section class="steps-section">
+<h2>How It <span>Works</span></h2>
+<div class="steps-grid">
+<div class="step-card">
+<div class="step-num">1</div>
+<h3>Fill Out the Form</h3>
+<p>Complete our simple online application in just a few minutes. No SSN required for pre-approval.</p>
 </div>
-<!-- /wp:html -->
+<div class="step-card">
+<div class="step-num">2</div>
+<h3>Get Your Offer</h3>
+<p>Our finance team will review your application and contact you with personalized options.</p>
+</div>
+<div class="step-card">
+<div class="step-num">3</div>
+<h3>Drive Home</h3>
+<p>Choose your vehicle, sign the paperwork, and drive away in your new car — same day!</p>
+</div>
+</div>
+</section>
+
+<div class="trust-bar">
+<p>🔒 Your information is <span>100% secure</span> and encrypted. We work with <span>20+ lenders</span> to find the best rate for you.</p>
+</div>
+
+</body>
+</html>
