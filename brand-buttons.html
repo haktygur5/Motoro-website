@@ -1,46 +1,24 @@
 <!--
-  MOTORO - BRAND FILTER BUTTONS WITH RED PULSE HOVER EFFECT
+  MOTORO - BRAND BUTTONS (Shop By Make) - Red Pulse Hover Effect
   
-  TWO PARTS:
+  The CSS hover effect is already in all-in-one-header.html
+  It targets the EXISTING .dws-shop-by-wrapper li a selectors automatically.
   
-  PART 1 (CSS) → Add to Header Script (inside the existing <style> tag in all-in-one-header.html, BEFORE </style>)
-  PART 2 (HTML) → Add to the Home page in WordPress Gutenberg editor (Code Editor view)
+  JUST UPDATE the Header Script with the latest all-in-one-header.html
+  and the hover effects will apply to the existing brand buttons.
+  
+  If you want to ADD Mitsubishi and Volvo, replace the existing
+  shop-by-make section in the Home page Code Editor with:
 -->
 
-
-<!-- ============================== -->
-<!-- PART 1: CSS FOR HEADER SCRIPT  -->
-<!-- Add this INSIDE the <style> tag -->
-<!-- ============================== -->
-
-/* BRAND BUTTONS - Red pulse hover effect */
-.motoro-brand-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;margin:8px;background:#111;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #333;border-radius:10px;transition:all .3s ease;position:relative;overflow:hidden;cursor:pointer}
-.motoro-brand-btn::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle,rgba(200,16,46,.15) 0%,transparent 70%);opacity:0;transition:opacity .3s ease}
-.motoro-brand-btn:hover{border-color:#c8102e;color:#fff!important;transform:translateY(-3px);animation:motoro-pulse 1.5s ease-in-out infinite}
-.motoro-brand-btn:hover::before{opacity:1}
-.motoro-brand-btn:active{transform:translateY(-1px)}
-@keyframes motoro-pulse{0%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}50%{box-shadow:0 0 20px rgba(200,16,46,.5),0 0 40px rgba(200,16,46,.2),0 4px 15px rgba(0,0,0,.3)}100%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}}
-.motoro-brands-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:20px 0}
-@media(max-width:768px){.motoro-brand-btn{padding:12px 20px;font-size:13px;letter-spacing:1px;margin:5px}.motoro-brands-grid{gap:8px;padding:15px 0}}
-
-
-<!-- ============================== -->
-<!-- PART 2: HTML FOR HOME PAGE     -->
-<!-- Paste in Gutenberg Code Editor -->
-<!-- ============================== -->
-
-<!-- wp:html -->
-<div style="text-align:center;padding:40px 20px;">
-  <h2 style="color:#fff;font-size:28px;font-weight:700;margin-bottom:10px;letter-spacing:2px;">SEARCH BY MAKE</h2>
-  <div style="width:60px;height:3px;background:#c8102e;margin:0 auto 30px;border-radius:2px;"></div>
-  <div class="motoro-brands-grid">
-    <a href="/inventory/?make=Ford" class="motoro-brand-btn">FORD</a>
-    <a href="/inventory/?make=Genesis" class="motoro-brand-btn">GENESIS</a>
-    <a href="/inventory/?make=GMC" class="motoro-brand-btn">GMC</a>
-    <a href="/inventory/?make=Honda" class="motoro-brand-btn">HONDA</a>
-    <a href="/inventory/?make=Toyota" class="motoro-brand-btn">TOYOTA</a>
-    <a href="/inventory/?make=Mitsubishi" class="motoro-brand-btn">MITSUBISHI</a>
-    <a href="/inventory/?make=Volvo" class="motoro-brand-btn">VOLVO</a>
-  </div>
+<div class="shop-by-make-container notranslate dws-shop-by-wrapper view-less-results">
+  <ul>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/ford/">FORD</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/genesis/">GENESIS</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/gmc/">GMC</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/honda/">HONDA</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/toyota/">TOYOTA</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/mitsubishi/">MITSUBISHI</a></li>
+    <li><a href="https://www.motoroautomotivegroup.com/inventory/volvo/">VOLVO</a></li>
+  </ul>
 </div>
-<!-- /wp:html -->

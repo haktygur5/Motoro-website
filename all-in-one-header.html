@@ -131,15 +131,16 @@ a.bg-primary:hover,a.bg-primary:focus{background-color:#a00d24!important}
 .navbar-nav>li>a{display:inline-block!important;padding:8px 12px!important;white-space:nowrap!important;font-size:14px!important}
 }
 
-/* BRAND BUTTONS - Red pulse hover */
-.motoro-brand-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;margin:8px;background:#111;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #333;border-radius:10px;transition:all .3s ease;position:relative;overflow:hidden;cursor:pointer}
-.motoro-brand-btn::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle,rgba(200,16,46,.15) 0%,transparent 70%);opacity:0;transition:opacity .3s ease}
-.motoro-brand-btn:hover{border-color:#c8102e;color:#fff!important;transform:translateY(-3px);animation:motoro-pulse 1.5s ease-in-out infinite}
-.motoro-brand-btn:hover::before{opacity:1}
-.motoro-brand-btn:active{transform:translateY(-1px)}
+/* SHOP BY MAKE - Red pulse hover on existing DealerCenter brand buttons */
+.dws-shop-by-wrapper ul{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:20px 0;list-style:none!important;margin:0}
+.dws-shop-by-wrapper li{list-style:none!important;margin:0;padding:0}
+.dws-shop-by-wrapper li a{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;background:#111;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #333;border-radius:10px;transition:all .3s ease;position:relative;overflow:hidden}
+.dws-shop-by-wrapper li a::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle,rgba(200,16,46,.15) 0%,transparent 70%);opacity:0;transition:opacity .3s ease}
+.dws-shop-by-wrapper li a:hover{border-color:#c8102e;color:#fff!important;transform:translateY(-3px);animation:motoro-pulse 1.5s ease-in-out infinite}
+.dws-shop-by-wrapper li a:hover::before{opacity:1}
+.dws-shop-by-wrapper li a:active{transform:translateY(-1px)}
 @keyframes motoro-pulse{0%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}50%{box-shadow:0 0 20px rgba(200,16,46,.5),0 0 40px rgba(200,16,46,.2),0 4px 15px rgba(0,0,0,.3)}100%{box-shadow:0 0 5px rgba(200,16,46,.3),0 4px 15px rgba(0,0,0,.3)}}
-.motoro-brands-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:20px 0}
-@media(max-width:768px){.motoro-brand-btn{padding:12px 20px;font-size:13px;letter-spacing:1px;margin:5px}.motoro-brands-grid{gap:8px;padding:15px 0}}
+@media(max-width:768px){.dws-shop-by-wrapper li a{padding:12px 20px;font-size:13px;letter-spacing:1px}.dws-shop-by-wrapper ul{gap:8px;padding:15px 0}}
 
 /* HIDE DEFAULT FOOTER INNER CONTENT (NOT the <footer> container itself) */
 footer>.container,footer>.row,footer>.col,
