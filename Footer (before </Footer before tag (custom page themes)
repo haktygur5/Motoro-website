@@ -151,11 +151,11 @@
     "></div>
   </div>
 
-  <!-- Map Container — FULL VIEWPORT WIDTH -->
+  <!-- Map Container — FULL WIDTH RESPONSIVE -->
   <div data-motoro-layout="map-viewport" style="
-    width: 100vw;
+    width: 100%;
     position: relative;
-    margin-left: calc(-50vw + 50%);
+    margin-left: 0;
     height: 85vh;
     min-height: 600px;
     box-sizing: border-box;
