@@ -38,3 +38,44 @@
     overflow: visible !important;
   }
 </style>
+
+<!-- MOBILE OVERFLOW FIX: CSS + JS -->
+<style>
+@media screen and (max-width:767px){
+  html,body{overflow-x:hidden!important;width:100%!important;max-width:100vw!important}
+  img[style*="width:1001px"],
+  .dws-dark-theme-mobile-cover img,
+  .wp-image-230{width:100%!important;max-width:100%!important;height:auto!important}
+  .wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,
+  .dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,
+  .dws-home-boxes-cover{max-width:100%!important;overflow-x:hidden!important;box-sizing:border-box!important}
+}
+</style>
+<script>
+(function(){
+  function applyStyles(selector,props){
+    var els=document.querySelectorAll(selector);
+    for(var i=0;i<els.length;i++){
+      for(var p in props)els[i].style.setProperty(p,props[p],'important');
+    }
+  }
+  function fixMobileOverflow(){
+    if(window.innerWidth>767)return;
+    document.documentElement.style.setProperty('overflow-x','hidden','important');
+    document.body.style.setProperty('overflow-x','hidden','important');
+    document.body.style.setProperty('max-width','100vw','important');
+    applyStyles('img[style*="width:1001px"],.dws-dark-theme-mobile-cover img,.wp-image-230',
+      {'width':'100%','max-width':'100%','height':'auto'});
+    applyStyles('.wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,.dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,.dws-home-boxes-cover',
+      {'max-width':'100%','overflow-x':'hidden'});
+  }
+  var resizeTimer;
+  function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(fixMobileOverflow,100);}
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',fixMobileOverflow);
+  }else{
+    fixMobileOverflow();
+  }
+  window.addEventListener('resize',onResize);
+})();
+</script>
