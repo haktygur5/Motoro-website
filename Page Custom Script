@@ -1,0 +1,40 @@
+<style>
+  /* === HIDE DEFAULT DEALERCENTER FOOTER === */
+  .dws-footer,
+  .dws-footer-wrapper,
+  .dws-footer-container,
+  #dws-footer,
+  .footer-wrapper,
+  #footer-wrapper,
+  .site-footer,
+  #site-footer {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  footer {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .dws-footer .col-sm-3,
+  .dws-footer-wrapper .col-sm-3,
+  .footer-wrapper .col-sm-3 {
+    display: none !important;
+  }
+
+  /* === PROTEGE O NOSSO FOOTER CUSTOM === */
+  #motoro-map-section-wrapper,
+  #motoro-footer-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+</style>
