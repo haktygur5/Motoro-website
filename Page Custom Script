@@ -49,6 +49,7 @@
   .wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,
   .dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,
   .dws-home-boxes-cover{max-width:100%!important;overflow-x:hidden!important;box-sizing:border-box!important}
+  [data-motoro-layout="map-viewport"]{width:100%!important;max-width:100%!important;margin-left:0!important}
 }
 </style>
 <script>
@@ -68,6 +69,8 @@
       {'width':'100%','max-width':'100%','height':'auto'});
     applyStyles('.wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,.dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,.dws-home-boxes-cover',
       {'max-width':'100%','overflow-x':'hidden'});
+    applyStyles('[data-motoro-layout="map-viewport"]',
+      {'width':'100%','max-width':'100%','margin-left':'0'});
   }
   var resizeTimer;
   function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(fixMobileOverflow,100);}

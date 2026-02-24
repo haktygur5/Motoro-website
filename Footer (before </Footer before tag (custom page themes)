@@ -54,6 +54,12 @@
       height: 60vh !important;
       min-height: 350px !important;
     }
+    #motoro-map-section-wrapper [data-motoro-layout="map-viewport"] {
+      width: 100% !important;
+      margin-left: 0 !important;
+      height: 55vh !important;
+      min-height: 300px !important;
+    }
     #motoro-map-section-wrapper [data-motoro-layout="info"] {
       position: relative !important;
       bottom: auto !important;
@@ -146,7 +152,7 @@
   </div>
 
   <!-- Map Container — FULL VIEWPORT WIDTH -->
-  <div style="
+  <div data-motoro-layout="map-viewport" style="
     width: 100vw;
     position: relative;
     margin-left: calc(-50vw + 50%);
