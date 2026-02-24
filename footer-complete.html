@@ -54,11 +54,10 @@
       flex-direction: column !important;
     }
     #motoro-map-section-wrapper [data-motoro-layout="map"] {
-      min-height: 300px !important;
-      border-radius: 16px 16px 0 0 !important;
+      min-height: 350px !important;
     }
     #motoro-map-section-wrapper [data-motoro-layout="info"] {
-      border-radius: 0 0 16px 16px !important;
+      flex: 1 1 100% !important;
       border-left: none !important;
       border-top: 1px solid rgba(200,16,46,0.12) !important;
     }
@@ -146,26 +145,23 @@
     "></div>
   </div>
 
-  <!-- Map + Info Card Container -->
+  <!-- Map + Info Card Container (FULL WIDTH) -->
   <div style="
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+    width: 100%;
     position: relative;
+    box-sizing: border-box;
   ">
     <div data-motoro-layout="row" style="
       display: flex;
       flex-direction: row;
-      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      min-height: 520px;
     ">
 
-      <!-- Google Map (Dark Mode) -->
+      <!-- Google Map (Dark Mode) — FULL WIDTH -->
       <div data-motoro-layout="map" style="
-        flex: 1.6;
-        min-height: 440px;
+        flex: 2;
+        min-height: 520px;
         position: relative;
         background: #000000;
       ">
@@ -181,15 +177,15 @@
         </iframe>
       </div>
 
-      <!-- Info Card -->
+      <!-- Info Card — taller, sits beside map -->
       <div data-motoro-layout="info" style="
-        flex: 1;
-        background: linear-gradient(170deg, #0d0d0d 0%, #0a0a0a 40%, #080808 100%);
-        padding: 40px 32px;
+        flex: 0 0 380px;
+        background: linear-gradient(170deg, #0d0d0d 0%, #080808 50%, #050505 100%);
+        padding: 44px 36px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-left: 1px solid rgba(200,16,46,0.1);
+        border-left: 1px solid rgba(200,16,46,0.12);
         box-sizing: border-box;
       ">
         <!-- Dealership Logo + Name -->
