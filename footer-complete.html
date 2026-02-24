@@ -50,17 +50,16 @@
     transform: translateY(-2px);
   }
   @media screen and (max-width: 768px) {
-    #motoro-map-section-wrapper [data-motoro-layout="row"] {
-      flex-direction: column !important;
-    }
     #motoro-map-section-wrapper [data-motoro-layout="map"] {
-      min-height: 400px !important;
-      height: 400px !important;
+      height: 60vh !important;
+      min-height: 350px !important;
     }
     #motoro-map-section-wrapper [data-motoro-layout="info"] {
-      flex: 1 1 100% !important;
-      border-left: none !important;
-      border-top: 1px solid rgba(200,16,46,0.12) !important;
+      position: relative !important;
+      bottom: auto !important;
+      right: auto !important;
+      width: 100% !important;
+      border-radius: 0 !important;
     }
     #motoro-map-section-wrapper [data-motoro-role="section-title"] {
       font-size: 26px !important;
@@ -146,51 +145,54 @@
     "></div>
   </div>
 
-  <!-- Map + Info Card Container (FULL WIDTH) -->
+  <!-- Map Container — FULL VIEWPORT WIDTH -->
   <div style="
-    width: 100%;
+    width: 100vw;
     position: relative;
+    margin-left: calc(-50vw + 50%);
+    height: 85vh;
+    min-height: 600px;
     box-sizing: border-box;
+    overflow: hidden;
   ">
-    <div data-motoro-layout="row" style="
-      display: flex;
-      flex-direction: row;
-      overflow: hidden;
-      min-height: 600px;
-      height: 600px;
+    <!-- Google Map (Dark Mode) — takes ENTIRE container -->
+    <div data-motoro-layout="map" style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
     ">
+      <iframe
+        src="https://maps.google.com/maps?q=810+Lee+Rd,+Orlando,+FL+32810&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Motoro Automotive Group Location">
+      </iframe>
+    </div>
 
-      <!-- Google Map (Dark Mode) — FULL WIDTH -->
-      <div data-motoro-layout="map" style="
-        flex: 2;
-        min-height: 600px;
-        height: 600px;
-        position: relative;
-        background: #000000;
-      ">
-        <iframe
-          src="https://maps.google.com/maps?q=810+Lee+Rd,+Orlando,+FL+32810&t=&z=15&ie=UTF8&iwloc=&output=embed"
-          width="100%"
-          height="100%"
-          style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Motoro Automotive Group Location">
-        </iframe>
-      </div>
-
-      <!-- Info Card — taller, sits beside map -->
-      <div data-motoro-layout="info" style="
-        flex: 0 0 380px;
-        background: linear-gradient(170deg, #0d0d0d 0%, #080808 50%, #050505 100%);
-        padding: 44px 36px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-left: 1px solid rgba(200,16,46,0.12);
-        box-sizing: border-box;
-      ">
+    <!-- Floating Info Card — overlay on bottom-right -->
+    <div data-motoro-layout="info" style="
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 400px;
+      background: rgba(10,10,10,0.92);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(200,16,46,0.15);
+      border-radius: 16px;
+      box-sizing: border-box;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      z-index: 10;
+    ">
         <!-- Dealership Logo + Name -->
         <div style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);">
           <img
@@ -273,7 +275,6 @@
       </div>
 
     </div>
-  </div>
 
   <!-- Bottom edge glow line -->
   <div style="
