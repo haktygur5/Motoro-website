@@ -1,98 +1,43 @@
-<style>
-  /* === HIDE DEFAULT DEALERCENTER FOOTER === */
-  .dws-footer,
-  .dws-footer-wrapper,
-  .dws-footer-container,
-  #dws-footer,
-  .footer-wrapper,
-  #footer-wrapper,
-  .site-footer,
-  #site-footer {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
+<!-- ============================================================
+   MOTORO — DARK/LIGHT THEME TOGGLE + INIT
+   ============================================================ -->
+<button id="motoro-theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">🌙</button>
 
-  footer {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .dws-footer .col-sm-3,
-  .dws-footer-wrapper .col-sm-3,
-  .footer-wrapper .col-sm-3 {
-    display: none !important;
-  }
-
-  /* === PROTEGE O NOSSO FOOTER CUSTOM === */
-  #motoro-map-section-wrapper,
-  #motoro-footer-wrapper {
-    display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  /* === RESET THEME WRAPPERS (evita segundo contexto de scroll) === */
-  html, body {
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-  #page, .site, .site-inner,
-  #content, #main, .main-content,
-  .wp-site-blocks, .entry-content,
-  .page-content, .post-content,
-  .dws-page-wrapper, .dws-body-wrapper,
-  .dws-content-wrapper {
-    overflow: visible !important;
-    overflow-y: visible !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-</style>
-
-<!-- MOBILE OVERFLOW FIX: CSS + JS -->
-<style>
-@media screen and (max-width:767px){
-  img[style*="width:1001px"],
-  .dws-dark-theme-mobile-cover img,
-  .wp-image-230{width:100%!important;max-width:100%!important;height:auto!important}
-  .wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,
-  .dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,
-  .dws-home-boxes-cover{max-width:100%!important;box-sizing:border-box!important}
-  [data-motoro-layout="map-viewport"]{width:100%!important;max-width:100%!important;margin-left:0!important}
-}
-</style>
 <script>
-(function(){
-  function applyStyles(selector,props){
-    var els=document.querySelectorAll(selector);
-    for(var i=0;i<els.length;i++){
-      for(var p in props)els[i].style.setProperty(p,props[p],'important');
-    }
+(function () {
+  var STORAGE_KEY = 'motoro-theme';
+  var html = document.documentElement;
+  var btn  = document.getElementById('motoro-theme-toggle');
+
+  /* Apply saved theme immediately (before paint) */
+  var saved = localStorage.getItem(STORAGE_KEY);
+  var theme = (saved === 'light') ? 'light' : 'dark';
+  html.setAttribute('data-theme', theme);
+
+  function updateButton(t) {
+    if (btn) btn.textContent = (t === 'light') ? '��' : '☀️';
+    if (btn) btn.setAttribute('aria-label', (t === 'light') ? 'Switch to dark mode' : 'Switch to light mode');
   }
-  function fixMobileLayout(){
-    if(window.innerWidth>767)return;
-    applyStyles('img[style*="width:1001px"],.dws-dark-theme-mobile-cover img,.wp-image-230',
-      {'width':'100%','max-width':'100%','height':'auto'});
-    applyStyles('.wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,.dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,.dws-home-boxes-cover',
-      {'max-width':'100%'});
-    applyStyles('[data-motoro-layout="map-viewport"]',
-      {'width':'100%','max-width':'100%','margin-left':'0'});
+
+  updateButton(theme);
+
+  function toggleTheme() {
+    var current = html.getAttribute('data-theme') || 'dark';
+    var next = (current === 'dark') ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+    updateButton(next);
   }
-  var resizeTimer;
-  function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(fixMobileLayout,100);}
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',fixMobileLayout);
-  }else{
-    fixMobileLayout();
+
+  if (btn) {
+    btn.addEventListener('click', toggleTheme);
+  } else {
+    /* Button may not be in DOM yet — wait for it */
+    document.addEventListener('DOMContentLoaded', function () {
+      btn = document.getElementById('motoro-theme-toggle');
+      if (btn) btn.addEventListener('click', toggleTheme);
+      updateButton(html.getAttribute('data-theme') || 'dark');
+    });
   }
-  window.addEventListener('resize',onResize);
 })();
 </script>
