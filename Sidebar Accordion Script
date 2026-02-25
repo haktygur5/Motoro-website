@@ -4,27 +4,32 @@
    Inject via GoHighLevel > Settings > Custom JS/CSS (head)
    ============================================================ */
 
-/* --- CSS variables (dark defaults; light overrides via class) --- */
-:root {
-  --sb-bg:         #1c1c28;
-  --sb-text:       #e2e2e2;
+/* --- CSS variables scoped to the sidebar only (dark defaults) --- */
+.ghl-sb-folder,
+.ghl-sb-folder * {
   --sb-muted:      #8a8a9a;
   --sb-accent:     #7c3aed;
   --sb-hover:      rgba(255,255,255,0.06);
-  --sb-active:     rgba(255,255,255,0.11);
   --sb-border:     rgba(255,255,255,0.09);
   --sb-transition: 0.22s ease;
   --sb-indent:     14px;
 }
 
-/* Light-mode automatic override */
+/* Light-mode overrides (GHL light theme uses .light-theme on body or html) */
+body.light-theme .ghl-sb-folder,
+body.light-theme .ghl-sb-folder *,
+html[data-theme="light"] .ghl-sb-folder,
+html[data-theme="light"] .ghl-sb-folder * {
+  --sb-muted:  #6b6b80;
+  --sb-hover:  rgba(0,0,0,0.05);
+  --sb-border: rgba(0,0,0,0.09);
+}
+
 @media (prefers-color-scheme: light) {
-  :root {
-    --sb-bg:     #f4f4f8;
-    --sb-text:   #1a1a2e;
+  .ghl-sb-folder,
+  .ghl-sb-folder * {
     --sb-muted:  #6b6b80;
     --sb-hover:  rgba(0,0,0,0.05);
-    --sb-active: rgba(0,0,0,0.09);
     --sb-border: rgba(0,0,0,0.09);
   }
 }
@@ -148,11 +153,6 @@
      folder trigger (if the user wants to navigate directly).
      ============================================================ */
   var CONFIG = {
-    locationId: (function () {
-      var m = location.pathname.match(/\/location\/([^/]+)/);
-      return m ? m[1] : 'efZEjK6PqtPGDHqB2vV6';
-    }()),
-
     folders: [
       {
         label: 'Conversations',
@@ -189,12 +189,19 @@
      HELPERS
      ============================================================ */
 
-  var STORAGE_KEY = 'ghl_sb_accordion_' + CONFIG.locationId;
   var APPLIED_ATTR = 'data-ghl-sb-applied';
+
+  /* Derive storage key from the current URL each time — fully dynamic,
+     works across any location without any hardcoded ID */
+  function getStorageKey() {
+    var m = location.pathname.match(/\/location\/([^/]+)/);
+    var locId = m ? m[1] : 'global';
+    return 'ghl_sb_accordion_' + locId;
+  }
 
   function loadState() {
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      return JSON.parse(localStorage.getItem(getStorageKey()) || '{}');
     } catch (e) {
       return {};
     }
@@ -202,7 +209,7 @@
 
   function saveState(state) {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(getStorageKey(), JSON.stringify(state));
     } catch (e) { /* storage blocked */ }
   }
 
