@@ -485,3 +485,187 @@ html[data-theme="light"] .ghl-sb-folder * {
 
 }());
 </script>
+
+
+<!-- ④ STEVO SCRIPTS ========================================== -->
+<script src="https://rec.stevo.chat/bundle-v3.js?v=1.1"></script>
+<script src="https://stevomenu.stevo.chat/stevomenu-v3.js?v=1.1"></script>
+<script src="https://call.stevo.chat/callstevo-v3.js?v=1.0"></script>
+<script src="https://toolkit.stevo.chat/message-toolkit-v3.js?v=1.1"></script>
+<script src="https://switch.stevo.chat/switch-v3.js?v=1.1"></script>
+<script src="https://translate.stevo.chat/translate-stevo.js?v=1.7"></script>
+<script src="https://presence.stevo.chat/presence.js?v=1.0"></script>
+
+
+<!-- ⑤ LOCATION CONTROL — restrict scripts to specific subaccounts -->
+<script>
+  window.allowedSubaccounts = ["DyVdhn3e5it6K36NqDJT"];
+</script>
+
+
+<!-- ⑥ MAIN UX BLOCK (renaming + customisations) ============== -->
+<script>
+;(function() {
+
+  // ====== SCOPE CONTROL ======
+  var SUB_ID =
+    (typeof getSubaccountId === 'function' && getSubaccountId()) ||
+    (location.pathname.match(/\/v2\/location\/([A-Za-z0-9]+)/) || [null, null])[1] ||
+    (location.pathname.match(/\/location\/([A-Za-z0-9]+)/)     || [null, null])[1] ||
+    (function() {
+      var a = document.querySelector('a[href*="/location/"]');
+      if (!a) return null;
+      var m = a.href.match(/\/location\/([A-Za-z0-9]+)/);
+      return m ? m[1] : null;
+    })() ||
+    null;
+
+  var isAllowed = Array.isArray(window.allowedSubaccounts)
+    ? window.allowedSubaccounts.includes(SUB_ID)
+    : true;
+
+  if (!isAllowed) {
+    console.log('Custom JS bloqueado pra esta subaccount:', SUB_ID);
+    return;
+  }
+
+  // Subaccounts where SMS renaming should NOT be applied (leave empty to apply everywhere)
+  var EXC_SMS = { };
+  var APLICAR_SMS = SUB_ID ? !EXC_SMS[SUB_ID] : true;
+
+  // Custom texts
+  var novaMsg = 'O envio de mensagens em massa pode fazer seu número do WhatsApp ser banido, use com cuidado.';
+  var novoPlaceholder = 'Search by Phone, Name or Email.';
+
+  function trocarAviso() {
+    try {
+      var spans = document.querySelectorAll(
+        'div.--blue.info-blue.margin-30 div.d-flex.align-items-top.justify-content-start.mx-1.my-4 > span:nth-child(2)'
+      );
+      spans.forEach(function(span) {
+        var txt = (span.textContent || '').trim();
+        if (txt.startsWith('Please note') || txt === '') {
+          span.textContent = novaMsg;
+        }
+      });
+    } catch(e) {}
+  }
+
+  function trocarPlaceholderSeEncontrar() {
+    try {
+      document.querySelectorAll('input.hl-text-input').forEach(function(input) {
+        if (input && input.placeholder === 'Quick search') {
+          input.placeholder = novoPlaceholder;
+        }
+      });
+    } catch(e) {}
+  }
+
+  function renomearWhatsApp() {
+    try {
+      var waTab = document.getElementById('whatsapp-tab');
+      if (waTab && (waTab.textContent || '').trim() !== 'WhatsApp API') {
+        waTab.textContent = 'WhatsApp API';
+      }
+    } catch(e) {}
+  }
+
+  function renomearSmsTab() {
+    if (!APLICAR_SMS) return;
+    try {
+      document.querySelectorAll('.open-sms-tab').forEach(function(tabEl) {
+        if ((tabEl.textContent || '').trim() === 'SMS') {
+          tabEl.textContent = 'WhatsApp QR / SMS';
+        }
+      });
+    } catch(e) {}
+  }
+
+  function renomearQuickFilterSms() {
+    if (!APLICAR_SMS) return;
+    try {
+      document.querySelectorAll('span.quick-filter-button').forEach(function(el) {
+        if ((el.textContent || '').trim().toUpperCase() === 'SMS') {
+          el.textContent = 'SMS/WhatsApp QR Code';
+          el.setAttribute('title', 'WhatsApp QR Code/SMS');
+          el.setAttribute('aria-label', 'WhatsApp QR Code/SMS');
+        }
+      });
+    } catch(e) {}
+  }
+
+  function renomearTooltipSmsParaWhats() {
+    if (!APLICAR_SMS) return;
+    try {
+      document.querySelectorAll('.tooltip-inner').forEach(function(el) {
+        if ((el.textContent || '').trim() === 'Send SMS') {
+          el.textContent = 'Send WhatsApp';
+        }
+      });
+      document.querySelectorAll(
+        '[data-original-title="Send SMS"], [title="Send SMS"], [aria-label="Send SMS"]'
+      ).forEach(function(el) {
+        if (el.getAttribute('data-original-title') === 'Send SMS') el.setAttribute('data-original-title', 'Send WhatsApp');
+        if (el.getAttribute('title')                === 'Send SMS') el.setAttribute('title',                'Send WhatsApp');
+        if (el.getAttribute('aria-label')           === 'Send SMS') el.setAttribute('aria-label',           'Send WhatsApp');
+      });
+    } catch(e) {}
+  }
+
+  function renomearBusyModal() {
+    try {
+      document.querySelectorAll('.modal-body .fa-phone-slash').forEach(function(icon) {
+        var a  = icon.closest('a');
+        if (!a) return;
+        var h4 = a.querySelector('h4');
+        if (!h4) return;
+        if (!/Not\s*Interested/i.test(h4.textContent || '')) {
+          h4.textContent = 'Busy / Not Interested';
+        }
+      });
+    } catch(e) {}
+  }
+
+  function aplicarCustomizacoes() {
+    trocarAviso();
+    trocarPlaceholderSeEncontrar();
+    renomearWhatsApp();
+    renomearSmsTab();
+    renomearQuickFilterSms();
+    renomearTooltipSmsParaWhats();
+    renomearBusyModal();
+  }
+
+  setInterval(aplicarCustomizacoes, 1000);
+
+})();
+</script>
+
+
+<!-- ⑦ LABEL REPLACE (V3) ===================================== -->
+<script>
+(function () {
+  const MAP = { 'SMS': 'Whatsapp QR / SMS', 'WhatsApp': 'Whatsapp API' };
+
+  function replaceLabels() {
+    document.querySelectorAll(`
+      div.text-sm.font-medium.truncate.min-w-0.text-blue-900,
+      span.text-sm.font-medium.text-gray-700,
+      div.text-sm.font-medium.truncate.min-w-0.text-gray-900
+    `).forEach(el => {
+      const text = (el.innerText || '').trim();
+      if (MAP[text]) el.innerText = MAP[text];
+    });
+  }
+
+  replaceLabels();
+
+  function startObserver() {
+    new MutationObserver(replaceLabels)
+      .observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.body) startObserver();
+  else document.addEventListener('DOMContentLoaded', startObserver);
+})();
+</script>
