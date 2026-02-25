@@ -1,3 +1,23 @@
+<!-- wp:html -->
+<style>
+/* === MOTORO: MOBILE SCROLL FIX ===
+   wp-block-cover com overflow:hidden cria scroll context no iOS Safari.
+   overflow:clip clippa sem criar scroll context. */
+@media (max-width: 767px) {
+  .wp-block-cover {
+    overflow: clip !important;
+  }
+  /* Secao dws-home-about e so desktop (d-none d-lg-flex) — zera altura no mobile */
+  .dws-home-about,
+  .dws-home-about-cover,
+  .dws-home-about-content-cover {
+    min-height: 0 !important;
+    display: none !important;
+  }
+}
+</style>
+<!-- /wp:html -->
+
 <!-- wp:cover {"url":"https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/Design-sem-nome-2-1.mp4","id":933,"dimRatio":0,"customOverlayColor":"#FFF","isUserOverlayColor":true,"backgroundType":"video","isDark":false,"metadata":{"name":"DESKTOP COVER"},"className":"dws-home-banner-bg d-none d-md-block d-lg-block add-animation"} -->
 <div class="wp-block-cover is-light dws-home-banner-bg d-none d-md-block d-lg-block add-animation"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim" style="background-color:#FFF"></span><video class="wp-block-cover__video-background intrinsic-ignore" autoplay muted loop playsinline src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/Design-sem-nome-2-1.mp4" data-object-fit="cover"></video><div class="wp-block-cover__inner-container"><!-- wp:html -->
 <div id="motoro-hero-ctas"> <a href="/inventory/" class="cta-primary">&#128269; Browse Inventory</a> <a href="/apply-online/" class="cta-secondary">&#9989; Get Pre-Approved</a> </div>
