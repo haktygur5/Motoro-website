@@ -42,13 +42,12 @@
 <!-- MOBILE OVERFLOW FIX: CSS + JS -->
 <style>
 @media screen and (max-width:767px){
-  body{overflow-x:hidden!important;width:100%!important}
   img[style*="width:1001px"],
   .dws-dark-theme-mobile-cover img,
   .wp-image-230{width:100%!important;max-width:100%!important;height:auto!important}
   .wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,
   .dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,
-  .dws-home-boxes-cover{max-width:100%!important;overflow-x:hidden!important;box-sizing:border-box!important}
+  .dws-home-boxes-cover{max-width:100%!important;box-sizing:border-box!important}
   [data-motoro-layout="map-viewport"]{width:100%!important;max-width:100%!important;margin-left:0!important}
 }
 </style>
@@ -60,23 +59,21 @@
       for(var p in props)els[i].style.setProperty(p,props[p],'important');
     }
   }
-  function fixMobileOverflow(){
+  function fixMobileLayout(){
     if(window.innerWidth>767)return;
-    document.body.style.setProperty('overflow-x','hidden','important');
-    document.body.style.setProperty('width','100%','important');
     applyStyles('img[style*="width:1001px"],.dws-dark-theme-mobile-cover img,.wp-image-230',
       {'width':'100%','max-width':'100%','height':'auto'});
     applyStyles('.wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,.dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,.dws-home-boxes-cover',
-      {'max-width':'100%','overflow-x':'hidden'});
+      {'max-width':'100%'});
     applyStyles('[data-motoro-layout="map-viewport"]',
       {'width':'100%','max-width':'100%','margin-left':'0'});
   }
   var resizeTimer;
-  function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(fixMobileOverflow,100);}
+  function onResize(){clearTimeout(resizeTimer);resizeTimer=setTimeout(fixMobileLayout,100);}
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',fixMobileOverflow);
+    document.addEventListener('DOMContentLoaded',fixMobileLayout);
   }else{
-    fixMobileOverflow();
+    fixMobileLayout();
   }
   window.addEventListener('resize',onResize);
 })();
