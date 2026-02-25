@@ -1,0 +1,487 @@
+<!-- ============================================================
+     GHL COMPLETE SCRIPT — Sparkleads Pro
+     Paste the entire contents of this file into:
+       GoHighLevel → Settings → Custom JS/CSS  (head section)
+     ============================================================ -->
+
+
+<!-- ① EXTENDLY + UTILITY CSS ================================= -->
+<style>
+/* Extendly base theme */
+@import url('https://builder-api.getextendly.com/api/embed/base-theme/ce323281-d9af-4c09-880e-c939989ff373.css');
+
+/* Login loading-screen overlay */
+.hl_login::after {
+    content: "";
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    background-image: url("https://storage.googleapis.com/msgsndr/3WajUBzHFZ72vq6QGWIS/media/6603b0104d7869596fd12dce.gif");
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+/* Hide AI Employee promo banner */
+#sb_ai-employee-promo {
+    display: none !important;
+}
+
+/* Hide WhatsApp link in the header nav */
+nav[aria-label="header"] a[id="6656fbe08a310e28e65540b3"] {
+    display: none !important;
+}
+</style>
+
+
+<!-- ② SIDEBAR ACCORDION CSS ================================== -->
+<style>
+/* ============================================================
+   GHL Sidebar Accordion — Sparkleads Pro
+   ============================================================ */
+
+/* CSS variables scoped to accordion elements only (dark defaults) */
+.ghl-sb-folder,
+.ghl-sb-folder * {
+  --sb-muted:      #8a8a9a;
+  --sb-accent:     #7c3aed;
+  --sb-hover:      rgba(255,255,255,0.06);
+  --sb-border:     rgba(255,255,255,0.09);
+  --sb-transition: 0.22s ease;
+  --sb-indent:     14px;
+}
+
+/* Light-mode overrides */
+body.light-theme .ghl-sb-folder,
+body.light-theme .ghl-sb-folder *,
+html[data-theme="light"] .ghl-sb-folder,
+html[data-theme="light"] .ghl-sb-folder * {
+  --sb-muted:  #6b6b80;
+  --sb-hover:  rgba(0,0,0,0.05);
+  --sb-border: rgba(0,0,0,0.09);
+}
+
+@media (prefers-color-scheme: light) {
+  .ghl-sb-folder,
+  .ghl-sb-folder * {
+    --sb-muted:  #6b6b80;
+    --sb-hover:  rgba(0,0,0,0.05);
+    --sb-border: rgba(0,0,0,0.09);
+  }
+}
+
+/* Folder wrapper */
+.ghl-sb-folder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Clickable trigger row */
+.ghl-sb-folder__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  border-radius: 6px;
+  transition: background var(--sb-transition);
+  position: relative;
+}
+
+.ghl-sb-folder__trigger:hover {
+  background: var(--sb-hover);
+}
+
+.ghl-sb-folder__trigger:focus-visible {
+  outline: 2px solid var(--sb-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Folder label text */
+.ghl-sb-folder__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Chevron arrow */
+.ghl-sb-folder__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-right: 6px;
+  color: var(--sb-muted);
+  transition: transform var(--sb-transition), color var(--sb-transition);
+  pointer-events: none;
+}
+
+.ghl-sb-folder__chevron svg {
+  width: 11px;
+  height: 11px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+
+/* Rotate chevron when open */
+.ghl-sb-folder[data-sb-open="true"] > .ghl-sb-folder__trigger .ghl-sb-folder__chevron {
+  transform: rotate(90deg);
+  color: var(--sb-accent);
+}
+
+/* Children container — CSS grid height animation */
+.ghl-sb-folder__children {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--sb-transition);
+  overflow: hidden;
+}
+
+.ghl-sb-folder[data-sb-open="true"] > .ghl-sb-folder__children {
+  grid-template-rows: 1fr;
+}
+
+/* Inner wrapper required for grid-row height trick */
+.ghl-sb-folder__children-inner {
+  overflow: hidden;
+  padding-left: var(--sb-indent);
+  border-left: 2px solid var(--sb-border);
+  margin-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/* Highlight active sub-item link */
+.ghl-sb-folder__children-inner a[aria-current="page"],
+.ghl-sb-folder__children-inner a.active,
+.ghl-sb-folder__children-inner a.router-link-active {
+  color: var(--sb-accent) !important;
+}
+</style>
+
+
+<!-- ③ SIDEBAR ACCORDION JS =================================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     CONFIG — edit folder labels and children to match the exact
+     visible text of sidebar items (case-insensitive).
+     ============================================================ */
+  var CONFIG = {
+    folders: [
+      {
+        label: 'Conversations',
+        children: ['Conversations', 'Inbox', 'Manual Actions', 'Snippets', 'Trigger Links', 'Settings']
+      },
+      {
+        label: 'Marketing',
+        children: ['Email Marketing', 'SMS Marketing', 'Social Planner', 'Ads', 'Templates', 'Affiliates']
+      },
+      {
+        label: 'Automation',
+        children: ['Workflows', 'Campaigns', 'Triggers', 'Bulk Actions']
+      },
+      {
+        label: 'Contacts',
+        children: ['Contacts', 'Smart Lists', 'Tasks', 'Companies']
+      },
+      {
+        label: 'Sales',
+        children: ['Opportunities', 'Pipelines', 'Invoices', 'Payments', 'Products', 'Quotes & Proposals']
+      },
+      {
+        label: 'Reporting',
+        children: ['Reporting', 'Attribution', 'Agent Reporting', 'Call Reporting', 'Appointment Report', 'Ads Reporting']
+      },
+      {
+        label: 'Sites',
+        children: ['Funnels', 'Websites', 'Blogs', 'Client Portal', 'Forms', 'Surveys', 'Chat Widget', 'Membership']
+      }
+    ]
+  };
+
+  /* ============================================================
+     HELPERS
+     ============================================================ */
+
+  var APPLIED_ATTR = 'data-ghl-sb-applied';
+
+  /* Storage key derived live from the URL — works for any location */
+  function getStorageKey() {
+    var m = location.pathname.match(/\/location\/([^/]+)/);
+    return 'ghl_sb_accordion_' + (m ? m[1] : 'global');
+  }
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(getStorageKey()) || '{}'); }
+    catch (e) { return {}; }
+  }
+
+  function saveState(state) {
+    try { localStorage.setItem(getStorageKey(), JSON.stringify(state)); }
+    catch (e) { /* storage blocked */ }
+  }
+
+  function norm(s) {
+    return (s || '').trim().toLowerCase();
+  }
+
+  /* Read visible text — prefer direct text nodes to skip icon labels */
+  function getItemText(el) {
+    var text = '';
+    el.childNodes.forEach(function (node) {
+      if (node.nodeType === 3) { text += node.textContent; }
+    });
+    text = text.trim();
+    if (!text) { text = (el.textContent || el.innerText || '').trim(); }
+    return text;
+  }
+
+  /* Find the sidebar container using a priority list of stable selectors */
+  function findSidebar() {
+    var candidates = [
+      '[data-testid="sidebar"]',
+      '[data-testid="nav-menu"]',
+      'nav[class*="sidebar"]',
+      'aside',
+      '.sidebar',
+      '#sidebar',
+      '[class*="sidebar"]',
+      '[class*="side-nav"]',
+      '[class*="sideNav"]',
+      '[class*="left-nav"]',
+      '[class*="nav-menu"]'
+    ];
+    for (var i = 0; i < candidates.length; i++) {
+      var el = document.querySelector(candidates[i]);
+      if (el) return el;
+    }
+    return null;
+  }
+
+  /* Collect all nav links/buttons from the sidebar */
+  function collectNavItems(sidebar) {
+    var items = [];
+    sidebar.querySelectorAll(
+      'a[href], button[data-link-type], li > a, li > button, [role="menuitem"]'
+    ).forEach(function (node) { items.push(node); });
+    return items;
+  }
+
+  /* Build a normalised-text → element lookup map */
+  function buildTextMap(navItems) {
+    var map = {};
+    navItems.forEach(function (item) {
+      var t = norm(getItemText(item));
+      if (t) map[t] = item;
+    });
+    return map;
+  }
+
+  function chevronSVG() {
+    return '<svg viewBox="0 0 16 16" aria-hidden="true"><polyline points="4,2 12,8 4,14"/></svg>';
+  }
+
+  /* ============================================================
+     CORE — build accordion folders inside the sidebar
+     ============================================================ */
+  function applyAccordion(sidebar) {
+    if (sidebar.hasAttribute(APPLIED_ATTR)) return;
+
+    var navItems = collectNavItems(sidebar);
+    if (!navItems.length) return;
+
+    var textMap = buildTextMap(navItems);
+    var state   = loadState();
+
+    CONFIG.folders.forEach(function (folderDef) {
+
+      /* 1. Resolve children that exist in the sidebar (deduplicated) */
+      var seen = [];
+      var resolvedChildren = folderDef.children
+        .map(function (label) { return textMap[norm(label)] || null; })
+        .filter(function (el) {
+          if (!el || seen.indexOf(el) !== -1) return false;
+          seen.push(el);
+          return true;
+        });
+
+      if (!resolvedChildren.length) return;
+
+      /* 2. Get each child's <li> wrapper (deduplicated) */
+      var seenLi = [];
+      var lisToMove = resolvedChildren
+        .map(function (child) { return child.closest('li') || child; })
+        .filter(function (li) {
+          if (seenLi.indexOf(li) !== -1) return false;
+          seenLi.push(li);
+          return true;
+        });
+
+      /* 3. Keep only lis that share the same direct parent in the sidebar */
+      var insertionParent = null;
+      lisToMove = lisToMove.filter(function (li) {
+        if (!li.parentNode) return false;
+        if (!insertionParent) { insertionParent = li.parentNode; return true; }
+        return li.parentNode === insertionParent;
+      });
+
+      if (!insertionParent || !lisToMove.length) return;
+
+      /* 4. Idempotency guard */
+      if (lisToMove[0].closest('.ghl-sb-folder')) return;
+
+      var isOpen = state.hasOwnProperty(folderDef.label)
+        ? state[folderDef.label] : false;
+
+      /* 5. Build folder DOM */
+      var folder = document.createElement('div');
+      folder.className = 'ghl-sb-folder';
+      folder.setAttribute('data-sb-open', String(isOpen));
+      folder.setAttribute('data-sb-folder', folderDef.label);
+
+      var trigger = document.createElement('button');
+      trigger.className = 'ghl-sb-folder__trigger';
+      trigger.setAttribute('type', 'button');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+      var childrenId = 'ghl-sb-children-' + norm(folderDef.label).replace(/\s+/g, '-');
+      trigger.setAttribute('aria-controls', childrenId);
+
+      var labelSpan = document.createElement('span');
+      labelSpan.className = 'ghl-sb-folder__label';
+      labelSpan.textContent = folderDef.label;
+
+      var chevron = document.createElement('span');
+      chevron.className = 'ghl-sb-folder__chevron';
+      chevron.setAttribute('aria-hidden', 'true');
+      chevron.innerHTML = chevronSVG();
+
+      trigger.appendChild(labelSpan);
+      trigger.appendChild(chevron);
+
+      var childrenDiv = document.createElement('div');
+      childrenDiv.className = 'ghl-sb-folder__children';
+      childrenDiv.id = childrenId;
+
+      var inner = document.createElement('div');
+      inner.className = 'ghl-sb-folder__children-inner';
+
+      childrenDiv.appendChild(inner);
+      folder.appendChild(trigger);
+      folder.appendChild(childrenDiv);
+
+      /* 6. Place a comment-node placeholder BEFORE moving any elements.
+            This preserves the exact insertion position even after lis
+            are detached from insertionParent. */
+      var placeholder = document.createComment('ghl-sb-folder-placeholder');
+      var firstLi = null;
+      var siblings = insertionParent.children;
+      for (var si = 0; si < siblings.length; si++) {
+        if (lisToMove.indexOf(siblings[si]) !== -1) { firstLi = siblings[si]; break; }
+      }
+      insertionParent.insertBefore(placeholder, firstLi || null);
+
+      /* 7. Move lis into the inner container */
+      lisToMove.forEach(function (li) { inner.appendChild(li); });
+
+      /* 8. Swap placeholder → folder */
+      insertionParent.replaceChild(folder, placeholder);
+
+      /* 9. Event listeners */
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var nowOpen = folder.getAttribute('data-sb-open') !== 'true';
+        folder.setAttribute('data-sb-open', String(nowOpen));
+        trigger.setAttribute('aria-expanded', String(nowOpen));
+        var st = loadState();
+        st[folderDef.label] = nowOpen;
+        saveState(st);
+      });
+
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger.click(); }
+      });
+    });
+
+    sidebar.setAttribute(APPLIED_ATTR, '1');
+  }
+
+  /* ============================================================
+     BOOTSTRAP — retry until sidebar is mounted, then watch for
+     SPA re-renders via MutationObserver + history.pushState patch
+     ============================================================ */
+  var observer   = null;
+  var retryCount = 0;
+  var MAX_RETRIES = 60; /* 30 s @ 500 ms */
+
+  function tryApply() {
+    var sidebar = findSidebar();
+    if (!sidebar) {
+      if (++retryCount < MAX_RETRIES) setTimeout(tryApply, 500);
+      return;
+    }
+
+    applyAccordion(sidebar);
+
+    if (observer) observer.disconnect();
+    observer = new MutationObserver(function (mutations) {
+      var relevant = mutations.some(function (m) {
+        return m.type === 'childList' && m.addedNodes.length > 0;
+      });
+      if (!relevant) return;
+      var sb = findSidebar();
+      if (sb) { sb.removeAttribute(APPLIED_ATTR); applyAccordion(sb); }
+    });
+    observer.observe(sidebar, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryApply);
+  } else {
+    tryApply();
+  }
+
+  /* Re-apply on SPA navigation */
+  (function () {
+    var orig = history.pushState;
+    history.pushState = function () {
+      orig.apply(this, arguments);
+      setTimeout(function () {
+        var sb = findSidebar();
+        if (sb) { sb.removeAttribute(APPLIED_ATTR); applyAccordion(sb); }
+      }, 400);
+    };
+  }());
+
+}());
+</script>
