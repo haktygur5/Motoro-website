@@ -42,7 +42,7 @@
 <!-- MOBILE OVERFLOW FIX: CSS + JS -->
 <style>
 @media screen and (max-width:767px){
-  html,body{overflow-x:hidden!important;width:100%!important;max-width:100vw!important}
+  body{overflow-x:hidden!important;width:100%!important}
   img[style*="width:1001px"],
   .dws-dark-theme-mobile-cover img,
   .wp-image-230{width:100%!important;max-width:100%!important;height:auto!important}
@@ -62,9 +62,8 @@
   }
   function fixMobileOverflow(){
     if(window.innerWidth>767)return;
-    document.documentElement.style.setProperty('overflow-x','hidden','important');
     document.body.style.setProperty('overflow-x','hidden','important');
-    document.body.style.setProperty('max-width','100vw','important');
+    document.body.style.setProperty('width','100%','important');
     applyStyles('img[style*="width:1001px"],.dws-dark-theme-mobile-cover img,.wp-image-230',
       {'width':'100%','max-width':'100%','height':'auto'});
     applyStyles('.wp-block-cover,.wp-block-group,.wp-block-columns,.wp-block-column,.dws-home-wrapper,.dws-group-max-width,.dws-home-boxes-frame,.dws-home-boxes-cover',
