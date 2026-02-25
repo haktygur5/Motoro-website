@@ -73,11 +73,14 @@ html[data-theme="light"] .ghl-sb-folder * {
   border-radius: 6px;
 }
 
-/* The original nav-item is wrapped; keep it filling the trigger */
-.ghl-sb-folder__trigger > *:first-child {
+/* Folder label text inside the trigger */
+.ghl-sb-folder__label {
   flex: 1;
   min-width: 0;
-  pointer-events: none; /* clicks handled by button wrapper */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 /* --- Chevron icon --- */
@@ -295,85 +298,115 @@ html[data-theme="light"] .ghl-sb-folder * {
     var state = loadState();
 
     CONFIG.folders.forEach(function (folderDef) {
-      /* Resolve which children actually exist in the sidebar */
+      /* Resolve which children actually exist in the sidebar,
+         deduplicating elements that appear under multiple labels */
+      var seen = [];
       var resolvedChildren = folderDef.children
-        .map(function (childLabel) {
-          return textMap[norm(childLabel)] || null;
-        })
-        .filter(Boolean);
+        .map(function (childLabel) { return textMap[norm(childLabel)] || null; })
+        .filter(function (el) {
+          if (!el) return false;
+          if (seen.indexOf(el) !== -1) return false;
+          seen.push(el);
+          return true;
+        });
 
-      if (resolvedChildren.length < 2) return; /* not enough items, skip */
+      if (!resolvedChildren.length) return; /* nothing to group */
 
-      /* Find the parent item (first match by folder label, or first child) */
-      var parentItem = textMap[norm(folderDef.label)] || resolvedChildren[0];
+      /* Get the li wrapper for each child, deduplicating again */
+      var seenLi = [];
+      var lisToMove = resolvedChildren
+        .map(function (child) { return child.closest('li') || child; })
+        .filter(function (li) {
+          if (seenLi.indexOf(li) !== -1) return false;
+          seenLi.push(li);
+          return true;
+        });
 
-      /* Guard: don't wrap what's already wrapped */
-      if (parentItem.closest('.ghl-sb-folder__trigger')) return;
+      /* Only work with lis that share the same sidebar parent container */
+      var insertionParent = null;
+      lisToMove = lisToMove.filter(function (li) {
+        if (!li.parentNode) return false;
+        if (!insertionParent) { insertionParent = li.parentNode; return true; }
+        return li.parentNode === insertionParent;
+      });
 
-      /* Determine open state */
+      if (!insertionParent || !lisToMove.length) return;
+
+      /* Guard: skip if already wrapped (idempotent on re-renders) */
+      if (lisToMove[0].closest('.ghl-sb-folder')) return;
+
+      /* Determine open/closed state from localStorage */
       var isOpen = state.hasOwnProperty(folderDef.label)
         ? state[folderDef.label]
         : false;
 
-      /* Build folder wrapper */
+      /* ── Build the folder structure ─────────────────────────── */
+
       var folder = document.createElement('div');
       folder.className = 'ghl-sb-folder';
       folder.setAttribute('data-sb-open', String(isOpen));
       folder.setAttribute('data-sb-folder', folderDef.label);
 
-      /* Build trigger button */
+      /* Trigger button shows the folder label as text — NOT a cloned nav link */
       var trigger = document.createElement('button');
       trigger.className = 'ghl-sb-folder__trigger';
       trigger.setAttribute('type', 'button');
       trigger.setAttribute('aria-expanded', String(isOpen));
-      trigger.setAttribute('aria-controls', 'ghl-sb-children-' + norm(folderDef.label).replace(/\s+/g, '-'));
+      var childrenId = 'ghl-sb-children-' + norm(folderDef.label).replace(/\s+/g, '-');
+      trigger.setAttribute('aria-controls', childrenId);
 
-      /* Build chevron */
+      var labelSpan = document.createElement('span');
+      labelSpan.className = 'ghl-sb-folder__label';
+      labelSpan.textContent = folderDef.label;
+
       var chevron = document.createElement('span');
       chevron.className = 'ghl-sb-folder__chevron';
       chevron.setAttribute('aria-hidden', 'true');
       chevron.innerHTML = chevronSVG();
 
-      /* Children container */
+      trigger.appendChild(labelSpan);
+      trigger.appendChild(chevron);
+
       var children = document.createElement('div');
       children.className = 'ghl-sb-folder__children';
-      children.id = trigger.getAttribute('aria-controls');
+      children.id = childrenId;
 
       var inner = document.createElement('div');
       inner.className = 'ghl-sb-folder__children-inner';
-
-      /* Move parent item into trigger; insert folder before parent's original position */
-      var parentParent = parentItem.parentNode;
-      var parentNext = parentItem.nextSibling;
-
-      trigger.appendChild(parentItem.cloneNode(true));
-      trigger.appendChild(chevron);
-
-      /* Move child items into inner */
-      resolvedChildren.forEach(function (child) {
-        /* Wrap each child's parent li (or the item itself if no li) */
-        var li = child.closest('li') || child;
-        inner.appendChild(li);
-      });
 
       children.appendChild(inner);
       folder.appendChild(trigger);
       folder.appendChild(children);
 
-      /* Replace original parent item with folder */
-      if (parentParent) {
-        var originalParentLi = parentItem.closest('li') || parentItem;
-        if (originalParentLi.parentNode) {
-          originalParentLi.parentNode.insertBefore(folder, originalParentLi);
-          originalParentLi.parentNode.removeChild(originalParentLi);
-        } else if (parentNext) {
-          parentParent.insertBefore(folder, parentNext);
-        } else {
-          parentParent.appendChild(folder);
+      /* ── Save insertion position BEFORE moving any elements ─── *
+       * Insert a comment-node placeholder at the position of the  *
+       * first matching li in the sidebar. Moving the lis later    *
+       * detaches them from insertionParent, but the placeholder   *
+       * stays in place so we know exactly where to put the folder. */
+      var placeholder = document.createComment('ghl-sb-folder-placeholder');
+      var firstLiInSidebar = null;
+      var siblings = insertionParent.children; /* live HTMLCollection */
+      for (var si = 0; si < siblings.length; si++) {
+        if (lisToMove.indexOf(siblings[si]) !== -1) {
+          firstLiInSidebar = siblings[si];
+          break;
         }
       }
+      if (firstLiInSidebar) {
+        insertionParent.insertBefore(placeholder, firstLiInSidebar);
+      } else {
+        insertionParent.appendChild(placeholder);
+      }
 
-      /* Toggle handler */
+      /* ── Move resolved lis into the folder's inner container ── */
+      lisToMove.forEach(function (li) {
+        inner.appendChild(li);
+      });
+
+      /* ── Swap the placeholder for the finished folder ────────── */
+      insertionParent.replaceChild(folder, placeholder);
+
+      /* ── Event listeners ────────────────────────────────────── */
       trigger.addEventListener('click', function (e) {
         e.stopPropagation();
         var nowOpen = folder.getAttribute('data-sb-open') !== 'true';
@@ -384,7 +417,6 @@ html[data-theme="light"] .ghl-sb-folder * {
         saveState(st);
       });
 
-      /* Keyboard accessibility */
       trigger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
