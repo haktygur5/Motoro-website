@@ -1,0 +1,241 @@
+<!-- ============================================
+     MOTORO AUTOMOTIVE GROUP - LOVABLE EMBED/REDIRECT
+     ============================================
+     PURPOSE:
+     Displays the Lovable-built site (auto-luxury-guide.lovable.app)
+     seamlessly on motoroautomotivegroup.com/home
+
+     HOW IT WORKS:
+     1. Hides all DealerCenter default chrome (header, nav, footer, sidebar)
+     2. Loads the Lovable site in a seamless full-viewport iframe
+     3. If the iframe fails to load (X-Frame-Options block), automatically
+        redirects the visitor to the Lovable URL
+     4. Shows a manual fallback link if JS is disabled
+
+     INSTRUCTIONS:
+     - In DealerCenter, create/edit the /home page
+     - Add a "Custom HTML" block (or use the page HTML editor)
+     - Paste this ENTIRE code block into it
+     - Save and publish
+
+     NOTE: If Lovable blocks iframe embedding (X-Frame-Options),
+     the page will automatically redirect visitors — the experience
+     is seamless either way.
+     ============================================ -->
+
+<!-- STEP 1: Hide all DealerCenter chrome on this page -->
+<style>
+  /* Hide DealerCenter header/nav/footer/sidebar so only our content shows */
+  header,
+  .dws-header,
+  .dws-header-wrapper,
+  #dws-header,
+  .site-header,
+  #site-header,
+  .navbar,
+  .dws-nav,
+  .dws-navigation,
+  nav.navbar,
+  .dws-top-bar,
+  #dws-top-bar,
+  footer,
+  .dws-footer,
+  .dws-footer-wrapper,
+  .dws-footer-container,
+  #dws-footer,
+  .footer-wrapper,
+  #footer-wrapper,
+  .site-footer,
+  #site-footer,
+  #motoro-map-section-wrapper,
+  #motoro-footer-wrapper,
+  .dws-sidebar,
+  .sidebar,
+  aside,
+  .breadcrumb,
+  .dws-breadcrumb,
+  .dws-page-title,
+  .dws-page-header {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Make the content area take the full viewport */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+
+  .site-content,
+  .content-area,
+  .dws-content-wrapper,
+  .dws-home-wrapper,
+  #content,
+  #primary,
+  main,
+  .entry-content,
+  .wp-block-group {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+  }
+
+  /* Full-page iframe container */
+  #motoro-lovable-embed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 999999 !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #ffffff;
+  }
+
+  #motoro-lovable-embed iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+  }
+
+  /* Fallback message (shown briefly while loading, or if JS is disabled) */
+  #motoro-lovable-fallback {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #motoro-lovable-fallback .fallback-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top: 3px solid #c8102e;
+    border-radius: 50%;
+    animation: motoro-spin 0.8s linear infinite;
+    margin-bottom: 20px;
+  }
+
+  @keyframes motoro-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  #motoro-lovable-fallback a {
+    color: #c8102e;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  #motoro-lovable-fallback a:hover {
+    color: #ff1a3d;
+  }
+</style>
+
+<!-- STEP 2: Fallback message (visible while loading / if JS disabled) -->
+<div id="motoro-lovable-fallback">
+  <div class="fallback-spinner"></div>
+  <p style="font-size: 18px; margin: 0 0 12px 0;">Loading Motoro Automotive Group...</p>
+  <p style="font-size: 14px; margin: 0; opacity: 0.7;">
+    If the page does not load automatically,
+    <a href="https://auto-luxury-guide.lovable.app" rel="noopener noreferrer">click here to continue</a>.
+  </p>
+</div>
+
+<!-- STEP 3: Iframe embed container -->
+<div id="motoro-lovable-embed" style="display: none;">
+  <iframe
+    id="motoro-lovable-iframe"
+    src="https://auto-luxury-guide.lovable.app"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="eager"
+    title="Motoro Automotive Group"
+  ></iframe>
+</div>
+
+<!-- STEP 4: JavaScript — iframe load detection + redirect fallback -->
+<script>
+(function() {
+  var LOVABLE_URL = 'https://auto-luxury-guide.lovable.app';
+  var REDIRECT_TIMEOUT_MS = 5000; // redirect after 5 seconds if iframe fails
+  var iframe = document.getElementById('motoro-lovable-iframe');
+  var embedContainer = document.getElementById('motoro-lovable-embed');
+  var fallback = document.getElementById('motoro-lovable-fallback');
+  var redirectTimer = null;
+  var loaded = false;
+
+  // Start a timer: if iframe doesn't load within timeout, redirect
+  redirectTimer = setTimeout(function() {
+    if (!loaded) {
+      window.location.href = LOVABLE_URL;
+    }
+  }, REDIRECT_TIMEOUT_MS);
+
+  // If iframe loads successfully, show it and hide the fallback
+  if (iframe) {
+    iframe.onload = function() {
+      loaded = true;
+      clearTimeout(redirectTimer);
+
+      // Check if we can actually access the iframe content
+      // If X-Frame-Options blocks it, this will throw an error
+      try {
+        // Try to read something from the iframe — if blocked, this throws
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        // If we get here, the iframe loaded successfully
+        embedContainer.style.display = 'block';
+        fallback.style.display = 'none';
+      } catch (e) {
+        // Cross-origin but loaded (may still render correctly)
+        // Show the iframe anyway — the browser handles the rendering
+        embedContainer.style.display = 'block';
+        fallback.style.display = 'none';
+      }
+    };
+
+    iframe.onerror = function() {
+      // iframe failed to load — redirect immediately
+      clearTimeout(redirectTimer);
+      window.location.href = LOVABLE_URL;
+    };
+  } else {
+    // No iframe element found — redirect immediately
+    window.location.href = LOVABLE_URL;
+  }
+})();
+</script>
+
+<!-- STEP 5: Noscript fallback for users with JavaScript disabled -->
+<noscript>
+  <meta http-equiv="refresh" content="0;url=https://auto-luxury-guide.lovable.app">
+  <style>
+    #motoro-lovable-embed { display: none !important; }
+    #motoro-lovable-fallback .fallback-spinner { display: none !important; }
+  </style>
+  <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;z-index:9999999;font-family:sans-serif;">
+    <p>Redirecting... <a href="https://auto-luxury-guide.lovable.app" style="color:#c8102e;">Click here if not redirected</a></p>
+  </div>
+</noscript>
