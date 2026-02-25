@@ -1,40 +1,43 @@
-<style>
-  /* === HIDE DEFAULT DEALERCENTER FOOTER === */
-  .dws-footer,
-  .dws-footer-wrapper,
-  .dws-footer-container,
-  #dws-footer,
-  .footer-wrapper,
-  #footer-wrapper,
-  .site-footer,
-  #site-footer {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+<!-- ============================================================
+   MOTORO — DARK/LIGHT THEME TOGGLE + INIT
+   ============================================================ -->
+<button id="motoro-theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">🌙</button>
+
+<script>
+(function () {
+  var STORAGE_KEY = "motoro-theme";
+  var html = document.documentElement;
+  var btn  = document.getElementById("motoro-theme-toggle");
+
+  /* Apply saved theme immediately (before paint) */
+  var saved = localStorage.getItem(STORAGE_KEY);
+  var theme = (saved === "light") ? "light" : "dark";
+  html.setAttribute("data-theme", theme);
+
+  function updateButton(t) {
+    var icon = (t === "dark") ? "🌙" : "☀️";
+    var label = (t === "dark") ? "Switch to light mode" : "Switch to dark mode";
+    if (btn) { btn.textContent = icon; btn.setAttribute("aria-label", label); }
   }
 
-  footer {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  updateButton(theme);
+
+  function toggleTheme() {
+    var current = html.getAttribute("data-theme") || "dark";
+    var next = (current === "dark") ? "light" : "dark";
+    html.setAttribute("data-theme", next);
+    localStorage.setItem(STORAGE_KEY, next);
+    updateButton(next);
   }
 
-  .dws-footer .col-sm-3,
-  .dws-footer-wrapper .col-sm-3,
-  .footer-wrapper .col-sm-3 {
-    display: none !important;
+  if (btn) {
+    btn.addEventListener("click", toggleTheme);
+  } else {
+    document.addEventListener("DOMContentLoaded", function () {
+      btn = document.getElementById("motoro-theme-toggle");
+      if (btn) btn.addEventListener("click", toggleTheme);
+      updateButton(html.getAttribute("data-theme") || "dark");
+    });
   }
-
-  /* === PROTEGE O NOSSO FOOTER CUSTOM === */
-  #motoro-map-section-wrapper,
-  #motoro-footer-wrapper {
-    display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-</style>
+})();
+</script>

@@ -1,508 +1,311 @@
-<!-- ============================================
-     MOTORO AUTOMOTIVE GROUP - COMPLETE FOOTER
-     ============================================
-     INSTRUCTIONS:
-     Paste this entire code block into:
-     WordPress Customizer > Theme Scripts > Footer Script
-
-     This adds:
-     1. A premium dark-mode map section with dealership
-        location, contact info, and "Get Directions" button
-     2. A full footer bar with quick links, social icons,
-        and copyright
-
-     CONSTRAINTS (DealerCenter compatibility):
-     - No :root CSS variables
-     - No CSS filter on iframe
-     - No backdrop-filter
-     - All selectors scoped to #motoro-map-section-wrapper
-       and #motoro-footer-wrapper
-     ============================================ -->
-
-<!-- FOOTER STYLES -->
+<!-- ============================================================
+   MOTORO AUTOMOTIVE GROUP — FOOTER
+   Paste into: DealerCenter > Theme Scripts > Footer Script
+   Uses CSS variables from Header (inside head tag)
+   ============================================================ -->
 <style>
-  @keyframes motoro-glow-pulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(200,16,46,0.35); }
-    50%      { box-shadow: 0 4px 30px rgba(200,16,46,0.55); }
-  }
-  @keyframes motoro-line-grow {
-    from { width: 0; }
-    to   { width: 60px; }
-  }
-  #motoro-map-section-wrapper [data-motoro-role="directions-btn"]:hover {
-    background: #a00d24 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(200,16,46,0.5) !important;
-  }
-  #motoro-map-section-wrapper [data-motoro-role="phone-link"]:hover {
-    color: #c8102e !important;
-  }
-  #motoro-map-section-wrapper [data-motoro-role="info-item"]:hover {
-    background: rgba(255,255,255,0.03) !important;
-    border-color: rgba(200,16,46,0.15) !important;
-  }
-  #motoro-footer-wrapper [data-motoro-role="footer-link"]:hover {
-    color: #c8102e !important;
-  }
-  #motoro-footer-wrapper [data-motoro-role="social-icon"]:hover {
-    background: #c8102e !important;
-    border-color: #c8102e !important;
-    transform: translateY(-2px);
-  }
-  @media screen and (max-width: 768px) {
-    #motoro-map-section-wrapper [data-motoro-layout="map"] {
-      height: 60vh !important;
-      min-height: 350px !important;
-    }
-    #motoro-map-section-wrapper [data-motoro-layout="info"] {
-      position: relative !important;
-      bottom: auto !important;
-      right: auto !important;
-      width: 100% !important;
-      border-radius: 0 !important;
-    }
-    #motoro-map-section-wrapper [data-motoro-role="section-title"] {
-      font-size: 26px !important;
-    }
-    #motoro-footer-wrapper [data-motoro-layout="footer-grid"] {
-      flex-direction: column !important;
-      gap: 32px !important;
-      text-align: center !important;
-    }
-    #motoro-footer-wrapper [data-motoro-layout="footer-grid"] > div {
-      align-items: center !important;
-    }
-    #motoro-footer-wrapper [data-motoro-layout="social-row"] {
-      justify-content: center !important;
-    }
-    #motoro-footer-wrapper [data-motoro-layout="bottom-bar"] {
-      flex-direction: column !important;
-      gap: 8px !important;
-      text-align: center !important;
-    }
-  }
-</style>
+/* ---------- FOOTER ANIMATIONS ---------- */
+@keyframes motoro-glow {
+  0%,100% { box-shadow: 0 4px 20px rgba(200,16,46,0.3); }
+  50%      { box-shadow: 0 4px 30px rgba(200,16,46,0.55); }
+}
 
-<!-- ==========================================
-     SECTION 1: MAP + INFO CARD
-     ========================================== -->
-<div id="motoro-map-section-wrapper" style="
+/* ---------- MAP SECTION ---------- */
+#motoro-map-wrapper {
   width: 100%;
-  background: #000000;
-  position: relative;
-  padding: 70px 0 60px 0;
+  background: var(--bg, #0a0a0a);
+  padding: 72px 20px 0 20px;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  overflow: hidden;
-">
-  <!-- Subtle radial glow behind the card area -->
-  <div style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 500px;
-    background: radial-gradient(ellipse at center, rgba(200,16,46,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  "></div>
+}
+.motoro-map-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.motoro-map-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent, #c8102e);
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+.motoro-map-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--text, #e8e8e8);
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+.motoro-map-line {
+  width: 52px;
+  height: 3px;
+  background: var(--accent, #c8102e);
+  border-radius: 2px;
+  margin: 0 auto 40px auto;
+}
+.motoro-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  border-radius: 16px;
+  overflow: clip;
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+}
+@media (max-width: 900px) {
+  .motoro-map-grid { grid-template-columns: 1fr; }
+}
+.motoro-map-iframe {
+  width: 100%;
+  height: 460px;
+  border: 0;
+  display: block;
+  filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);
+}
+html[data-theme="light"] .motoro-map-iframe {
+  filter: none;
+}
+@media (max-width: 900px) {
+  .motoro-map-iframe { height: 280px; }
+}
+.motoro-map-card {
+  background: var(--bg-card, #111);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.motoro-map-card img {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 24px;
+  display: block;
+}
+.motoro-map-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent, #c8102e);
+  margin: 16px 0 4px 0;
+}
+.motoro-map-card-value {
+  font-size: 14px;
+  color: var(--text-muted, #888);
+  line-height: 1.5;
+  margin: 0;
+}
+.motoro-map-card-value a {
+  color: var(--text-muted, #888) !important;
+  text-decoration: none !important;
+}
+.motoro-map-card-value a:hover { color: var(--accent, #c8102e) !important; }
+.motoro-map-directions {
+  display: block;
+  margin-top: 24px;
+  padding: 13px 24px;
+  background: var(--accent, #c8102e);
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 10px;
+  transition: background 0.25s;
+  animation: motoro-glow 3s ease-in-out infinite;
+}
+.motoro-map-directions:hover { background: var(--accent-dark, #a00d24) !important; }
 
-  <!-- Top edge glow line -->
-  <div style="
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.3) 50%, transparent 100%);
-  "></div>
+/* ---------- FOOTER BAR ---------- */
+#motoro-footer-custom {
+  width: 100%;
+  background: var(--bg-card, #111111);
+  border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin-top: 72px;
+  box-sizing: border-box;
+}
+.motoro-footer-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 52px 20px 36px 20px;
+}
+.motoro-footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+@media (max-width: 767px) {
+  .motoro-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.motoro-footer-logo { max-width: 160px; height: auto; margin-bottom: 14px; display: block; }
+.motoro-footer-tagline { font-size: 13px; color: var(--text-muted, #888); line-height: 1.6; margin: 0 0 20px 0; }
+.motoro-footer-socials { display: flex; gap: 10px; }
+.motoro-footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border, rgba(255,255,255,0.1));
+  background: transparent;
+  color: var(--text-muted, #888) !important;
+  text-decoration: none !important;
+  font-size: 15px;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+.motoro-footer-social:hover {
+  background: var(--accent, #c8102e) !important;
+  border-color: var(--accent, #c8102e) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+.motoro-footer-col-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent, #c8102e);
+  margin: 0 0 14px 0;
+}
+.motoro-footer-link {
+  display: block;
+  font-size: 14px;
+  color: var(--text-muted, #888) !important;
+  text-decoration: none !important;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.motoro-footer-link:hover { color: var(--accent, #c8102e) !important; }
+.motoro-footer-bottom {
+  border-top: 1px solid var(--border, rgba(255,255,255,0.06));
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.motoro-footer-copy {
+  font-size: 12px;
+  color: var(--text-muted, #555);
+  margin: 0;
+}
+.motoro-footer-privacy {
+  font-size: 12px;
+  color: var(--text-muted, #555) !important;
+  text-decoration: none !important;
+  transition: color 0.2s;
+}
+.motoro-footer-privacy:hover { color: var(--accent, #c8102e) !important; }
 
-  <!-- Section Title -->
-  <div style="text-align: center; margin-bottom: 48px; padding: 0 20px; position: relative;">
-    <p style="
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #c8102e;
-      margin: 0 0 12px 0;
-    ">📍 FIND US</p>
-    <h2 data-motoro-role="section-title" style="
-      font-size: 34px;
-      font-weight: 800;
-      color: #ffffff;
-      margin: 0 0 16px 0;
-      line-height: 1.2;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    ">Visit Our Dealership</h2>
-    <div style="
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #c8102e, #e63946);
-      margin: 0 auto;
-      border-radius: 2px;
-      animation: motoro-line-grow 0.8s ease-out;
-    "></div>
-  </div>
+/* ---------- HIDE DC FOOTER (safety) ---------- */
+.dws-footer, .dws-footer-wrapper, .dws-footer-container,
+#dws-footer, .footer-wrapper, #footer-wrapper,
+.site-footer, #site-footer, footer {
+  display: none !important;
+}
+#motoro-map-wrapper, #motoro-footer-custom { display: block !important; }
 
-  <!-- Map Container — FULL VIEWPORT WIDTH -->
-  <div style="
-    width: 100vw;
-    position: relative;
-    margin-left: calc(-50vw + 50%);
-    height: 85vh;
-    min-height: 600px;
-    box-sizing: border-box;
-    overflow: hidden;
-  ">
-    <!-- Google Map (Dark Mode) — takes ENTIRE container -->
-    <div data-motoro-layout="map" style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000000;
-    ">
+/* ---------- HIDE DC GOOGLE MAP ---------- */
+iframe[src*="google.com/maps"]:not(.motoro-map-iframe),
+iframe[src*="maps.google.com"]:not(.motoro-map-iframe) { display: none !important; }
+</style>
+
+<!-- ============================================================
+     MAP SECTION
+     ============================================================ -->
+<div id="motoro-map-wrapper">
+  <div class="motoro-map-inner">
+    <p class="motoro-map-label">📍 Find Us</p>
+    <h2 class="motoro-map-title">Visit Our Dealership</h2>
+    <div class="motoro-map-line"></div>
+
+    <div class="motoro-map-grid">
       <iframe
+        class="motoro-map-iframe"
         src="https://maps.google.com/maps?q=810+Lee+Rd,+Orlando,+FL+32810&t=&z=15&ie=UTF8&iwloc=&output=embed"
-        width="100%"
-        height="100%"
-        style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);"
+        scrolling="no"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         title="Motoro Automotive Group Location">
       </iframe>
-    </div>
 
-    <!-- Floating Info Card — overlay on bottom-right -->
-    <div data-motoro-layout="info" style="
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      width: 400px;
-      background: rgba(10,10,10,0.92);
-      padding: 40px 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid rgba(200,16,46,0.15);
-      border-radius: 16px;
-      box-sizing: border-box;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-      z-index: 10;
-    ">
-        <!-- Dealership Logo + Name -->
-        <div style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);">
-          <img
-            src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
-            alt="Motoro Automotive Group"
-            style="max-width: 160px; height: auto; margin-bottom: 12px; display: block;"
-          />
-        </div>
-
-        <!-- Address -->
-        <div data-motoro-role="info-item" style="
-          margin-bottom: 6px;
-          padding: 14px 16px;
-          border-radius: 10px;
-          border: 1px solid transparent;
-          transition: background 0.25s ease, border-color 0.25s ease;
-        ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
-            ADDRESS
-          </p>
-          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.55;">
-            810 Lee Rd<br>Orlando, FL 32810
-          </p>
-        </div>
-
-        <!-- Phone -->
-        <div data-motoro-role="info-item" style="
-          margin-bottom: 6px;
-          padding: 14px 16px;
-          border-radius: 10px;
-          border: 1px solid transparent;
-          transition: background 0.25s ease, border-color 0.25s ease;
-        ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
-            PHONE
-          </p>
-          <a href="tel:+14079222215" data-motoro-role="phone-link" style="
-            font-size: 14px;
-            color: #c8c8d0;
-            text-decoration: none;
-            line-height: 1.55;
-            transition: color 0.25s ease;
-          ">(407) 922-2215</a>
-        </div>
-
-        <!-- Hours -->
-        <div data-motoro-role="info-item" style="
-          margin-bottom: 24px;
-          padding: 14px 16px;
-          border-radius: 10px;
-          border: 1px solid transparent;
-          transition: background 0.25s ease, border-color 0.25s ease;
-        ">
-          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
-            HOURS
-          </p>
-          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.6;">
-            Mon - Sat: 9AM - 7PM<br>
-            <span style="color: #999999;">Sun: Closed</span>
-          </p>
-        </div>
-
-        <!-- Get Directions Button -->
-        <a href="https://maps.app.goo.gl/XxbsgPgVzZmqHBex9" target="_blank" rel="noopener noreferrer" data-motoro-role="directions-btn" style="
-          display: block;
-          background: #c8102e;
-          color: #ffffff;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          text-align: center;
-          padding: 15px 28px;
-          border-radius: 10px;
-          letter-spacing: 0.5px;
-          transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-          animation: motoro-glow-pulse 3s ease-in-out infinite;
-        ">
-          Get Directions →
-        </a>
-      </div>
-
-    </div>
-
-  <!-- Bottom edge glow line -->
-  <div style="
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.2) 50%, transparent 100%);
-  "></div>
-</div>
-
-<!-- ==========================================
-     SECTION 2: FOOTER BAR
-     ========================================== -->
-<div id="motoro-footer-wrapper" style="
-  width: 100%;
-  background: #000000;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  padding: 0;
-">
-  <!-- Footer Main Content -->
-  <div style="
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 48px 20px 40px 20px;
-    box-sizing: border-box;
-  ">
-    <div data-motoro-layout="footer-grid" style="
-      display: flex;
-      flex-direction: row;
-      gap: 48px;
-    ">
-
-      <!-- Column 1: Brand -->
-      <div style="flex: 1.2; display: flex; flex-direction: column; align-items: flex-start;">
+      <div class="motoro-map-card">
         <img
           src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
           alt="Motoro Automotive Group"
-          style="max-width: 180px; height: auto; margin-bottom: 16px;"
-        />
-        <p style="font-size: 13px; color: #6b6b78; margin: 0 0 20px 0; line-height: 1.6;">
-          Quality pre-owned vehicles with financing options for everyone. Visit us in Orlando, FL.
-        </p>
-        <!-- Social Icons -->
-        <div data-motoro-layout="social-row" style="display: flex; gap: 10px;">
-          <a href="https://www.facebook.com/motorogroup#" target="_blank" rel="noopener noreferrer" data-motoro-role="social-icon" style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: transparent;
-            color: #c8c8d0;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
-          " title="Facebook">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        >
+
+        <p class="motoro-map-card-label">Address</p>
+        <p class="motoro-map-card-value">810 Lee Rd<br>Orlando, FL 32810</p>
+
+        <p class="motoro-map-card-label">Phone</p>
+        <p class="motoro-map-card-value"><a href="tel:+14079222215">(407) 922-2215</a></p>
+
+        <p class="motoro-map-card-label">Hours</p>
+        <p class="motoro-map-card-value">Mon – Sat: 9AM – 7PM<br><span style="color:#666">Sun: Closed</span></p>
+
+        <a href="https://maps.app.goo.gl/XxbsgPgVzZmqHBex9" target="_blank" rel="noopener noreferrer" class="motoro-map-directions">
+          Get Directions →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER BAR
+     ============================================================ -->
+<footer id="motoro-footer-custom">
+  <div class="motoro-footer-inner">
+    <div class="motoro-footer-grid">
+
+      <!-- Column 1: Brand -->
+      <div>
+        <img class="motoro-footer-logo"
+          src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
+          alt="Motoro Automotive Group">
+        <p class="motoro-footer-tagline">Quality pre-owned vehicles with financing for everyone. Visit us in Orlando, FL.</p>
+        <div class="motoro-footer-socials">
+          <a href="https://www.facebook.com/motorogroup" target="_blank" rel="noopener noreferrer" class="motoro-footer-social" title="Facebook">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="https://www.instagram.com/motoroautomotivegroup/" target="_blank" rel="noopener noreferrer" data-motoro-role="social-icon" style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: transparent;
-            color: #c8c8d0;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
-          " title="Instagram">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <a href="https://www.instagram.com/motoroautomotivegroup/" target="_blank" rel="noopener noreferrer" class="motoro-footer-social" title="Instagram">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
       </div>
 
       <!-- Column 2: Quick Links -->
-      <div style="flex: 0.8; display: flex; flex-direction: column; align-items: flex-start;">
-        <p style="
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #c8102e;
-          margin: 0 0 16px 0;
-        ">QUICK LINKS</p>
-        <a href="/inventory/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Browse Inventory</a>
-        <a href="/apply-online/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Apply for Financing</a>
-        <a href="/schedule-a-test-drive/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Schedule Test Drive</a>
-        <a href="/about-us/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">About Us</a>
-        <a href="/contact-us/" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; transition: color 0.25s ease; display: block;">Contact Us</a>
+      <div>
+        <p class="motoro-footer-col-title">Quick Links</p>
+        <a href="/inventory/" class="motoro-footer-link">Browse Inventory</a>
+        <a href="/apply-online/" class="motoro-footer-link">Apply for Financing</a>
+        <a href="/schedule-a-test-drive/" class="motoro-footer-link">Schedule Test Drive</a>
+        <a href="/about-us/" class="motoro-footer-link">About Us</a>
+        <a href="/contact-us/" class="motoro-footer-link">Contact Us</a>
       </div>
 
-      <!-- Column 3: Contact Info -->
-      <div style="flex: 1; display: flex; flex-direction: column; align-items: flex-start;">
-        <p style="
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #c8102e;
-          margin: 0 0 16px 0;
-        ">CONTACT</p>
-        <p style="font-size: 14px; color: #8a8a96; margin: 0 0 10px 0; line-height: 1.55;">
-          810 Lee Rd<br>Orlando, FL 32810
-        </p>
-        <a href="tel:+14079222215" data-motoro-role="footer-link" style="font-size: 14px; color: #8a8a96; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">
-          (407) 922-2215
-        </a>
-        <p style="font-size: 14px; color: #8a8a96; margin: 0 0 4px 0;">Mon - Sat: 9AM - 7PM</p>
-        <p style="font-size: 14px; color: #55555f; margin: 0;">Sun: Closed</p>
+      <!-- Column 3: Contact -->
+      <div>
+        <p class="motoro-footer-col-title">Contact</p>
+        <p class="motoro-footer-link" style="cursor:default">810 Lee Rd<br>Orlando, FL 32810</p>
+        <a href="tel:+14079222215" class="motoro-footer-link">(407) 922-2215</a>
+        <p class="motoro-footer-link" style="cursor:default">Mon – Sat: 9AM – 7PM</p>
+        <p class="motoro-footer-link" style="cursor:default; color:#555">Sun: Closed</p>
       </div>
 
     </div>
-  </div>
 
-  <!-- Bottom Bar: Copyright + Privacy -->
-  <div style="
-    border-top: 1px solid rgba(255,255,255,0.06);
-  ">
-    <div data-motoro-layout="bottom-bar" style="
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 20px 20px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    ">
-      <p style="font-size: 12px; color: #44444e; margin: 0;">
-        © 2025 Motoro Automotive Group. All rights reserved.
-      </p>
-      <a href="/privacy-policy/" data-motoro-role="footer-link" style="font-size: 12px; color: #44444e; text-decoration: none; transition: color 0.25s ease;">
-        Privacy Policy
-      </a>
+    <div class="motoro-footer-bottom">
+      <p class="motoro-footer-copy">© 2025 Motoro Automotive Group. All rights reserved.</p>
+      <a href="/privacy-policy/" class="motoro-footer-privacy">Privacy Policy</a>
     </div>
   </div>
-</div>
-
-<style>
-html,body{background:#0a0a0a!important;color:#e8e8e8!important}
-body,.site,.site-content,.content-area,main,#main,#content,.dws-home-wrapper,.dws-content-wrapper,.dws-body-wrapper,.page-content,.entry-content{background-color:#0a0a0a!important;color:#e8e8e8!important}
-header,nav,.navbar,.site-header,#masthead,.dws-header,.dws-topbar,.top-bar,.dws-top-bar{background-color:#0a0a0a!important;border-color:#1a1a1a!important}
-.navbar .nav-link,.navbar a,.nav-menu a,.dws-nav-menu a{color:#e0e0e0!important}
-.navbar .nav-link:hover,.navbar a:hover,.nav-menu a:hover{color:#c8102e!important}
-.navbar .nav-link.active,.navbar .active>.nav-link,.current-menu-item>a,.current-menu-item>.nav-link{color:#c8102e!important}
-h1,h2,h3,h4,h5,h6,.dws-home-wrapper h1,.dws-home-wrapper h2,.dws-home-wrapper h3,.dws-home-wrapper h4,.dws-home-wrapper h5,.dws-home-wrapper h6{color:#fff!important}
-p,span,label,small,li,td,th,div,.dws-home-wrapper p,.dws-home-wrapper span,.dws-home-wrapper label,.dws-home-wrapper small,.dws-content-wrapper p,.dws-content-wrapper span,.site-content p,.site-content span,.content-area p,.content-area span{color:#e0e0e0!important}
-a{color:#e8e8e8!important}
-a:hover{color:#c8102e!important}
-.text-muted,.text-secondary,.text-gray,.text-grey,.text-body-secondary,.muted,.dws-secondary-text,.dws-meta-info,.dws-body-text,.dws-card-text,.dws-card-info,.dws-label,.dws-value,.dws-desc,.dws-text-grey,.dws-text-gray,.dws-text-muted,.dws-secondary-info{color:#aaa!important}
-.card,.card-body,.dws-card,.inv-card,.vehicle-card,.listing-card,.dws-vehicle-card{background-color:#111!important;border-color:#222!important;color:#e0e0e0!important}
-.card .card-body,.card .card-body p,.card .card-body span,.card .card-body small,.card .card-body strong,.card .card-footer,.card .card-footer span,.card-text{color:#e0e0e0!important}
-.card-title,.card-title a,.dws-vehicle-title,.dws-vehicle-title a{color:#fff!important;font-weight:700!important}
-.card-title a:hover,.dws-vehicle-title a:hover{color:#c8102e!important}
-.dws-vehicle-price,.vehicle-price,.inv-price,.dws-inv-price,.sale-price,.internet-price,.our-price,.dws-vehicle-price span,.vehicle-price span{color:#c8102e!important;font-weight:700!important}
-.inv-ext-color,.inv-transmission,.inv-engine,.inv-drivetrain,.inv-fuel-type,.inv-body-style{color:#bbb!important}
-.form-check-label,.custom-control-label{color:#ddd!important}
-input,select,textarea,.form-control,.form-select{background-color:#1a1a1a!important;color:#e0e0e0!important;border-color:#333!important}
-input::placeholder,textarea::placeholder{color:#777!important}
-.form-control:focus,.form-select:focus,input:focus,textarea:focus,select:focus{background-color:#1a1a1a!important;color:#fff!important;border-color:#c8102e!important;box-shadow:0 0 0 .2rem rgba(200,16,46,.25)!important}
-.dropdown-menu,.dws-dropdown{background-color:#111!important;border-color:#222!important}
-.dropdown-item,.dropdown-menu a{color:#e0e0e0!important}
-.dropdown-item:hover,.dropdown-menu a:hover{background-color:#1a1a1a!important;color:#c8102e!important}
-.modal-content,.modal-header,.modal-body,.modal-footer{background-color:#111!important;color:#e0e0e0!important;border-color:#222!important}
-.breadcrumb,.breadcrumb li,.breadcrumb a,.breadcrumb span{color:#aaa!important}
-.breadcrumb a:hover{color:#c8102e!important}
-.breadcrumb{background-color:transparent!important}
-.pagination .page-link{color:#e0e0e0!important;background-color:#111!important;border-color:#222!important}
-.pagination .active .page-link{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-.pagination .page-link:hover{color:#fff!important;background-color:#1a1a1a!important;border-color:#c8102e!important}
-.btn-primary,.dws-btn-primary,.btn-danger,.wp-block-button__link,input[type="submit"],button[type="submit"]{background-color:#c8102e!important;border-color:#c8102e!important;color:#fff!important}
-.btn-primary:hover,.dws-btn-primary:hover,.btn-danger:hover,input[type="submit"]:hover,button[type="submit"]:hover{background-color:#a00d24!important;border-color:#a00d24!important}
-.btn-secondary,.btn-default,.btn-light{background-color:#1a1a1a!important;border-color:#333!important;color:#e0e0e0!important}
-.btn-secondary:hover,.btn-default:hover,.btn-light:hover{background-color:#222!important;color:#fff!important}
-.btn-outline-primary{color:#c8102e!important;border-color:#c8102e!important;background:transparent!important}
-.btn-outline-primary:hover{background-color:#c8102e!important;color:#fff!important}
-.bg-white,.bg-light{background-color:#111!important}
-.bg-primary,.bg-info,.btn-info{background-color:#c8102e!important;border-color:#c8102e!important}
-.bg-primary a,.bg-info a,.btn-info{color:#fff!important}
-.badge{background-color:#c8102e!important;color:#fff!important}
-.text-primary{color:#c8102e!important}
-.text-dark,.text-black{color:#e0e0e0!important}
-.border,.border-top,.border-bottom,.border-left,.border-right{border-color:#222!important}
-.border-primary{border-color:#c8102e!important}
-.table{color:#e0e0e0!important;border-color:#222!important}
-.table td,.table th,.table span{color:#e0e0e0!important;border-color:#222!important}
-.table-striped>tbody>tr:nth-of-type(odd){background-color:#111!important}
-.table-hover>tbody>tr:hover{background-color:#1a1a1a!important}
-.table-dark th,.table-dark td{color:#fff!important}
-.progress{background-color:#1a1a1a!important}
-.progress-bar{background-color:#c8102e!important}
-.alert{background-color:#111!important;border-color:#222!important;color:#e0e0e0!important}
-hr{border-color:#222!important}
-.wp-block-group,.wp-block-column,.wp-block-columns{color:#e0e0e0!important}
-.wp-block-group.has-background{color:#e0e0e0!important}
-.dws-cta-section,.dws-banner,.dws-promo-bar,.dws-cta-banner,.dws-action-bar,.dws-gradient,.dws-home-cta,.dws-home-banner-cta{background:linear-gradient(135deg,#c8102e 0%,#8b0a1e 100%)!important;color:#fff!important}
-.dws-group-max-width,.dws-group-max-width>div{background-color:#0a0a0a!important}
-[style*="background-color: #fff"],[style*="background-color:#fff"],[style*="background: #fff"],[style*="background:#fff"],[style*="background-color: white"],[style*="background-color:white"],[style*="background: white"],[style*="background:white"],[style*="background-color: #ffffff"],[style*="background-color:#ffffff"],[style*="background: #ffffff"],[style*="background:#ffffff"]{background-color:#0a0a0a!important}
-[style*="background-color: #f"],[style*="background-color:#f"],[style*="background: #f"],[style*="background:#f"]{background-color:#111!important}
-[style*="color: #333"],[style*="color:#333"],[style*="color: #666"],[style*="color:#666"],[style*="color: #777"],[style*="color:#777"],[style*="color: #888"],[style*="color:#888"],[style*="color: #999"],[style*="color:#999"],[style*="color: #aaa"],[style*="color:#aaa"],[style*="color: #bbb"],[style*="color:#bbb"],[style*="color: #ccc"],[style*="color:#ccc"]{color:#ccc!important}
-@media(min-width:992px){
-.navbar-collapse,.dws-nav-collapse{display:flex!important;visibility:visible!important;height:auto!important;overflow:visible!important;flex-basis:auto!important;opacity:1!important}
-.navbar-toggler,.menu-toggle,.dws-menu-toggle{display:none!important}
-.navbar-nav,.dws-nav-menu{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important}
-.navbar-nav>li{display:inline-block!important}
-.navbar-nav>li>a{display:inline-block!important;padding:8px 12px!important;white-space:nowrap!important;font-size:14px!important}
-}
-.shop-by-make-container,.dws-shop-by-wrapper{max-height:none!important;overflow:visible!important;background-color:#0a0a0a!important}
-.shop-by-make-container.view-less-results{max-height:none!important;overflow:visible!important}
-.shop-by-make-container ul,.dws-shop-by-wrapper ul{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:center!important;align-items:center!important;gap:14px!important;padding:24px 10px!important;list-style:none!important;margin:0!important}
-.shop-by-make-container li,.dws-shop-by-wrapper li{list-style:none!important;margin:0!important;padding:0!important;display:inline-block!important;float:none!important}
-.shop-by-make-container li a,.dws-shop-by-wrapper li a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:120px;padding:14px 30px!important;background:#111!important;color:#fff!important;text-decoration:none!important;font-weight:700!important;font-size:15px!important;letter-spacing:2px!important;text-transform:uppercase!important;border:2px solid #333!important;border-radius:10px!important;transition:all .3s cubic-bezier(.4,0,.2,1)!important;position:relative;overflow:hidden;cursor:pointer}
-.shop-by-make-container li a::before,.dws-shop-by-wrapper li a::before{content:''!important;position:absolute!important;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at center,rgba(200,16,46,.2) 0%,transparent 70%)!important;opacity:0;transition:opacity .3s ease!important;pointer-events:none}
-.shop-by-make-container li a:hover,.dws-shop-by-wrapper li a:hover{border-color:#c8102e!important;color:#fff!important;transform:translateY(-4px) scale(1.05)!important;box-shadow:0 0 15px rgba(200,16,46,.4),0 0 30px rgba(200,16,46,.15),0 8px 25px rgba(0,0,0,.4)!important;background:#1a1a1a!important;animation:motoro-pulse 1.5s ease-in-out infinite!important}
-.shop-by-make-container li a:hover::before,.dws-shop-by-wrapper li a:hover::before{opacity:1!important}
-.shop-by-make-container li a:active,.dws-shop-by-wrapper li a:active{transform:translateY(-1px) scale(.97)!important;background:#c8102e!important;border-color:#c8102e!important;box-shadow:0 0 25px rgba(200,16,46,.6),0 0 50px rgba(200,16,46,.3)!important;transition:all .1s ease!important}
-@keyframes motoro-pulse{0%{box-shadow:0 0 8px rgba(200,16,46,.3),0 6px 20px rgba(0,0,0,.3)}50%{box-shadow:0 0 25px rgba(200,16,46,.6),0 0 50px rgba(200,16,46,.2),0 6px 20px rgba(0,0,0,.3)}100%{box-shadow:0 0 8px rgba(200,16,46,.3),0 6px 20px rgba(0,0,0,.3)}}
-@media(max-width:768px){.shop-by-make-container ul,.dws-shop-by-wrapper ul{gap:10px!important;padding:16px 8px!important}.shop-by-make-container li a,.dws-shop-by-wrapper li a{padding:11px 22px!important;font-size:13px!important;letter-spacing:1.5px!important;min-width:100px}}
-iframe[src*="google.com/maps"],iframe[src*="maps.google.com"]{display:none!important}
-#motoro-map-section-wrapper iframe{display:block!important}
-.dws-map-section,.dws-google-map,.dws-map-container,.dws-contact-map,.dws-home-map,.google-map-container,.google-map-wrapper,.gmap-wrapper,.map-section:not(#motoro-map-section-wrapper),.dws-dealer-map,.dealer-map-section{display:none!important}
-footer>.container,footer>.row,footer>.col,footer>.col-sm-3,footer>.col-sm-4,footer>.col-sm-6,footer>.col-md-3,footer>.col-md-4,.site-footer>.container,.site-footer>.row,.dws-footer>.container,.dws-footer>.row,.dws-footer-content>.container,.dws-footer-content>.row,.dws-footer-wrapper>.container,.dws-footer-wrapper>.row,footer .widget-area,footer .footer-widgets,footer .footer-columns,.site-footer .widget-area,.site-footer .footer-widgets,footer>div:not(#motoro-map-section-wrapper):not(#motoro-footer-wrapper){display:none!important}
-</style>
+</footer>
