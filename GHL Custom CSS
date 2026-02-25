@@ -1,0 +1,30 @@
+/* Extendly CSS */
+@import url('https://builder-api.getextendly.com/api/embed/base-theme/ce323281-d9af-4c09-880e-c939989ff373.css');
+
+.hl_login::after {
+    content: "";
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    background-image: url("https://storage.googleapis.com/msgsndr/3WajUBzHFZ72vq6QGWIS/media/6603b0104d7869596fd12dce.gif");
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+/* Extendly CSS */
+
+#sb_ai-employee-promo {
+    display: none !important;
+}
+
+/* target the WhatsApp link by its numeric ID via attribute selector */
+nav[aria-label="header"] a[id="6656fbe08a310e28e65540b3"] {
+    display: none !important;
+}
