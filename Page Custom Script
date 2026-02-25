@@ -5,38 +5,38 @@
 
 <script>
 (function () {
-  var STORAGE_KEY = 'motoro-theme';
+  var STORAGE_KEY = "motoro-theme";
   var html = document.documentElement;
-  var btn  = document.getElementById('motoro-theme-toggle');
+  var btn  = document.getElementById("motoro-theme-toggle");
 
   /* Apply saved theme immediately (before paint) */
   var saved = localStorage.getItem(STORAGE_KEY);
-  var theme = (saved === 'light') ? 'light' : 'dark';
-  html.setAttribute('data-theme', theme);
+  var theme = (saved === "light") ? "light" : "dark";
+  html.setAttribute("data-theme", theme);
 
   function updateButton(t) {
-    if (btn) btn.textContent = (t === 'light') ? '��' : '☀️';
-    if (btn) btn.setAttribute('aria-label', (t === 'light') ? 'Switch to dark mode' : 'Switch to light mode');
+    var icon = (t === "dark") ? "🌙" : "☀️";
+    var label = (t === "dark") ? "Switch to light mode" : "Switch to dark mode";
+    if (btn) { btn.textContent = icon; btn.setAttribute("aria-label", label); }
   }
 
   updateButton(theme);
 
   function toggleTheme() {
-    var current = html.getAttribute('data-theme') || 'dark';
-    var next = (current === 'dark') ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
+    var current = html.getAttribute("data-theme") || "dark";
+    var next = (current === "dark") ? "light" : "dark";
+    html.setAttribute("data-theme", next);
     localStorage.setItem(STORAGE_KEY, next);
     updateButton(next);
   }
 
   if (btn) {
-    btn.addEventListener('click', toggleTheme);
+    btn.addEventListener("click", toggleTheme);
   } else {
-    /* Button may not be in DOM yet — wait for it */
-    document.addEventListener('DOMContentLoaded', function () {
-      btn = document.getElementById('motoro-theme-toggle');
-      if (btn) btn.addEventListener('click', toggleTheme);
-      updateButton(html.getAttribute('data-theme') || 'dark');
+    document.addEventListener("DOMContentLoaded", function () {
+      btn = document.getElementById("motoro-theme-toggle");
+      if (btn) btn.addEventListener("click", toggleTheme);
+      updateButton(html.getAttribute("data-theme") || "dark");
     });
   }
 })();
