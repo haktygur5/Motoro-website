@@ -1,0 +1,479 @@
+<!-- ==========================================================================
+   MOTORO AUTOMOTIVE GROUP - Homepage HTML Components
+   Para ser usado no WordPress Gutenberg Block Editor ou Custom HTML Blocks
+   ========================================================================== -->
+
+<!-- ==========================================================================
+   1. HERO SECTION - Seção Principal da Homepage
+   Cole este código em: Página Home > Adicionar Bloco > HTML Personalizado
+   ========================================================================== -->
+
+<section class="motoro-hero">
+  <div class="motoro-hero-content">
+    <h1 class="motoro-hero-title motoro-hidden" data-animation="motoro-animate-fadeInUp">
+      Find Your Perfect <span>Dream Car</span>
+    </h1>
+    <p class="motoro-hero-subtitle motoro-hidden motoro-delay-200" data-animation="motoro-animate-fadeInUp">
+      Discover premium quality pre-owned vehicles at unbeatable prices. 
+      Your journey to the perfect car starts here at Motoro Automotive Group.
+    </p>
+    <div class="motoro-btn-group motoro-hidden motoro-delay-400" data-animation="motoro-animate-fadeInUp">
+      <a href="/inventory" class="motoro-btn motoro-btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+        </svg>
+        Browse Inventory
+      </a>
+      <a href="/apply-online" class="motoro-btn motoro-btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        Apply for Financing
+      </a>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="motoro-scroll-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   2. SEARCH BAR SECTION - Barra de Busca de Veículos
+   Cole após a Hero Section
+   ========================================================================== -->
+
+<section class="motoro-search-section" style="background: #fff; padding: 3rem 1rem; margin-top: -50px; position: relative; z-index: 10;">
+  <div class="motoro-container">
+    <form class="motoro-search-form" style="background: #f5f5f7; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 30px rgba(0,0,0,0.1);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end;">
+        <div class="motoro-form-group">
+          <label class="motoro-form-label">Make</label>
+          <select class="motoro-form-input" style="cursor: pointer;">
+            <option value="">All Makes</option>
+            <option value="toyota">Toyota</option>
+            <option value="honda">Honda</option>
+            <option value="ford">Ford</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="bmw">BMW</option>
+            <option value="mercedes">Mercedes-Benz</option>
+            <option value="nissan">Nissan</option>
+            <option value="hyundai">Hyundai</option>
+          </select>
+        </div>
+        <div class="motoro-form-group">
+          <label class="motoro-form-label">Model</label>
+          <select class="motoro-form-input" style="cursor: pointer;">
+            <option value="">All Models</option>
+          </select>
+        </div>
+        <div class="motoro-form-group">
+          <label class="motoro-form-label">Year</label>
+          <select class="motoro-form-input" style="cursor: pointer;">
+            <option value="">All Years</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+          </select>
+        </div>
+        <div class="motoro-form-group">
+          <label class="motoro-form-label">Price Range</label>
+          <select class="motoro-form-input" style="cursor: pointer;">
+            <option value="">Any Price</option>
+            <option value="0-10000">Under $10,000</option>
+            <option value="10000-20000">$10,000 - $20,000</option>
+            <option value="20000-30000">$20,000 - $30,000</option>
+            <option value="30000-50000">$30,000 - $50,000</option>
+            <option value="50000+">$50,000+</option>
+          </select>
+        </div>
+        <button type="submit" class="motoro-btn motoro-btn-accent" style="height: fit-content;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   3. FEATURED VEHICLES SECTION - Veículos em Destaque
+   ========================================================================== -->
+
+<section style="padding: 6rem 1rem; background: #fff;">
+  <div class="motoro-container">
+    <div class="motoro-section-header">
+      <h2 class="motoro-section-title motoro-hidden" data-animation="motoro-animate-fadeInUp">
+        Featured <span class="motoro-text-gradient">Vehicles</span>
+      </h2>
+      <p class="motoro-section-subtitle motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp">
+        Explore our hand-picked selection of premium pre-owned vehicles
+      </p>
+      <div class="motoro-section-divider"></div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <button data-filter="all" class="motoro-btn motoro-btn-primary active" style="padding: 0.75rem 1.5rem;">All</button>
+      <button data-filter="sedan" class="motoro-btn motoro-btn-secondary" style="padding: 0.75rem 1.5rem; color: #1a1a2e; border-color: #e0e0e0;">Sedans</button>
+      <button data-filter="suv" class="motoro-btn motoro-btn-secondary" style="padding: 0.75rem 1.5rem; color: #1a1a2e; border-color: #e0e0e0;">SUVs</button>
+      <button data-filter="truck" class="motoro-btn motoro-btn-secondary" style="padding: 0.75rem 1.5rem; color: #1a1a2e; border-color: #e0e0e0;">Trucks</button>
+      <button data-filter="luxury" class="motoro-btn motoro-btn-secondary" style="padding: 0.75rem 1.5rem; color: #1a1a2e; border-color: #e0e0e0;">Luxury</button>
+    </div>
+    
+    <!-- Vehicle Grid -->
+    <div class="motoro-vehicles-grid">
+      
+      <!-- Vehicle Card 1 -->
+      <div class="motoro-vehicle-card motoro-hidden" data-animation="motoro-animate-fadeInUp" data-category="sedan">
+        <div class="motoro-vehicle-image">
+          <span class="motoro-vehicle-badge">Featured</span>
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="2023 Toyota Camry">
+        </div>
+        <div class="motoro-vehicle-content">
+          <h3 class="motoro-vehicle-title">2023 Toyota Camry SE</h3>
+          <div class="motoro-vehicle-specs">
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+              15,234 mi
+            </span>
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5z"/></svg>
+              2.5L Automatic
+            </span>
+          </div>
+          <div class="motoro-vehicle-price">$28,995 <span>/ Starting at</span></div>
+        </div>
+      </div>
+      
+      <!-- Vehicle Card 2 -->
+      <div class="motoro-vehicle-card motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp" data-category="suv">
+        <div class="motoro-vehicle-image">
+          <span class="motoro-vehicle-badge" style="background: #00c853;">Low Miles</span>
+          <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="2022 Honda CR-V">
+        </div>
+        <div class="motoro-vehicle-content">
+          <h3 class="motoro-vehicle-title">2022 Honda CR-V EX-L</h3>
+          <div class="motoro-vehicle-specs">
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+              8,456 mi
+            </span>
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5z"/></svg>
+              1.5L Turbo CVT
+            </span>
+          </div>
+          <div class="motoro-vehicle-price">$34,500 <span>/ Starting at</span></div>
+        </div>
+      </div>
+      
+      <!-- Vehicle Card 3 -->
+      <div class="motoro-vehicle-card motoro-hidden motoro-delay-200" data-animation="motoro-animate-fadeInUp" data-category="luxury">
+        <div class="motoro-vehicle-image">
+          <span class="motoro-vehicle-badge" style="background: #1a73e8;">Premium</span>
+          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80" alt="2023 BMW 3 Series">
+        </div>
+        <div class="motoro-vehicle-content">
+          <h3 class="motoro-vehicle-title">2023 BMW 330i xDrive</h3>
+          <div class="motoro-vehicle-specs">
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+              12,890 mi
+            </span>
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5z"/></svg>
+              2.0L Turbo Auto
+            </span>
+          </div>
+          <div class="motoro-vehicle-price">$45,995 <span>/ Starting at</span></div>
+        </div>
+      </div>
+      
+      <!-- Vehicle Card 4 -->
+      <div class="motoro-vehicle-card motoro-hidden motoro-delay-300" data-animation="motoro-animate-fadeInUp" data-category="truck">
+        <div class="motoro-vehicle-image">
+          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="2022 Ford F-150">
+        </div>
+        <div class="motoro-vehicle-content">
+          <h3 class="motoro-vehicle-title">2022 Ford F-150 XLT</h3>
+          <div class="motoro-vehicle-specs">
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+              22,150 mi
+            </span>
+            <span class="motoro-vehicle-spec">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5z"/></svg>
+              3.5L V6 EcoBoost
+            </span>
+          </div>
+          <div class="motoro-vehicle-price">$42,750 <span>/ Starting at</span></div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/inventory" class="motoro-btn motoro-btn-primary">
+        View All Inventory
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   4. STATISTICS SECTION - Contador de Estatísticas
+   ========================================================================== -->
+
+<section class="motoro-stats">
+  <div class="motoro-stats-grid">
+    <div class="motoro-stat-item motoro-hidden" data-animation="motoro-animate-fadeInUp">
+      <div class="motoro-stat-number" data-counter data-target="1500" data-suffix="+">0</div>
+      <div class="motoro-stat-label">Vehicles Sold</div>
+    </div>
+    <div class="motoro-stat-item motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp">
+      <div class="motoro-stat-number" data-counter data-target="98" data-suffix="%">0</div>
+      <div class="motoro-stat-label">Customer Satisfaction</div>
+    </div>
+    <div class="motoro-stat-item motoro-hidden motoro-delay-200" data-animation="motoro-animate-fadeInUp">
+      <div class="motoro-stat-number" data-counter data-target="15" data-suffix="+">0</div>
+      <div class="motoro-stat-label">Years Experience</div>
+    </div>
+    <div class="motoro-stat-item motoro-hidden motoro-delay-300" data-animation="motoro-animate-fadeInUp">
+      <div class="motoro-stat-number" data-counter data-target="200" data-suffix="+">0</div>
+      <div class="motoro-stat-label">Vehicles in Stock</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   5. WHY CHOOSE US SECTION - Benefícios/Features
+   ========================================================================== -->
+
+<section class="motoro-features">
+  <div class="motoro-container">
+    <div class="motoro-section-header">
+      <h2 class="motoro-section-title motoro-hidden" data-animation="motoro-animate-fadeInUp">
+        Why Choose <span class="motoro-text-gradient">Motoro</span>
+      </h2>
+      <p class="motoro-section-subtitle motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp">
+        We're committed to providing the best car buying experience in Orlando
+      </p>
+      <div class="motoro-section-divider"></div>
+    </div>
+    
+    <div class="motoro-features-grid">
+      
+      <!-- Feature 1 -->
+      <div class="motoro-feature-card motoro-hidden" data-animation="motoro-animate-fadeInUp">
+        <div class="motoro-feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+        </div>
+        <h3 class="motoro-feature-title">Quality Guaranteed</h3>
+        <p class="motoro-feature-desc">Every vehicle goes through a rigorous 150-point inspection before hitting our lot.</p>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="motoro-feature-card motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp">
+        <div class="motoro-feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+          </svg>
+        </div>
+        <h3 class="motoro-feature-title">Best Price Promise</h3>
+        <p class="motoro-feature-desc">Competitive pricing with no hidden fees. We'll match any legitimate competitor's price.</p>
+      </div>
+      
+      <!-- Feature 3 -->
+      <div class="motoro-feature-card motoro-hidden motoro-delay-200" data-animation="motoro-animate-fadeInUp">
+        <div class="motoro-feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+        </div>
+        <h3 class="motoro-feature-title">Easy Financing</h3>
+        <p class="motoro-feature-desc">We work with multiple lenders to get you approved, regardless of credit history.</p>
+      </div>
+      
+      <!-- Feature 4 -->
+      <div class="motoro-feature-card motoro-hidden motoro-delay-300" data-animation="motoro-animate-fadeInUp">
+        <div class="motoro-feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </div>
+        <h3 class="motoro-feature-title">Trade-In Welcome</h3>
+        <p class="motoro-feature-desc">Get instant trade-in values and apply it directly to your next vehicle purchase.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   6. TESTIMONIALS SECTION - Depoimentos de Clientes
+   ========================================================================== -->
+
+<section class="motoro-testimonials">
+  <div class="motoro-container">
+    <div class="motoro-section-header">
+      <h2 class="motoro-section-title motoro-hidden" data-animation="motoro-animate-fadeInUp">
+        What Our <span class="motoro-text-gradient">Customers Say</span>
+      </h2>
+      <div class="motoro-section-divider"></div>
+    </div>
+    
+    <div class="motoro-slider" data-autoplay="true" data-interval="6000">
+      
+      <!-- Testimonial 1 -->
+      <div class="motoro-slide motoro-testimonial-card active">
+        <p class="motoro-testimonial-text">
+          "Motoro made buying my first car an amazing experience! The team was patient, helpful, and found me the perfect Honda Civic within my budget. I couldn't be happier!"
+        </p>
+        <div class="motoro-testimonial-author">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M." class="motoro-testimonial-avatar">
+          <div>
+            <div class="motoro-testimonial-name">Sarah M.</div>
+            <div class="motoro-testimonial-role">Orlando, FL</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="motoro-slide motoro-testimonial-card" style="display: none;">
+        <p class="motoro-testimonial-text">
+          "The financing process was so easy! Even with my less-than-perfect credit, they got me approved same day. Highly recommend Motoro to anyone looking for quality used cars."
+        </p>
+        <div class="motoro-testimonial-author">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James R." class="motoro-testimonial-avatar">
+          <div>
+            <div class="motoro-testimonial-name">James R.</div>
+            <div class="motoro-testimonial-role">Kissimmee, FL</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="motoro-slide motoro-testimonial-card" style="display: none;">
+        <p class="motoro-testimonial-text">
+          "Third car I've bought from Motoro, and they never disappoint. Great prices, no pressure sales, and they really stand behind their vehicles. This is the only dealership I trust."
+        </p>
+        <div class="motoro-testimonial-author">
+          <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael T." class="motoro-testimonial-avatar">
+          <div>
+            <div class="motoro-testimonial-name">Michael T.</div>
+            <div class="motoro-testimonial-role">Winter Park, FL</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slider Dots -->
+      <div class="motoro-slider-dots" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem;"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   7. CTA SECTION - Call to Action
+   ========================================================================== -->
+
+<section style="padding: 6rem 2rem; background: var(--motoro-dark, #1a1a2e); position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); opacity: 0.5;"></div>
+  
+  <div class="motoro-container" style="position: relative; z-index: 1; text-align: center;">
+    <h2 class="motoro-hidden" data-animation="motoro-animate-fadeInUp" style="font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 1.5rem; font-weight: 800;">
+      Ready to Find Your Perfect Car?
+    </h2>
+    <p class="motoro-hidden motoro-delay-100" data-animation="motoro-animate-fadeInUp" style="font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7;">
+      Visit us today or browse our inventory online. Our team is ready to help you drive away in your dream car!
+    </p>
+    <div class="motoro-btn-group motoro-hidden motoro-delay-200" data-animation="motoro-animate-fadeInUp">
+      <a href="/inventory" class="motoro-btn motoro-btn-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+        </svg>
+        Shop Inventory
+      </a>
+      <a href="/contact-us" class="motoro-btn motoro-btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        Contact Us
+      </a>
+    </div>
+    
+    <!-- Contact Info -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; color: rgba(255,255,255,0.7);">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--motoro-secondary, #ff6d00);">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Orlando, FL 32822
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--motoro-secondary, #ff6d00);">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        (407) 123-4567
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--motoro-secondary, #ff6d00);">
+          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+        </svg>
+        Mon-Sat: 9am - 7pm
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+   8. SLIDER STYLES (adicionar junto com o CSS ou em Additional CSS)
+   ========================================================================== -->
+
+<style>
+/* Slider styles */
+.motoro-slide {
+  display: none;
+}
+.motoro-slide.active {
+  display: block;
+  animation: motoroFadeInUp 0.5s ease;
+}
+.motoro-slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.motoro-slider-dot.active {
+  background: var(--motoro-primary, #1a73e8);
+  transform: scale(1.2);
+}
+.motoro-slider-dot:hover {
+  background: var(--motoro-primary, #1a73e8);
+}
+</style>

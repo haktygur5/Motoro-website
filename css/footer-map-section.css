@@ -1,0 +1,529 @@
+/* ==========================================================================
+   MOTORO AUTOMOTIVE GROUP - Footer Map Section CSS
+   Para ser adicionado no WordPress Customizer > Additional CSS
+   Este CSS deve ser adicionado JUNTO com o homepage-animations.css
+   ========================================================================== */
+
+/* ==========================================================================
+   1. MAP SECTION - Seção do Mapa com Estilo Escuro
+   ========================================================================== */
+
+.motoro-map-section {
+  position: relative;
+  background: #0d0d0d;
+  padding: 0;
+  overflow: hidden;
+}
+
+.motoro-map-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Wrapper do mapa com filtro escuro */
+.motoro-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.motoro-map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Filtro para escurecer o mapa */
+  filter: grayscale(100%) invert(92%) contrast(83%);
+  -webkit-filter: grayscale(100%) invert(92%) contrast(83%);
+}
+
+/* Overlay sutil para melhorar contraste */
+.motoro-map-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0.3) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(13, 13, 13, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+/* Card de Informações sobre o Mapa */
+.motoro-map-info-card {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  z-index: 10;
+  max-width: 380px;
+  width: 90%;
+}
+
+.motoro-map-info-content {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(22, 33, 62, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.motoro-map-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.25rem 0;
+}
+
+.motoro-map-title svg {
+  color: var(--motoro-secondary, #ff6d00);
+}
+
+.motoro-map-address {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.motoro-map-address strong {
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.motoro-map-details {
+  margin-bottom: 1.5rem;
+}
+
+.motoro-map-details p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.motoro-map-details svg {
+  color: var(--motoro-secondary, #ff6d00);
+  flex-shrink: 0;
+}
+
+.motoro-map-details a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.motoro-map-details a:hover {
+  color: var(--motoro-secondary, #ff6d00);
+}
+
+/* Botão Get Directions */
+.motoro-map-directions-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--motoro-secondary, #ff6d00) 0%, #ff8a50 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 109, 0, 0.3);
+}
+
+.motoro-map-directions-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 109, 0, 0.4);
+  color: #ffffff;
+}
+
+.motoro-map-directions-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.motoro-map-directions-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   2. FOOTER NAVIGATION - Seção de Navegação
+   ========================================================================== */
+
+.motoro-footer-nav {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Padrão de fundo sutil */
+.motoro-footer-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+.motoro-footer-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.motoro-footer-logo {
+  margin-bottom: 1rem;
+}
+
+.motoro-footer-logo img,
+.motoro-logo-img {
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.motoro-logo-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.motoro-logo-text + span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--motoro-secondary, #ff6d00);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* Tagline */
+.motoro-footer-tagline {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+/* Botões de Navegação */
+.motoro-footer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.motoro-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  min-width: 160px;
+}
+
+.motoro-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.motoro-nav-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Botão Primário - Inventory */
+.motoro-nav-btn-primary {
+  background: linear-gradient(135deg, var(--motoro-primary, #1a73e8) 0%, #0d47a1 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+}
+
+.motoro-nav-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(26, 115, 232, 0.4);
+  color: #ffffff;
+}
+
+/* Botão Accent - Pre-Approved */
+.motoro-nav-btn-accent {
+  background: linear-gradient(135deg, var(--motoro-secondary, #ff6d00) 0%, #ff8a50 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 109, 0, 0.3);
+}
+
+.motoro-nav-btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 109, 0, 0.4);
+  color: #ffffff;
+}
+
+/* Botão Secundário - About/Contact */
+.motoro-nav-btn-secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.motoro-nav-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  color: #ffffff;
+}
+
+/* Links Secundários */
+.motoro-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.motoro-footer-links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.motoro-footer-links a:hover {
+  color: var(--motoro-secondary, #ff6d00);
+}
+
+.motoro-link-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Redes Sociais */
+.motoro-footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.motoro-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.motoro-social-btn:hover {
+  background: var(--motoro-secondary, #ff6d00);
+  border-color: var(--motoro-secondary, #ff6d00);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 109, 0, 0.3);
+}
+
+.motoro-social-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Copyright */
+.motoro-footer-copyright {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.motoro-footer-copyright p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.motoro-footer-powered {
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE STYLES
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .motoro-map-info-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .motoro-map-info-content {
+    border-radius: 0;
+    margin: 0;
+  }
+  
+  .motoro-map-wrapper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .motoro-map-wrapper {
+    height: 300px;
+  }
+  
+  .motoro-map-info-content {
+    padding: 1.5rem;
+  }
+  
+  .motoro-map-title {
+    font-size: 1.25rem;
+  }
+  
+  .motoro-footer-nav {
+    padding: 3rem 1rem 2rem;
+  }
+  
+  .motoro-footer-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .motoro-nav-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .motoro-footer-links {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .motoro-link-divider {
+    display: none;
+  }
+  
+  .motoro-footer-tagline {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .motoro-map-wrapper {
+    height: 250px;
+  }
+  
+  .motoro-logo-text {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .motoro-footer-social {
+    gap: 0.75rem;
+  }
+  
+  .motoro-social-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ==========================================================================
+   4. ANIMAÇÕES DE ENTRADA
+   ========================================================================== */
+
+.motoro-map-section,
+.motoro-footer-nav {
+  animation: motoroFadeInUp 0.8s ease forwards;
+}
+
+.motoro-map-info-card {
+  animation: motoroFadeInLeft 0.8s ease 0.3s forwards;
+  opacity: 0;
+}
+
+.motoro-footer-logo {
+  animation: motoroScaleIn 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.motoro-footer-buttons {
+  animation: motoroFadeInUp 0.6s ease 0.4s forwards;
+  opacity: 0;
+}
+
+/* ==========================================================================
+   5. DARK MAP ALTERNATIVE STYLES
+   Se você preferir um estilo diferente para o mapa, descomente estas opções
+   ========================================================================== */
+
+/* Opção 2: Mapa totalmente escuro */
+/*
+.motoro-map-wrapper iframe {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+*/
+
+/* Opção 3: Mapa azulado escuro */
+/*
+.motoro-map-wrapper iframe {
+  filter: grayscale(100%) invert(90%) sepia(10%) saturate(300%) hue-rotate(180deg);
+}
+*/
+
+/* Opção 4: Mapa com overlay colorido */
+/*
+.motoro-map-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 26, 46, 0.3);
+  z-index: 1;
+  pointer-events: none;
+}
+*/

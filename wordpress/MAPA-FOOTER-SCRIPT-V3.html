@@ -1,0 +1,109 @@
+<!--
+===========================================
+MOTORO - MAPA PARA FOOTER SCRIPT V3
+===========================================
+ONDE COLAR: Customizer > Theme Scripts > Footer Script
+           OU
+           Customizer > Advanced Header & Footer > Footer
+
+Este código adiciona o mapa ACIMA do footer existente do site.
+O mapa tem layout maior e melhor proporcionado.
+===========================================
+-->
+
+<div id="motoro-map-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 50px 20px; margin-top: 40px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Título da Seção -->
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: #ffffff; font-size: 32px; margin: 0 0 10px 0; font-weight: 700;">Visit Our Dealership</h2>
+      <p style="color: #aaaaaa; font-size: 16px; margin: 0;">Come see our inventory in person</p>
+    </div>
+    
+    <!-- Container Principal - Grid -->
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; align-items: stretch;">
+      
+      <!-- Coluna Esquerda - Info Card -->
+      <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; border: 1px solid rgba(255,255,255,0.1);">
+        
+        <!-- Logo -->
+        <div style="text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <span style="font-size: 28px; font-weight: bold; color: #ffffff;">MOTORO</span>
+          <span style="display: block; font-size: 12px; color: #ff6d00; letter-spacing: 2px;">AUTOMOTIVE GROUP</span>
+        </div>
+        
+        <!-- Endereço -->
+        <div style="margin-bottom: 20px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 20px;">📍</span>
+            <div>
+              <strong style="color: #ffffff; font-size: 14px;">Address</strong>
+              <p style="color: #cccccc; margin: 5px 0 0 0; font-size: 14px; line-height: 1.5;">
+                1802 Sand Lake Rd<br>Orlando, FL 32809
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Telefone -->
+        <div style="margin-bottom: 20px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 20px;">📞</span>
+            <div>
+              <strong style="color: #ffffff; font-size: 14px;">Phone</strong>
+              <p style="color: #cccccc; margin: 5px 0 0 0; font-size: 14px;">
+                <a href="tel:+14074007775" style="color: #ff6d00; text-decoration: none;">(407) 400-7775</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Horário -->
+        <div style="margin-bottom: 25px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 20px;">🕐</span>
+            <div>
+              <strong style="color: #ffffff; font-size: 14px;">Hours</strong>
+              <p style="color: #cccccc; margin: 5px 0 0 0; font-size: 14px; line-height: 1.6;">
+                Mon-Sat: 10AM - 7PM<br>
+                Sunday: Closed
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Botão Get Directions -->
+        <a href="https://maps.app.goo.gl/T4eyLmafuVhcGFW37" target="_blank" style="display: block; background: linear-gradient(135deg, #ff6d00, #ff8c00); color: #ffffff; text-align: center; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform 0.3s;">
+          🧭 Get Directions
+        </a>
+        
+      </div>
+      
+      <!-- Coluna Direita - Mapa -->
+      <div style="border-radius: 16px; overflow: hidden; min-height: 400px; position: relative;">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.8865744840847!2d-81.4048083!3d28.4665056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e77e8b8e9e9e9d%3A0x1234567890abcdef!2s1802%20Sand%20Lake%20Rd%2C%20Orlando%2C%20FL%2032809!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+          width="100%" 
+          height="100%" 
+          style="border: 0; filter: grayscale(100%) invert(92%) contrast(90%); min-height: 400px;"
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- CSS para Responsivo -->
+<style>
+@media (max-width: 768px) {
+  #motoro-map-section > div > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+  }
+  #motoro-map-section iframe {
+    min-height: 300px !important;
+  }
+}
+</style>
