@@ -1,0 +1,489 @@
+<!-- ============================================
+     MOTORO - INVENTORY PAGE CSS FIXES
+     ============================================
+     INSTRUCTIONS:
+     Paste this code into:
+     WordPress Customizer > Theme Scripts > Header Script
+     (After global-color-overrides.html)
+
+     This targets ALL gray text on the inventory page
+     using aggressive selectors specific to DealerCenter
+     dws-v3-c8 theme structure.
+
+     PALETTE:
+     - Body/card text → #000000 (black)
+     - Prices → #c8102e (red)
+     - Dark backgrounds → #ffffff (white)
+     - Accent/hover → #c8102e (red)
+     ============================================ -->
+
+<style>
+  /* =============================================
+     INVENTORY PAGE — AGGRESSIVE GRAY TEXT FIX
+     ============================================= */
+
+  /* --- MASTER OVERRIDE ---
+     Target the main inventory container and ALL
+     text elements inside it. DealerCenter wraps
+     inventory in various containers. */
+  .dws-content-wrapper,
+  .dws-content-wrapper p,
+  .dws-content-wrapper span,
+  .dws-content-wrapper div,
+  .dws-content-wrapper li,
+  .dws-content-wrapper td,
+  .dws-content-wrapper th,
+  .dws-content-wrapper label,
+  .dws-content-wrapper small,
+  .dws-content-wrapper strong,
+  .dws-content-wrapper b,
+  .dws-content-wrapper em,
+  .dws-content-wrapper i:not(.fa):not(.fas):not(.far):not(.fab):not(.bi),
+  .site-content,
+  .site-content p,
+  .site-content span,
+  .site-content div,
+  .site-content label,
+  .site-content small,
+  .content-area,
+  .content-area p,
+  .content-area span,
+  .content-area div,
+  .content-area label,
+  .content-area small,
+  main,
+  main p,
+  main span,
+  main div:not([id*="motoro"]),
+  main label,
+  main small,
+  main strong,
+  #main,
+  #main p,
+  #main span,
+  #main div,
+  #main label,
+  #main small,
+  #primary,
+  #primary p,
+  #primary span,
+  #primary div,
+  #primary label,
+  #primary small {
+    color: #000000 !important;
+  }
+
+  /* --- PAGE TITLE / HEADING --- */
+  .page-title,
+  .page-title h1,
+  .page-title h2,
+  .entry-title,
+  .dws-page-title,
+  .dws-page-title h1,
+  .dws-page-title h2,
+  .wp-block-heading,
+  .inventory-page-title,
+  .inventory-heading,
+  .inventory-title {
+    color: #000000 !important;
+  }
+
+  /* --- VEHICLE CARDS (DealerCenter specific) ---
+     The dws-v3-c8 theme renders cards with various
+     wrapper classes. Target ALL text aggressively. */
+
+  /* Card wrapper — covers any class naming pattern */
+  [class*="inv-card"],
+  [class*="inv-card"] p,
+  [class*="inv-card"] span,
+  [class*="inv-card"] small,
+  [class*="inv-card"] div,
+  [class*="inv-card"] label,
+  [class*="inv-card"] strong,
+  [class*="inv-card"] li,
+  [class*="inv-card"] td,
+  [class*="vehicle-card"],
+  [class*="vehicle-card"] p,
+  [class*="vehicle-card"] span,
+  [class*="vehicle-card"] small,
+  [class*="vehicle-card"] div,
+  [class*="vehicle-card"] label,
+  [class*="vehicle-card"] strong,
+  [class*="listing-card"],
+  [class*="listing-card"] p,
+  [class*="listing-card"] span,
+  [class*="listing-card"] small,
+  [class*="listing-card"] div,
+  [class*="listing-card"] label {
+    color: #000000 !important;
+  }
+
+  /* Bootstrap cards in inventory context */
+  .card .card-body,
+  .card .card-body p,
+  .card .card-body span,
+  .card .card-body small,
+  .card .card-body div,
+  .card .card-body label,
+  .card .card-body strong,
+  .card .card-body li,
+  .card .card-body td,
+  .card .card-footer,
+  .card .card-footer p,
+  .card .card-footer span,
+  .card .card-footer small,
+  .card .card-header,
+  .card .card-header p,
+  .card .card-header span {
+    color: #000000 !important;
+  }
+
+  /* --- VEHICLE INFO FIELDS ---
+     Year, Make, Model, Trim, Mileage, Stock#, VIN,
+     Engine, Transmission, Drivetrain, Ext Color, etc. */
+  [class*="vehicle-info"],
+  [class*="vehicle-info"] span,
+  [class*="vehicle-info"] p,
+  [class*="vehicle-info"] small,
+  [class*="vehicle-info"] label,
+  [class*="vehicle-info"] strong,
+  [class*="inv-info"],
+  [class*="inv-info"] span,
+  [class*="inv-info"] p,
+  [class*="inv-info"] small,
+  [class*="inv-info"] label,
+  [class*="inv-detail"],
+  [class*="inv-detail"] span,
+  [class*="inv-detail"] p,
+  [class*="inv-detail"] small,
+  [class*="inv-detail"] label,
+  [class*="inv-detail"] strong,
+  [class*="inv-spec"],
+  [class*="inv-spec"] span,
+  [class*="inv-spec"] p,
+  [class*="vehicle-detail"],
+  [class*="vehicle-detail"] span,
+  [class*="vehicle-detail"] p,
+  [class*="vehicle-detail"] small,
+  [class*="vehicle-spec"],
+  [class*="vehicle-spec"] span,
+  [class*="vehicle-spec"] p {
+    color: #000000 !important;
+  }
+
+  /* --- VEHICLE TITLE (Year Make Model) --- */
+  [class*="vehicle-title"],
+  [class*="vehicle-title"] a,
+  [class*="vehicle-title"] span,
+  [class*="inv-title"],
+  [class*="inv-title"] a,
+  [class*="inv-title"] span,
+  .card-title,
+  .card-title a {
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+  [class*="vehicle-title"] a:hover,
+  [class*="inv-title"] a:hover,
+  .card-title a:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- VEHICLE PRICE — ALWAYS RED --- */
+  [class*="price"],
+  [class*="price"] span,
+  [class*="price"] strong,
+  [class*="price"] b,
+  [class*="msrp"],
+  [class*="msrp"] span,
+  .dws-vehicle-price,
+  .vehicle-price,
+  .inv-price,
+  .dws-inv-price,
+  .sale-price,
+  .internet-price,
+  .our-price {
+    color: #c8102e !important;
+    font-weight: 700 !important;
+  }
+
+  /* Price label text ("Internet Price:", "Our Price:", "MSRP:") */
+  [class*="price-label"],
+  [class*="price"] label,
+  .price-label {
+    color: #000000 !important;
+    font-weight: 400 !important;
+  }
+
+  /* --- MILEAGE / ODOMETER --- */
+  [class*="mileage"],
+  [class*="mileage"] span,
+  [class*="odometer"],
+  [class*="odometer"] span,
+  [class*="miles"],
+  [class*="miles"] span {
+    color: #000000 !important;
+  }
+
+  /* --- STOCK #, VIN --- */
+  [class*="stock"],
+  [class*="stock"] span,
+  [class*="vin"],
+  [class*="vin"] span {
+    color: #000000 !important;
+  }
+
+  /* --- FILTER SIDEBAR --- */
+  [class*="filter"],
+  [class*="filter"] label,
+  [class*="filter"] span,
+  [class*="filter"] p,
+  [class*="filter"] h4,
+  [class*="filter"] h5,
+  [class*="filter"] h6,
+  [class*="filter"] strong,
+  [class*="filter"] small,
+  [class*="filter"] .form-check-label,
+  [class*="sidebar"],
+  [class*="sidebar"] label,
+  [class*="sidebar"] span,
+  [class*="sidebar"] p,
+  [class*="sidebar"] h4,
+  [class*="sidebar"] h5,
+  [class*="sidebar"] h6,
+  [class*="sidebar"] small,
+  [class*="sidebar"] .form-check-label,
+  .form-check-label,
+  .custom-control-label {
+    color: #000000 !important;
+  }
+
+  /* Filter count badges */
+  [class*="filter"] .badge,
+  [class*="sidebar"] .badge,
+  [class*="filter-count"],
+  [class*="filter"] [class*="count"] {
+    color: #ffffff !important;
+    background-color: #c8102e !important;
+  }
+
+  /* --- TOOLBAR / SORT BAR --- */
+  [class*="toolbar"],
+  [class*="toolbar"] span,
+  [class*="toolbar"] label,
+  [class*="toolbar"] p,
+  [class*="toolbar"] small,
+  [class*="toolbar"] strong,
+  [class*="sort"],
+  [class*="sort"] span,
+  [class*="sort"] label,
+  [class*="sort"] option,
+  [class*="results"],
+  [class*="results"] span,
+  [class*="results"] strong,
+  [class*="available"],
+  [class*="available"] span,
+  [class*="listing-count"],
+  [class*="listing-count"] span,
+  [class*="showing"],
+  [class*="showing"] span {
+    color: #000000 !important;
+  }
+
+  /* --- BREADCRUMBS --- */
+  .breadcrumb,
+  .breadcrumb li,
+  .breadcrumb a,
+  .breadcrumb span,
+  .breadcrumb .breadcrumb-item,
+  .breadcrumb .breadcrumb-item a,
+  .breadcrumb .breadcrumb-item.active,
+  [class*="breadcrumb"],
+  [class*="breadcrumb"] a,
+  [class*="breadcrumb"] span,
+  [class*="breadcrumb"] li {
+    color: #000000 !important;
+  }
+  .breadcrumb a:hover,
+  .breadcrumb .breadcrumb-item a:hover,
+  [class*="breadcrumb"] a:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- PAGINATION --- */
+  .pagination,
+  .pagination li,
+  .pagination .page-link,
+  .pagination a,
+  .pagination span,
+  [class*="pagination"] a,
+  [class*="pagination"] span,
+  [class*="pagination"] li {
+    color: #000000 !important;
+  }
+  .pagination .active .page-link,
+  .pagination .page-item.active .page-link,
+  .pagination .active a {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+  .pagination .page-link:hover,
+  .pagination a:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- "VIEW DETAILS" / CTA BUTTONS ON CARDS --- */
+  [class*="view-detail"],
+  [class*="view-detail"] a,
+  [class*="btn-detail"],
+  .btn-view,
+  .view-vehicle,
+  .view-details-btn,
+  a[class*="view-detail"],
+  a[class*="btn-detail"] {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+  [class*="view-detail"]:hover,
+  [class*="btn-detail"]:hover,
+  .btn-view:hover,
+  .view-vehicle:hover,
+  .view-details-btn:hover {
+    background-color: #a00d24 !important;
+    border-color: #a00d24 !important;
+    color: #ffffff !important;
+  }
+
+  /* --- "COMPARE" / "SAVE" / ACTION LINKS --- */
+  [class*="compare"],
+  [class*="compare"] span,
+  [class*="save-vehicle"],
+  [class*="save-vehicle"] span,
+  [class*="wishlist"],
+  [class*="wishlist"] span {
+    color: #000000 !important;
+  }
+  [class*="compare"]:hover,
+  [class*="save-vehicle"]:hover,
+  [class*="wishlist"]:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- TABLE/LIST VIEWS --- */
+  .table,
+  .table td,
+  .table th,
+  .table tr,
+  .table span,
+  .table p,
+  .table small,
+  table td,
+  table th,
+  table span {
+    color: #000000 !important;
+  }
+  .table thead th,
+  .table-dark th,
+  .table-dark td {
+    color: #ffffff !important;
+  }
+
+  /* --- DISCLAIMER / FINE PRINT --- */
+  [class*="disclaimer"],
+  [class*="disclaimer"] p,
+  [class*="disclaimer"] span,
+  [class*="fine-print"],
+  [class*="fine-print"] p,
+  .disclaimer,
+  .disclaimer p,
+  .fine-print,
+  .fine-print p {
+    color: #000000 !important;
+    font-size: 11px !important;
+    opacity: 0.5 !important;
+  }
+
+  /* --- NUCLEAR OPTION: Any remaining gray inline styles ---
+     Catch gray shades applied via inline style="" 
+     Using complete RGB triplets to avoid false matches */
+  [style*="color: rgb(102, 102, 102)"],
+  [style*="color:rgb(102, 102, 102)"],
+  [style*="color:rgb(102,102,102)"],
+  [style*="color: rgb(119, 119, 119)"],
+  [style*="color:rgb(119,119,119)"],
+  [style*="color: rgb(136, 136, 136)"],
+  [style*="color:rgb(136,136,136)"],
+  [style*="color: rgb(153, 153, 153)"],
+  [style*="color:rgb(153,153,153)"],
+  [style*="color: rgb(170, 170, 170)"],
+  [style*="color:rgb(170,170,170)"],
+  [style*="color: rgb(187, 187, 187)"],
+  [style*="color:rgb(187,187,187)"],
+  [style*="color: rgb(204, 204, 204)"],
+  [style*="color:rgb(204,204,204)"],
+  [style*="color: rgb(221, 221, 221)"],
+  [style*="color:rgb(221,221,221)"] {
+    color: #000000 !important;
+  }
+
+  /* --- Also catch hex values with uppercase --- */
+  [style*="color: #333333"],
+  [style*="color:#333333"],
+  [style*="color: #444444"],
+  [style*="color:#444444"],
+  [style*="color: #555555"],
+  [style*="color:#555555"],
+  [style*="color: #666666"],
+  [style*="color:#666666"],
+  [style*="color: #777777"],
+  [style*="color:#777777"],
+  [style*="color: #888888"],
+  [style*="color:#888888"],
+  [style*="color: #999999"],
+  [style*="color:#999999"],
+  [style*="color: #AAAAAA"],
+  [style*="color:#AAAAAA"],
+  [style*="color: #BBBBBB"],
+  [style*="color:#BBBBBB"],
+  [style*="color: #CCCCCC"],
+  [style*="color:#CCCCCC"],
+  [style*="color: #DDDDDD"],
+  [style*="color:#DDDDDD"] {
+    color: #000000 !important;
+  }
+
+  /* --- DealerCenter dws-v3-c8 theme specific classes --- */
+  .dws-secondary-text,
+  .dws-secondary-text span,
+  .dws-secondary-text p,
+  .dws-meta-info,
+  .dws-meta-info span,
+  .dws-meta-info p,
+  .dws-body-text,
+  .dws-body-text span,
+  .dws-card-text,
+  .dws-card-text span,
+  .dws-card-info,
+  .dws-card-info span,
+  .dws-card-info p,
+  .dws-label,
+  .dws-label span,
+  .dws-value,
+  .dws-value span,
+  .dws-desc,
+  .dws-desc p,
+  .dws-desc span {
+    color: #000000 !important;
+  }
+
+  /* --- PROTECT CUSTOM MOTORO ELEMENTS ---
+     Don't let these aggressive rules override our footer */
+  #motoro-map-section-wrapper,
+  #motoro-map-section-wrapper *,
+  #motoro-footer-wrapper,
+  #motoro-footer-wrapper * {
+    color: inherit !important;
+  }
+</style>

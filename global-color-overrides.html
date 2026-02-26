@@ -1,0 +1,563 @@
+<!-- ============================================
+     MOTORO - GLOBAL FONT & COLOR OVERRIDES
+     ============================================
+     INSTRUCTIONS:
+     Paste this code into:
+     WordPress Customizer > Theme Scripts > Header Script
+
+     This overrides gray text colors across the entire
+     DealerCenter theme, replacing them with a clean
+     palette of white, black, and red (#c8102e).
+
+     COLOR LOGIC:
+     - Dark/black backgrounds → white text
+     - Light/white backgrounds → black text
+     - Accent labels, highlights → red #c8102e
+     - No more gray fonts anywhere
+
+     PASTE THIS BEFORE the hide-default-footer.html code
+     if you already have that in the Header Script.
+     ============================================ -->
+
+<style>
+  /* =============================================
+     MOTORO GLOBAL FONT & COLOR OVERRIDES
+     Palette: #000000 (black), #ffffff (white), #c8102e (red)
+     ============================================= */
+
+  /* --- BODY & GENERAL TEXT --- */
+  body,
+  body p,
+  body span,
+  body div,
+  body li,
+  body td,
+  body th,
+  body label,
+  body .text-muted,
+  body .text-secondary {
+    color: #000000 !important;
+  }
+
+  /* --- HEADINGS --- */
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6,
+  body h1, body h2, body h3,
+  body h4, body h5, body h6 {
+    color: #000000 !important;
+  }
+
+  /* --- LINKS --- */
+  a {
+    color: #c8102e !important;
+  }
+  a:hover,
+  a:focus {
+    color: #a00d24 !important;
+  }
+
+  /* --- NAVIGATION / HEADER ---
+       (typically dark background) */
+  .navbar,
+  .navbar a,
+  .navbar .nav-link,
+  .navbar .navbar-brand,
+  header,
+  header a,
+  header .nav-link,
+  .dws-header,
+  .dws-header a,
+  .dws-header .nav-link,
+  .dws-nav,
+  .dws-nav a,
+  .top-bar,
+  .top-bar a,
+  .top-bar span,
+  .top-bar p,
+  .header-top,
+  .header-top a,
+  .header-top span {
+    color: #ffffff !important;
+  }
+
+  /* Navigation hover */
+  .navbar a:hover,
+  .navbar .nav-link:hover,
+  header a:hover,
+  .dws-header a:hover,
+  .dws-nav a:hover,
+  .top-bar a:hover,
+  .header-top a:hover {
+    color: #c8102e !important;
+  }
+
+  /* Active nav item */
+  .navbar .nav-link.active,
+  .navbar .active > .nav-link,
+  .dws-nav .active a,
+  header .active a {
+    color: #c8102e !important;
+  }
+
+  /* --- HERO / BANNER SECTIONS ---
+       (dark/image background) */
+  .dws-home-banner-bg,
+  .dws-home-banner-bg *,
+  .wp-block-cover,
+  .wp-block-cover *,
+  .wp-block-cover__inner-container,
+  .wp-block-cover__inner-container * {
+    color: #ffffff !important;
+  }
+
+  /* --- INVENTORY PAGE --- */
+
+  /* DealerCenter inventory wrapper - text elements */
+  .dws-inventory-item p,
+  .dws-inventory-item span,
+  .dws-inventory-item li,
+  .dws-inventory-item td,
+  .dws-inventory-item th,
+  .dws-inventory-item label,
+  .dws-inventory-item h1,
+  .dws-inventory-item h2,
+  .dws-inventory-item h3,
+  .dws-inventory-item h4,
+  .dws-inventory-item h5,
+  .dws-inventory-item h6,
+  .inv-vehicle-card p,
+  .inv-vehicle-card span,
+  .inv-vehicle-card li,
+  .inv-vehicle-card td,
+  .inv-vehicle-list p,
+  .inv-vehicle-list span,
+  .dws-vehicle-list p,
+  .dws-vehicle-list span,
+  .inventory-listing p,
+  .inventory-listing span,
+  .inventory-container p,
+  .inventory-container span {
+    color: #000000 !important;
+  }
+
+  /* Vehicle card titles */
+  .dws-vehicle-title,
+  .dws-vehicle-title a,
+  .vehicle-title,
+  .vehicle-title a,
+  .inventory-title,
+  .inventory-title a,
+  .dws-inv-title,
+  .dws-inv-title a,
+  .card-title,
+  .card-title a {
+    color: #000000 !important;
+  }
+
+  /* Vehicle card titles hover → red */
+  .dws-vehicle-title a:hover,
+  .vehicle-title a:hover,
+  .inventory-title a:hover,
+  .dws-inv-title a:hover,
+  .card-title a:hover {
+    color: #c8102e !important;
+  }
+
+  /* Vehicle price — always RED */
+  .dws-vehicle-price,
+  .vehicle-price,
+  .dws-inv-price,
+  .inv-price,
+  .price,
+  .dws-price,
+  .dws-vehicle-price span,
+  .vehicle-price span,
+  .dws-inv-price span,
+  .inv-price span {
+    color: #c8102e !important;
+  }
+
+  /* DealerCenter gray/muted text classes → black */
+  .dws-text-grey,
+  .dws-text-gray,
+  .dws-text-muted,
+  .dws-secondary-info,
+  .inv-text-muted,
+  .inv-text-grey,
+  .inv-text-gray,
+  .text-muted,
+  .text-secondary,
+  .text-gray,
+  .text-grey,
+  .text-body-secondary,
+  .small.text-muted,
+  small.text-muted,
+  .muted {
+    color: #000000 !important;
+  }
+
+  /* Vehicle details / specs / labels */
+  .dws-vehicle-details,
+  .dws-vehicle-details span,
+  .dws-vehicle-details p,
+  .vehicle-details,
+  .vehicle-details span,
+  .vehicle-details p,
+  .dws-inv-details,
+  .dws-inv-details span,
+  .dws-inv-details p,
+  .dws-inv-specs,
+  .dws-inv-specs span,
+  .dws-inv-specs p,
+  .vehicle-specs,
+  .vehicle-specs span,
+  .vehicle-info,
+  .vehicle-info span,
+  .vehicle-info p {
+    color: #000000 !important;
+  }
+
+  /* Vehicle mileage, stock#, VIN labels */
+  .dws-inv-mileage,
+  .dws-inv-stock,
+  .dws-inv-vin,
+  .vehicle-mileage,
+  .vehicle-stock,
+  .vehicle-vin,
+  .inv-mileage,
+  .inv-stock,
+  .inv-vin,
+  .inv-ext-color,
+  .inv-int-color,
+  .inv-transmission,
+  .inv-engine,
+  .inv-drivetrain,
+  .inv-fuel-type,
+  .inv-body-style,
+  .dws-inv-mileage span,
+  .dws-inv-stock span,
+  .dws-inv-vin span {
+    color: #000000 !important;
+  }
+
+  /* Inventory filters / sidebar */
+  .dws-filter,
+  .dws-filter label,
+  .dws-filter span,
+  .dws-filter p,
+  .dws-filter h4,
+  .dws-filter h5,
+  .dws-sidebar,
+  .dws-sidebar label,
+  .dws-sidebar span,
+  .dws-sidebar p,
+  .dws-sidebar h4,
+  .dws-sidebar h5,
+  .dws-sidebar h6,
+  .inventory-filter,
+  .inventory-filter label,
+  .inventory-filter span,
+  .sidebar-filter,
+  .sidebar-filter label,
+  .filter-label,
+  .filter-title,
+  .filter-group,
+  .filter-group label,
+  .filter-group span {
+    color: #000000 !important;
+  }
+
+  /* Inventory sort / results count */
+  .dws-sort,
+  .dws-sort span,
+  .dws-sort label,
+  .dws-results-count,
+  .results-count,
+  .showing-results,
+  .sort-label,
+  .sort-by,
+  .dws-listing-count,
+  .listing-count {
+    color: #000000 !important;
+  }
+
+  /* "Compare" / "Save" / action links on vehicle cards */
+  .dws-compare,
+  .dws-save,
+  .dws-share,
+  .compare-link,
+  .save-link {
+    color: #000000 !important;
+  }
+  .dws-compare:hover,
+  .dws-save:hover,
+  .dws-share:hover,
+  .compare-link:hover,
+  .save-link:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- BUTTONS --- */
+
+  /* Primary buttons → red background, white text */
+  .btn-primary,
+  .dws-btn-primary,
+  .btn-danger,
+  .wp-block-button__link,
+  .cta-primary,
+  input[type="submit"],
+  button[type="submit"] {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+  .btn-primary:hover,
+  .dws-btn-primary:hover,
+  .btn-danger:hover,
+  .wp-block-button__link:hover,
+  .cta-primary:hover,
+  input[type="submit"]:hover,
+  button[type="submit"]:hover {
+    background-color: #a00d24 !important;
+    border-color: #a00d24 !important;
+    color: #ffffff !important;
+  }
+
+  /* Secondary / outline buttons → black or white depending on context */
+  .btn-secondary,
+  .btn-outline-primary,
+  .btn-outline-secondary,
+  .cta-secondary {
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
+  .btn-secondary:hover,
+  .btn-outline-primary:hover,
+  .btn-outline-secondary:hover,
+  .cta-secondary:hover {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+
+  /* --- CARDS / PANELS --- */
+  .card,
+  .card-body,
+  .card-body p,
+  .card-body span,
+  .card-body li,
+  .card-text,
+  .panel,
+  .panel-body,
+  .panel-body p {
+    color: #000000 !important;
+  }
+
+  /* --- FORM ELEMENTS --- */
+  input,
+  select,
+  textarea,
+  .form-control,
+  .form-select {
+    color: #000000 !important;
+  }
+  input::placeholder,
+  textarea::placeholder,
+  .form-control::placeholder {
+    color: #666666 !important;
+  }
+
+  /* --- BREADCRUMBS --- */
+  .breadcrumb,
+  .breadcrumb-item,
+  .breadcrumb-item a,
+  .breadcrumb-item.active {
+    color: #000000 !important;
+  }
+  .breadcrumb-item a:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- SEARCH BAR / MAKE/MODEL SELECTOR ---
+       (often has dark background on DealerCenter) */
+  .dws-search-bar,
+  .dws-search-bar *,
+  .dws-make-search,
+  .dws-make-search *,
+  .dws-home-search,
+  .dws-home-search *,
+  .search-make,
+  .search-make * {
+    color: #ffffff !important;
+  }
+
+  /* --- SECTIONS WITH DARK BACKGROUNDS --- */
+  .bg-dark,
+  .bg-dark *,
+  .bg-primary,
+  .bg-primary *,
+  .text-white,
+  .dws-dark-section,
+  .dws-dark-section *,
+  [style*="background: #000"],
+  [style*="background-color: #000"],
+  [style*="background:#000"],
+  [style*="background-color:#000"] {
+    color: #ffffff !important;
+  }
+
+  /* --- SECTIONS WITH LIGHT BACKGROUNDS --- */
+  .bg-light,
+  .bg-light *,
+  .bg-white,
+  .bg-white * {
+    color: #000000 !important;
+  }
+
+  /* --- DWS HOME SPECIFIC SECTIONS --- */
+
+  /* Quick actions / feature boxes */
+  .dws-quick-actions,
+  .dws-quick-actions *,
+  .dws-feature-box,
+  .dws-feature-box * {
+    color: #000000 !important;
+  }
+
+  /* Brand/make logos section */
+  .dws-brand-section,
+  .dws-brand-section * {
+    color: #000000 !important;
+  }
+
+  /* "Explore with us" or similar CTA sections */
+  .dws-cta-section,
+  .dws-cta-section h2,
+  .dws-cta-section h3,
+  .dws-cta-section p {
+    color: #000000 !important;
+  }
+
+  /* --- VDP (Vehicle Detail Page) --- */
+  .dws-vdp-title,
+  .dws-vdp-price,
+  .vdp-title {
+    color: #000000 !important;
+  }
+  .dws-vdp-price,
+  .vdp-price {
+    color: #c8102e !important;
+  }
+  .dws-vdp-specs,
+  .dws-vdp-specs td,
+  .dws-vdp-specs th,
+  .dws-vdp-details,
+  .dws-vdp-details td,
+  .dws-vdp-details th,
+  .vehicle-detail-specs td,
+  .vehicle-detail-specs th {
+    color: #000000 !important;
+  }
+
+  /* --- CONTACT / FORMS PAGE --- */
+  .dws-contact-form label,
+  .dws-contact-form p,
+  .contact-form label,
+  .contact-form p,
+  .wpcf7 label,
+  .wpcf7 p {
+    color: #000000 !important;
+  }
+
+  /* --- ABOUT US PAGE --- */
+  .dws-about,
+  .dws-about p,
+  .dws-about h2,
+  .dws-about h3,
+  .about-us p,
+  .about-us h2 {
+    color: #000000 !important;
+  }
+
+  /* --- PAGINATION --- */
+  .pagination .page-link {
+    color: #000000 !important;
+  }
+  .pagination .page-item.active .page-link {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+  .pagination .page-link:hover {
+    color: #c8102e !important;
+  }
+
+  /* --- BADGES / TAGS --- */
+  .badge,
+  .badge-primary,
+  .bg-primary.badge {
+    background-color: #c8102e !important;
+    color: #ffffff !important;
+  }
+
+  /* --- REMOVE GRAY COMPLETELY ---
+       Override any inline gray styles from the theme */
+  [style*="color: #333"],
+  [style*="color:#333"],
+  [style*="color: #444"],
+  [style*="color:#444"],
+  [style*="color: #555"],
+  [style*="color:#555"],
+  [style*="color: #666"],
+  [style*="color:#666"],
+  [style*="color: #777"],
+  [style*="color:#777"],
+  [style*="color: #888"],
+  [style*="color:#888"],
+  [style*="color: #999"],
+  [style*="color:#999"],
+  [style*="color: #aaa"],
+  [style*="color:#aaa"],
+  [style*="color: #bbb"],
+  [style*="color:#bbb"],
+  [style*="color: #ccc"],
+  [style*="color:#ccc"],
+  [style*="color: #ddd"],
+  [style*="color:#ddd"],
+  [style*="color: gray"],
+  [style*="color:gray"],
+  [style*="color: grey"],
+  [style*="color:grey"] {
+    color: #000000 !important;
+  }
+
+  /* Gray text in dark containers → white instead */
+  .bg-dark [style*="color: #666"],
+  .bg-dark [style*="color:#666"],
+  .bg-dark [style*="color: #999"],
+  .bg-dark [style*="color:#999"],
+  .navbar [style*="color: #666"],
+  .navbar [style*="color: #999"],
+  header [style*="color: #666"],
+  header [style*="color: #999"] {
+    color: #ffffff !important;
+  }
+
+  /* === PROTECT CUSTOM MOTORO FOOTER ===
+     Our footer uses its own inline styles — override
+     the global rules back to the correct footer colors */
+  #motoro-map-section-wrapper p,
+  #motoro-map-section-wrapper span,
+  #motoro-map-section-wrapper div,
+  #motoro-map-section-wrapper h2,
+  #motoro-map-section-wrapper h3,
+  #motoro-footer-wrapper p,
+  #motoro-footer-wrapper span,
+  #motoro-footer-wrapper div {
+    color: inherit !important;
+  }
+  #motoro-map-section-wrapper a,
+  #motoro-footer-wrapper a {
+    color: inherit !important;
+  }
+</style>

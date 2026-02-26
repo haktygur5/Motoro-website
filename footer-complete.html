@@ -1,0 +1,422 @@
+<!-- ============================================
+     MOTORO AUTOMOTIVE GROUP - COMPLETE FOOTER
+     ============================================
+     INSTRUCTIONS:
+     Paste this entire code block into:
+     WordPress Customizer > Theme Scripts > Footer Script
+
+     This adds:
+     1. A premium dark-mode map section with dealership
+        location, contact info, and "Get Directions" button
+     2. A full footer bar with quick links, social icons,
+        and copyright
+
+     CONSTRAINTS (DealerCenter compatibility):
+     - No :root CSS variables
+     - No CSS filter on iframe
+     - No backdrop-filter
+     - All selectors scoped to #motoro-map-section-wrapper
+       and #motoro-footer-wrapper
+     ============================================ -->
+
+<!-- FOOTER STYLES -->
+<style>
+  @keyframes motoro-glow-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(200,16,46,0.35); }
+    50%      { box-shadow: 0 4px 30px rgba(200,16,46,0.55); }
+  }
+  @keyframes motoro-line-grow {
+    from { width: 0; }
+    to   { width: 60px; }
+  }
+  #motoro-map-section-wrapper [data-motoro-role="directions-btn"]:hover {
+    background: #a00d24 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(200,16,46,0.5) !important;
+  }
+  #motoro-map-section-wrapper [data-motoro-role="phone-link"]:hover {
+    color: #c8102e !important;
+  }
+  #motoro-map-section-wrapper [data-motoro-role="info-item"]:hover {
+    background: rgba(255,255,255,0.03) !important;
+    border-color: rgba(200,16,46,0.15) !important;
+  }
+  #motoro-footer-wrapper [data-motoro-role="footer-link"]:hover {
+    color: #c8102e !important;
+  }
+  #motoro-footer-wrapper [data-motoro-role="social-icon"]:hover {
+    background: #c8102e !important;
+    border-color: #c8102e !important;
+    transform: translateY(-2px);
+  }
+  @media screen and (max-width: 768px) {
+    #motoro-map-section-wrapper [data-motoro-layout="map"] {
+      height: 60vh !important;
+      min-height: 350px !important;
+    }
+    #motoro-map-section-wrapper [data-motoro-layout="info"] {
+      position: relative !important;
+      bottom: auto !important;
+      right: auto !important;
+      width: 100% !important;
+      border-radius: 0 !important;
+    }
+    #motoro-map-section-wrapper [data-motoro-role="section-title"] {
+      font-size: 26px !important;
+    }
+    #motoro-footer-wrapper [data-motoro-layout="footer-grid"] {
+      flex-direction: column !important;
+      gap: 32px !important;
+      text-align: center !important;
+    }
+    #motoro-footer-wrapper [data-motoro-layout="footer-grid"] > div {
+      align-items: center !important;
+    }
+    #motoro-footer-wrapper [data-motoro-layout="social-row"] {
+      justify-content: center !important;
+    }
+    #motoro-footer-wrapper [data-motoro-layout="bottom-bar"] {
+      flex-direction: column !important;
+      gap: 8px !important;
+      text-align: center !important;
+    }
+  }
+</style>
+
+<!-- ==========================================
+     SECTION 1: MAP + INFO CARD
+     ========================================== -->
+<div id="motoro-map-section-wrapper" style="
+  width: 100%;
+  background: #000000;
+  position: relative;
+  padding: 70px 0 60px 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+">
+  <!-- Subtle radial glow behind the card area -->
+  <div style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(200,16,46,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <!-- Top edge glow line -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.3) 50%, transparent 100%);
+  "></div>
+
+  <!-- Section Title -->
+  <div style="text-align: center; margin-bottom: 48px; padding: 0 20px; position: relative;">
+    <p style="
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8102e;
+      margin: 0 0 12px 0;
+    ">&#x1F4CD; FIND US</p>
+    <h2 data-motoro-role="section-title" style="
+      font-size: 34px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 16px 0;
+      line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    ">Visit Our Dealership</h2>
+    <div style="
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #c8102e, #e63946);
+      margin: 0 auto;
+      border-radius: 2px;
+      animation: motoro-line-grow 0.8s ease-out;
+    "></div>
+  </div>
+
+  <!-- Map Container — FULL VIEWPORT WIDTH -->
+  <div style="
+    width: 100vw;
+    position: relative;
+    margin-left: calc(-50vw + 50%);
+    height: 85vh;
+    min-height: 600px;
+    box-sizing: border-box;
+    overflow: hidden;
+  ">
+    <!-- Google Map (Dark Mode) — takes ENTIRE container -->
+    <div data-motoro-layout="map" style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+    ">
+      <iframe
+        src="https://maps.google.com/maps?q=810+Lee+Rd,+Orlando,+FL+32810&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style="border: 0; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Motoro Automotive Group Location">
+      </iframe>
+    </div>
+
+    <!-- Floating Info Card — overlay on bottom-right -->
+    <div data-motoro-layout="info" style="
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 400px;
+      background: rgba(10,10,10,0.92);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(200,16,46,0.15);
+      border-radius: 16px;
+      box-sizing: border-box;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      z-index: 10;
+    ">
+        <!-- Dealership Logo + Name -->
+        <div style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+          <img
+            src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
+            alt="Motoro Automotive Group"
+            style="max-width: 160px; height: auto; margin-bottom: 12px; display: block;"
+          />
+        </div>
+
+        <!-- Address -->
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 6px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
+            ADDRESS
+          </p>
+          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.55;">
+            810 Lee Rd<br>Orlando, FL 32810
+          </p>
+        </div>
+
+        <!-- Phone -->
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 6px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
+            PHONE
+          </p>
+          <a href="tel:+14079222215" data-motoro-role="phone-link" style="
+            font-size: 14px;
+            color: #c8c8d0;
+            text-decoration: none;
+            line-height: 1.55;
+            transition: color 0.25s ease;
+          ">(407) 922-2215</a>
+        </div>
+
+        <!-- Hours -->
+        <div data-motoro-role="info-item" style="
+          margin-bottom: 24px;
+          padding: 14px 16px;
+          border-radius: 10px;
+          border: 1px solid transparent;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        ">
+          <p style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8102e; margin: 0 0 6px 0;">
+            HOURS
+          </p>
+          <p style="font-size: 14px; color: #c8c8d0; margin: 0; line-height: 1.6;">
+            Mon - Sat: 9AM - 7PM<br>
+            <span style="color: #999999;">Sun: Closed</span>
+          </p>
+        </div>
+
+        <!-- Get Directions Button -->
+        <a href="https://maps.app.goo.gl/XxbsgPgVzZmqHBex9" target="_blank" rel="noopener noreferrer" data-motoro-role="directions-btn" style="
+          display: block;
+          background: #c8102e;
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 700;
+          text-decoration: none;
+          text-align: center;
+          padding: 15px 28px;
+          border-radius: 10px;
+          letter-spacing: 0.5px;
+          transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+          animation: motoro-glow-pulse 3s ease-in-out infinite;
+        ">
+          Get Directions &rarr;
+        </a>
+      </div>
+
+    </div>
+
+  <!-- Bottom edge glow line -->
+  <div style="
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.2) 50%, transparent 100%);
+  "></div>
+</div>
+
+<!-- ==========================================
+     SECTION 2: FOOTER BAR
+     ========================================== -->
+<div id="motoro-footer-wrapper" style="
+  width: 100%;
+  background: #000000;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 0;
+">
+  <!-- Footer Main Content -->
+  <div style="
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 20px 40px 20px;
+    box-sizing: border-box;
+  ">
+    <div data-motoro-layout="footer-grid" style="
+      display: flex;
+      flex-direction: row;
+      gap: 48px;
+    ">
+
+      <!-- Column 1: Brand -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; align-items: flex-start;">
+        <img
+          src="https://dcdws.blob.core.windows.net/dws-29006608-102354-media/sites/102354/2026/02/logo.png"
+          alt="Motoro Automotive Group"
+          style="max-width: 180px; height: auto; margin-bottom: 16px;"
+        />
+        <p style="font-size: 13px; color: #999999; margin: 0 0 20px 0; line-height: 1.6;">
+          Quality pre-owned vehicles with financing options for everyone. Visit us in Orlando, FL.
+        </p>
+        <!-- Social Icons -->
+        <div data-motoro-layout="social-row" style="display: flex; gap: 10px;">
+          <a href="https://www.facebook.com/motorogroup#" target="_blank" rel="noopener noreferrer" data-motoro-role="social-icon" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: #c8c8d0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
+          " title="Facebook">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/motoroautomotivegroup/" target="_blank" rel="noopener noreferrer" data-motoro-role="social-icon" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: #c8c8d0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
+          " title="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div style="flex: 0.8; display: flex; flex-direction: column; align-items: flex-start;">
+        <p style="
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: #c8102e;
+          margin: 0 0 16px 0;
+        ">QUICK LINKS</p>
+        <a href="/inventory/" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Browse Inventory</a>
+        <a href="/apply-online/" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Apply for Financing</a>
+        <a href="/schedule-a-test-drive/" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">Schedule Test Drive</a>
+        <a href="/about-us/" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">About Us</a>
+        <a href="/contact-us/" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; transition: color 0.25s ease; display: block;">Contact Us</a>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: flex-start;">
+        <p style="
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: #c8102e;
+          margin: 0 0 16px 0;
+        ">CONTACT</p>
+        <p style="font-size: 14px; color: #b0b0b8; margin: 0 0 10px 0; line-height: 1.55;">
+          810 Lee Rd<br>Orlando, FL 32810
+        </p>
+        <a href="tel:+14079222215" data-motoro-role="footer-link" style="font-size: 14px; color: #b0b0b8; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; display: block;">
+          (407) 922-2215
+        </a>
+        <p style="font-size: 14px; color: #b0b0b8; margin: 0 0 4px 0;">Mon - Sat: 9AM - 7PM</p>
+        <p style="font-size: 14px; color: #55555f; margin: 0;">Sun: Closed</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Bar: Copyright + Privacy -->
+  <div style="
+    border-top: 1px solid rgba(255,255,255,0.06);
+  ">
+    <div data-motoro-layout="bottom-bar" style="
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    ">
+      <p style="font-size: 12px; color: #888888; margin: 0;">
+        &copy; 2025 Motoro Automotive Group. All rights reserved.
+      </p>
+      <a href="/privacy-policy/" data-motoro-role="footer-link" style="font-size: 12px; color: #888888; text-decoration: none; transition: color 0.25s ease;">
+        Privacy Policy
+      </a>
+    </div>
+  </div>
+</div>

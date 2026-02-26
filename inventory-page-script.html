@@ -1,0 +1,166 @@
+<style>
+/* ============================================
+   INVENTORY PAGE — Surgical Dark Mode Fixes
+   Paste into: Pages → Inventory → Edit → DWS Custom Fields → Page Theme Scripts → Header
+   ============================================ */
+
+/* Vehicle Cards — Force dark background on ALL card variations (desktop + mobile) */
+.dws-vlp-heading-section-mobile,
+.dws-vlp-heading-section,
+[class*="dws-vehicle-listing"],
+[class*="dws-inv"],
+.card,
+.card-body,
+.dws-card,
+.vehicle-card,
+.inv-card,
+.dws-vehicle-card,
+.dws-vlp-card,
+.dws-vlp-item {
+  background-color: #111 !important;
+  color: #e0e0e0 !important;
+  border-color: #222 !important;
+}
+
+/* Vehicle Title — white text, always readable */
+.card-title,
+.card-title a,
+.dws-vehicle-title,
+.dws-vehicle-title a,
+.inv-vehicle-name,
+.inv-vehicle-name a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Vehicle Details — mileage, transmission, fuel type — improve contrast */
+.inv-ext-color,
+.inv-transmission,
+.inv-engine,
+.inv-drivetrain,
+.inv-fuel-type,
+.inv-body-style,
+.inv-mileage,
+.dws-secondary-text,
+.dws-meta-info,
+.dws-card-info,
+.text-muted,
+.text-secondary {
+  color: #cccccc !important;
+}
+
+/* Price — red and bold, always visible */
+.dws-vehicle-price,
+.inv-price,
+.vehicle-price,
+.dws-vlp-card .price,
+.card .price {
+  color: #c8102e !important;
+  font-weight: 700 !important;
+}
+
+/* Strikethrough price (original/MSRP) — visible gray, not invisible */
+.dws-vehicle-price del,
+.dws-vehicle-price s,
+.inv-price del,
+.inv-price s,
+.card del,
+.card s {
+  color: #888888 !important;
+  font-weight: 400 !important;
+}
+
+/* "Get Pre-Qualified" and CTA buttons */
+.btn-primary,
+.dws-btn-primary,
+[class*="btn-primary"] {
+  background-color: #c8102e !important;
+  border-color: #c8102e !important;
+  color: #ffffff !important;
+}
+
+/* Card hover — subtle lift effect */
+.card:hover,
+.dws-vlp-card:hover,
+.dws-vlp-item:hover {
+  box-shadow: 0 4px 20px rgba(200,16,46,0.15) !important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease !important;
+}
+
+/* Override inline white backgrounds on mobile */
+[style*="background-color: #fff"],
+[style*="background-color: white"],
+[style*="background-color:#fff"],
+[style*="background-color:#ffffff"],
+[style*="background: #fff"],
+[style*="background: white"],
+.bg-white,
+.bg-light {
+  background-color: #111 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Filter sidebar — dark theme */
+.dws-filter-sidebar,
+.filter-sidebar,
+.dws-sidebar {
+  background-color: #0e0e0e !important;
+  color: #e0e0e0 !important;
+}
+
+/* Filter checkboxes and labels */
+.form-check-label,
+.dws-filter-label {
+  color: #cccccc !important;
+}
+.form-check-input:checked {
+  background-color: #c8102e !important;
+  border-color: #c8102e !important;
+}
+
+/* Sort bar / toolbar */
+.dws-sort-bar,
+.dws-toolbar,
+.dws-vlp-toolbar {
+  background-color: #0a0a0a !important;
+  color: #e0e0e0 !important;
+}
+.dws-sort-bar select,
+.dws-toolbar select {
+  background-color: #1a1a1a !important;
+  color: #e0e0e0 !important;
+  border-color: #333 !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+  background-color: #111 !important;
+  color: #e0e0e0 !important;
+  border-color: #333 !important;
+}
+.pagination .page-item.active .page-link {
+  background-color: #c8102e !important;
+  border-color: #c8102e !important;
+  color: #fff !important;
+}
+
+/* Vehicle count text */
+.dws-vlp-vehicle-count,
+.inventory-count,
+.results-count {
+  color: #ffffff !important;
+}
+
+/* Links inside cards */
+.card a,
+.dws-vlp-card a,
+.dws-vlp-item a {
+  color: #ffffff !important;
+  transition: color 0.25s ease !important;
+}
+.card a:hover,
+.dws-vlp-card a:hover {
+  color: #c8102e !important;
+}
+</style>
